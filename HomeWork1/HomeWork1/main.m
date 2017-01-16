@@ -11,6 +11,8 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         
+        BOOL checker = NO;
+        
         NSArray* arrayWithSongs = [[NSArray alloc] initWithObjects: @"Papaoutai",
                                                                     @"Summertime Sadness",
                                                                     @"Diamond",
@@ -34,6 +36,9 @@ int main(int argc, const char * argv[]) {
             for (NSString* songAndArtist in arrayWithSongsAndArtists){
                 
                 if ([songAndArtist containsString:currentSong]){
+                    
+                    checker = YES;
+                    
                     NSArray* arrayWithComponents = [songAndArtist componentsSeparatedByString:@" - "];
                     
                     NSString* object = [arrayWithComponents objectAtIndex:1];
@@ -42,6 +47,9 @@ int main(int argc, const char * argv[]) {
                     NSString* currentArtist = [arrayWithArtists objectAtIndex:index];
                     
                     NSLog(@"The song \"%@\" by %@", currentSong, currentArtist);
+                }
+                if (checker){
+                    checker = NO;
                     break;
                 }
             }
