@@ -10,7 +10,6 @@
 
 @interface ViewController ()
 
-//@property (strong, nonatomic) NSMutableArray* arrayWithEqualizerView;
 @property (strong, nonatomic) NSMutableArray* arrayWithEqualizerTopView;
 @property (strong, nonatomic) NSMutableArray* arrayWithEqualizerBottomView;
 
@@ -21,7 +20,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    // self.arrayWithEqualizerView = [[NSMutableArray alloc] init];
     self.arrayWithEqualizerTopView = [[NSMutableArray alloc] init];
     self.arrayWithEqualizerBottomView = [[NSMutableArray alloc] init];
     
@@ -64,10 +62,6 @@
                                                                          CGRectGetWidth(self.view.frame)/39.f,
                                                                          CGRectGetHeight(self.view.frame)/2.f + 1.f)];
         
-        // [self.arrayWithEqualizerView addObject:equalizerView];
-        
-        //equalizerView.layer.borderColor = [UIColor blueColor].CGColor;
-        //equalizerView.layer.borderWidth = 1.f;
         
         [self.view addSubview:equalizerView];
         
@@ -148,12 +142,8 @@
         CGRect frame = v.frame;
         frame.origin.y = (position.y);
         frame.size.height = CGRectGetHeight(touchedView.frame) - (position.y + 4.f);
-        //        [UIView animateWithDuration:0.1f
-        //                              delay:0.f
-        //                            options:UIViewAnimationOptionCurveEaseInOut
-        //                         animations:^{
+        
         v.frame = frame;
-        // } completion:nil];
         
     }else if([self.arrayWithEqualizerTopView containsObject:[touchedView superview]]){
         CGPoint position = [touch locationInView:[touchedView superview]];
@@ -162,12 +152,7 @@
         frame.origin.y = (position.y);
         frame.size.height = CGRectGetHeight([touchedView superview].frame) - (position.y + 4.f);
         
-        //        [UIView animateWithDuration:0.1f
-        //                              delay:0.f
-        //                            options:UIViewAnimationOptionCurveEaseInOut
-        //                         animations:^{
-        touchedView.frame = frame;
-        //    } completion:nil];
+                touchedView.frame = frame;
     }
     
     if ([self.arrayWithEqualizerBottomView containsObject:touchedView]){
@@ -177,12 +162,7 @@
         CGRect frame = v.frame;
         
         frame.size.height = CGRectGetHeight(touchedView.frame) - (CGRectGetHeight(touchedView.frame) - (position.y));
-        //        [UIView animateWithDuration:0.1f
-        //                              delay:0.f
-        //                            options:UIViewAnimationOptionCurveEaseInOut
-        //                         animations:^{
-        v.frame = frame;
-        // } completion:nil];
+                v.frame = frame;
         
     }else if ([self.arrayWithEqualizerBottomView containsObject:[touchedView superview]]){
         CGPoint position = [touch locationInView:[touchedView superview]];
@@ -190,12 +170,7 @@
         CGRect frame = touchedView.frame;
         
         frame.size.height = CGRectGetHeight([touchedView superview].frame) - (CGRectGetHeight([touchedView superview].frame) - (position.y));
-        //        [UIView animateWithDuration:0.1f
-        //                              delay:0.f
-        //                            options:UIViewAnimationOptionCurveEaseInOut
-        //                         animations:^{
-        touchedView.frame = frame;
-        // } completion:nil];
+                touchedView.frame = frame;
     }
 }
 

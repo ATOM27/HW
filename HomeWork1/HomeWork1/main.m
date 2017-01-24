@@ -13,16 +13,16 @@ int main(int argc, const char * argv[]) {
         
         BOOL checker = NO;
         
-        NSArray* arrayWithSongs = [[NSArray alloc] initWithObjects: @"Papaoutai",
+        NSArray* arrayWithSongs = @[@"Papaoutai",
                                                                     @"Summertime Sadness",
                                                                     @"Diamond",
                                                                     @"Stole the show",
-                                                                    @"Ta Fete", nil];
+                                                                    @"Ta Fete"];
         
-        NSArray* arrayWithArtists = [[NSArray alloc] initWithObjects:@"Rihanna",
+        NSArray* arrayWithArtists = @[@"Rihanna",
                                                                      @"Kygo",
                                                                      @"Stromae",
-                                                                     @"Lana Del Ray", nil];
+                                                                     @"Lana Del Ray"];
         
   
         NSArray* arrayWithSongsAndArtists = @[@"Papaoutai - Stromae",
@@ -41,7 +41,7 @@ int main(int argc, const char * argv[]) {
                     
                     NSArray* arrayWithComponents = [songAndArtist componentsSeparatedByString:@" - "];
                     
-                    NSString* object = [arrayWithComponents objectAtIndex:1];
+                    NSString* object = [arrayWithComponents lastObject];
                     NSInteger index = [arrayWithArtists indexOfObject:object];
                     
                     NSString* currentArtist = [arrayWithArtists objectAtIndex:index];
