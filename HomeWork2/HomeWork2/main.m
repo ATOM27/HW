@@ -79,7 +79,6 @@ int main(int argc, const char * argv[]) {
         group.listOfArtists = @[artist1, artist2];
         group.listOfSongs = @[song4, song3, song2, song1];
         
-        
         Group* group2 = [[Group alloc] init];
         
         group2.name = @"Group2";
