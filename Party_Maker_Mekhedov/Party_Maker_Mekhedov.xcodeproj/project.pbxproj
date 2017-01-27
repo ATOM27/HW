@@ -1,0 +1,417 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A431E3A4CAF0085C7ED /* EMChooseDateButton.m */; };
+		D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A461E3A65210085C7ED /* EMPartyNameTextField.m */; };
+		D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A4A1E3A79620085C7ED /* EMSlider.m */; };
+		D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */; };
+		D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9E1E3B4DD7009150C1 /* Beer-100.png */; };
+		D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */; };
+		D6418DA61E3B4DD7009150C1 /* Champagne-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA01E3B4DD7009150C1 /* Champagne-100.png */; };
+		D6418DA71E3B4DD7009150C1 /* Christmas Tree-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA11E3B4DD7009150C1 /* Christmas Tree-100.png */; };
+		D6418DA81E3B4DD7009150C1 /* Coconut Cocktail-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA21E3B4DD7009150C1 /* Coconut Cocktail-100.png */; };
+		D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B491E39312F00E4E9D4 /* main.m */; };
+		D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */; };
+		D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B4F1E39312F00E4E9D4 /* ViewController.m */; };
+		D64E4B531E39312F00E4E9D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B511E39312F00E4E9D4 /* Main.storyboard */; };
+		D64E4B551E39312F00E4E9D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B541E39312F00E4E9D4 /* Assets.xcassets */; };
+		D64E4B581E39312F00E4E9D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */; };
+		D64E4B611E39358200E4E9D4 /* EMPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */; };
+		D6CF24851E3B5CEF00463849 /* No Alcohol-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CF24841E3B5CEF00463849 /* No Alcohol-100.png */; };
+		D6CF248A1E3B636900463849 /* EMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24891E3B636900463849 /* EMTextView.m */; };
+		D6CF248D1E3B83D200463849 /* EMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248C1E3B83D200463849 /* EMButton.m */; };
+		D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */; };
+		D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24921E3BE86200463849 /* EMSelectedObject.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D6050A421E3A4CAF0085C7ED /* EMChooseDateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMChooseDateButton.h; sourceTree = "<group>"; };
+		D6050A431E3A4CAF0085C7ED /* EMChooseDateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMChooseDateButton.m; sourceTree = "<group>"; };
+		D6050A451E3A65210085C7ED /* EMPartyNameTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyNameTextField.h; sourceTree = "<group>"; };
+		D6050A461E3A65210085C7ED /* EMPartyNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyNameTextField.m; sourceTree = "<group>"; };
+		D6050A491E3A79620085C7ED /* EMSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSlider.h; sourceTree = "<group>"; };
+		D6050A4A1E3A79620085C7ED /* EMSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSlider.m; sourceTree = "<group>"; };
+		D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPageAndScrollView.h; sourceTree = "<group>"; };
+		D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPageAndScrollView.m; sourceTree = "<group>"; };
+		D6418D9E1E3B4DD7009150C1 /* Beer-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer-100.png"; sourceTree = "<group>"; };
+		D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Birthday Cake-100.png"; sourceTree = "<group>"; };
+		D6418DA01E3B4DD7009150C1 /* Champagne-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Champagne-100.png"; sourceTree = "<group>"; };
+		D6418DA11E3B4DD7009150C1 /* Christmas Tree-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Christmas Tree-100.png"; sourceTree = "<group>"; };
+		D6418DA21E3B4DD7009150C1 /* Coconut Cocktail-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Coconut Cocktail-100.png"; sourceTree = "<group>"; };
+		D64E4B451E39312F00E4E9D4 /* Party_Maker_Mekhedov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Party_Maker_Mekhedov.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D64E4B491E39312F00E4E9D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D64E4B4E1E39312F00E4E9D4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		D64E4B4F1E39312F00E4E9D4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D64E4B521E39312F00E4E9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D64E4B541E39312F00E4E9D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D64E4B571E39312F00E4E9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D64E4B591E39312F00E4E9D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D64E4B5F1E39358200E4E9D4 /* EMPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyViewController.h; sourceTree = "<group>"; };
+		D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyViewController.m; sourceTree = "<group>"; };
+		D6CF24841E3B5CEF00463849 /* No Alcohol-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "No Alcohol-100.png"; sourceTree = "<group>"; };
+		D6CF24881E3B636900463849 /* EMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTextView.h; sourceTree = "<group>"; };
+		D6CF24891E3B636900463849 /* EMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTextView.m; sourceTree = "<group>"; };
+		D6CF248B1E3B83D200463849 /* EMButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMButton.h; sourceTree = "<group>"; };
+		D6CF248C1E3B83D200463849 /* EMButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMButton.m; sourceTree = "<group>"; };
+		D6CF248E1E3BE4C000463849 /* UIView+CircleProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CircleProperty.h"; sourceTree = "<group>"; };
+		D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CircleProperty.m"; sourceTree = "<group>"; };
+		D6CF24911E3BE86200463849 /* EMSelectedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSelectedObject.h; sourceTree = "<group>"; };
+		D6CF24921E3BE86200463849 /* EMSelectedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSelectedObject.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D64E4B421E39312F00E4E9D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D6050A481E3A65D40085C7ED /* EMPartyViewController views */ = {
+			isa = PBXGroup;
+			children = (
+				D6CF24941E3BEB0000463849 /* highlight circle */,
+				D6050A421E3A4CAF0085C7ED /* EMChooseDateButton.h */,
+				D6050A431E3A4CAF0085C7ED /* EMChooseDateButton.m */,
+				D6050A451E3A65210085C7ED /* EMPartyNameTextField.h */,
+				D6050A461E3A65210085C7ED /* EMPartyNameTextField.m */,
+				D6050A491E3A79620085C7ED /* EMSlider.h */,
+				D6050A4A1E3A79620085C7ED /* EMSlider.m */,
+				D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */,
+				D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */,
+				D6CF24881E3B636900463849 /* EMTextView.h */,
+				D6CF24891E3B636900463849 /* EMTextView.m */,
+				D6CF248B1E3B83D200463849 /* EMButton.h */,
+				D6CF248C1E3B83D200463849 /* EMButton.m */,
+			);
+			name = "EMPartyViewController views";
+			sourceTree = "<group>";
+		};
+		D6418D9D1E3B4DD7009150C1 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				D6418D9E1E3B4DD7009150C1 /* Beer-100.png */,
+				D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */,
+				D6418DA01E3B4DD7009150C1 /* Champagne-100.png */,
+				D6418DA11E3B4DD7009150C1 /* Christmas Tree-100.png */,
+				D6418DA21E3B4DD7009150C1 /* Coconut Cocktail-100.png */,
+				D6CF24841E3B5CEF00463849 /* No Alcohol-100.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		D64E4B3C1E39312F00E4E9D4 = {
+			isa = PBXGroup;
+			children = (
+				D64E4B471E39312F00E4E9D4 /* Party_Maker_Mekhedov */,
+				D64E4B461E39312F00E4E9D4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D64E4B461E39312F00E4E9D4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D64E4B451E39312F00E4E9D4 /* Party_Maker_Mekhedov.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D64E4B471E39312F00E4E9D4 /* Party_Maker_Mekhedov */ = {
+			isa = PBXGroup;
+			children = (
+				D6418D9D1E3B4DD7009150C1 /* images */,
+				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
+				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
+				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
+				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
+				D64E4B5F1E39358200E4E9D4 /* EMPartyViewController.h */,
+				D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */,
+				D6050A481E3A65D40085C7ED /* EMPartyViewController views */,
+				D64E4B511E39312F00E4E9D4 /* Main.storyboard */,
+				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
+				D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */,
+				D64E4B591E39312F00E4E9D4 /* Info.plist */,
+				D64E4B481E39312F00E4E9D4 /* Supporting Files */,
+			);
+			path = Party_Maker_Mekhedov;
+			sourceTree = "<group>";
+		};
+		D64E4B481E39312F00E4E9D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D64E4B491E39312F00E4E9D4 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D6CF24941E3BEB0000463849 /* highlight circle */ = {
+			isa = PBXGroup;
+			children = (
+				D6CF248E1E3BE4C000463849 /* UIView+CircleProperty.h */,
+				D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */,
+				D6CF24911E3BE86200463849 /* EMSelectedObject.h */,
+				D6CF24921E3BE86200463849 /* EMSelectedObject.m */,
+			);
+			name = "highlight circle";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D64E4B441E39312F00E4E9D4 /* Party_Maker_Mekhedov */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D64E4B5C1E39312F00E4E9D4 /* Build configuration list for PBXNativeTarget "Party_Maker_Mekhedov" */;
+			buildPhases = (
+				D64E4B411E39312F00E4E9D4 /* Sources */,
+				D64E4B421E39312F00E4E9D4 /* Frameworks */,
+				D64E4B431E39312F00E4E9D4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Party_Maker_Mekhedov;
+			productName = Party_Maker_Mekhedov;
+			productReference = D64E4B451E39312F00E4E9D4 /* Party_Maker_Mekhedov.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D64E4B3D1E39312F00E4E9D4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0820;
+				ORGANIZATIONNAME = "Eugene Mekhedov";
+				TargetAttributes = {
+					D64E4B441E39312F00E4E9D4 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = D64E4B401E39312F00E4E9D4 /* Build configuration list for PBXProject "Party_Maker_Mekhedov" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D64E4B3C1E39312F00E4E9D4;
+			productRefGroup = D64E4B461E39312F00E4E9D4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D64E4B441E39312F00E4E9D4 /* Party_Maker_Mekhedov */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D64E4B431E39312F00E4E9D4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6418DA71E3B4DD7009150C1 /* Christmas Tree-100.png in Resources */,
+				D64E4B581E39312F00E4E9D4 /* LaunchScreen.storyboard in Resources */,
+				D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */,
+				D6418DA61E3B4DD7009150C1 /* Champagne-100.png in Resources */,
+				D6CF24851E3B5CEF00463849 /* No Alcohol-100.png in Resources */,
+				D64E4B551E39312F00E4E9D4 /* Assets.xcassets in Resources */,
+				D64E4B531E39312F00E4E9D4 /* Main.storyboard in Resources */,
+				D6418DA81E3B4DD7009150C1 /* Coconut Cocktail-100.png in Resources */,
+				D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D64E4B411E39312F00E4E9D4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */,
+				D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */,
+				D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */,
+				D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */,
+				D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */,
+				D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */,
+				D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */,
+				D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */,
+				D6CF248A1E3B636900463849 /* EMTextView.m in Sources */,
+				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
+				D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */,
+				D64E4B611E39358200E4E9D4 /* EMPartyViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D64E4B511E39312F00E4E9D4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D64E4B521E39312F00E4E9D4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D64E4B571E39312F00E4E9D4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D64E4B5A1E39312F00E4E9D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D64E4B5B1E39312F00E4E9D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D64E4B5D1E39312F00E4E9D4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Party_Maker_Mekhedov/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ATOM.Party-Maker-Mekhedov";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D64E4B5E1E39312F00E4E9D4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = Party_Maker_Mekhedov/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ATOM.Party-Maker-Mekhedov";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D64E4B401E39312F00E4E9D4 /* Build configuration list for PBXProject "Party_Maker_Mekhedov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D64E4B5A1E39312F00E4E9D4 /* Debug */,
+				D64E4B5B1E39312F00E4E9D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D64E4B5C1E39312F00E4E9D4 /* Build configuration list for PBXNativeTarget "Party_Maker_Mekhedov" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D64E4B5D1E39312F00E4E9D4 /* Debug */,
+				D64E4B5E1E39312F00E4E9D4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D64E4B3D1E39312F00E4E9D4 /* Project object */;
+}
