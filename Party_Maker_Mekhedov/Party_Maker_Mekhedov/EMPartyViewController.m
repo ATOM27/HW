@@ -201,8 +201,8 @@ const NSString* kCloseButton = @"closeButton";
                                                                      30)];
     self.endSlider = endSlider;
     
-    [startSlider addTarget:self action:@selector(actionSliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
-    [endSlider addTarget:self action:@selector(actionSliderValueChange:) forControlEvents:UIControlEventTouchUpInside];
+    [startSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
+    [endSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
     [objectsView addSubview:endSlider];
     
     
@@ -272,7 +272,7 @@ const NSString* kCloseButton = @"closeButton";
 
 #pragma mark - Actions
 
--(void)actionSliderValueChange:(EMSlider*) sender{
+-(void)actionCheckForSliderRange:(EMSlider*) sender{
 
     if([sender isEqual:self.startSlider]){
         
