@@ -229,14 +229,15 @@ const NSString* kCloseButton = @"closeButton";
                                                      color:[UIColor colorWithRed:140.f/255.f green:186.f/255.f blue:29.f/255.f alpha:1.f]
                                                       text:@"SAVE"];
     [objectsView addSubview:saveButton];
+    
+    __weak EMButton* weakButton = saveButton;
     saveButton.action = ^{
         
         if([chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
-            
-            [self alertWithTitle:@"Error!" andMessage:@"You shoud enter the date!"];
+            [weakButton alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
             
         }else if([partyNameField.text isEqualToString:@""]){
-            [self alertWithTitle:@"Error!" andMessage:@"You shoud enter the party name!"];
+            [weakButton alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
         }else{
             [self.navigationController popViewControllerAnimated:YES];
         }
@@ -316,16 +317,6 @@ const NSString* kCloseButton = @"closeButton";
     }
     
     return resultString;
-}
-
--(void) alertWithTitle:(NSString*) title andMessage:(NSString*) message{
-    
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:ok];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

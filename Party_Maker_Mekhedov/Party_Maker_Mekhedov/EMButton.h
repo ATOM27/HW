@@ -13,5 +13,6 @@
 @property (copy, nonatomic) void (^action)(void);
 
 - (instancetype)initWithFrame:(CGRect)frame color:(UIColor*)color text:(NSString*)text;
+-(void) alertWithTitle:(NSString*) title message:(NSString*)message andViewConctroller:(UIViewController*)vc;
 
 @end

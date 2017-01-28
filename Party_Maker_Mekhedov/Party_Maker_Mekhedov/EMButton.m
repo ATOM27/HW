@@ -27,6 +27,16 @@
     return self;
 }
 
+-(void) alertWithTitle:(NSString*) title message:(NSString*)message andViewConctroller:(UIViewController*) vc{
+    
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:ok];
+    
+    [vc presentViewController:alertController animated:YES completion:nil];
+}
+
 #pragma mark - Actions
 
 -(void)actionButtonTouchUpInside:(UIButton*) sender{
