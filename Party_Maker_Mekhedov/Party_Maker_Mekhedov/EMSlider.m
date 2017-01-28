@@ -35,7 +35,7 @@
         
         self.timeLabel = timeLabel;
         
-        [self addTarget:self action:@selector(actionValueChanged:) forControlEvents:UIControlEventTouchDown];
+        [self addTarget:self action:@selector(actionValueChanged:) forControlEvents:UIControlEventValueChanged];
         
     }
     return self;
