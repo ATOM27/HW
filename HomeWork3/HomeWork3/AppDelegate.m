@@ -19,22 +19,24 @@
 
 -(BOOL)application:(UIApplication *)application willFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
-    
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
     
     [self createEventObjectWithEventName:funcName date:[NSDate date]];
+    [self createPlist];
+    [self readInfoPlist];
     return YES;
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     self.arrayForObjects = [[NSMutableArray alloc] init];
-    
     NSData* data = [[NSUserDefaults standardUserDefaults] objectForKey:@"data"];
-    if (data) self.arrayForObjects = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    if (data) {
+        self.arrayForObjects = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    }
     
+
+    [self readInfoPlist];
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
@@ -50,7 +52,7 @@
     NSLog(@"%s", __PRETTY_FUNCTION__);
     
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
-    
+    [self readInfoPlist];
     [self createEventObjectWithEventName:funcName date:[NSDate date]];
 }
 
@@ -59,6 +61,7 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     NSLog(@"%s", __PRETTY_FUNCTION__);
+    [self readInfoPlist];
     
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
     
@@ -66,13 +69,19 @@
     
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject:self.arrayForObjects];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"data"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    documentsPath = [documentsPath stringByAppendingPathComponent:@"logs.plist"];
+    BOOL a = [data writeToFile:documentsPath atomically:YES];
 }
 
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    [self readInfoPlist];
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
     
     [self createEventObjectWithEventName:funcName date:[NSDate date]];
@@ -83,7 +92,7 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    [self readInfoPlist];
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
     
     [self createEventObjectWithEventName:funcName date:[NSDate date]];
@@ -93,7 +102,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     NSLog(@"%s", __PRETTY_FUNCTION__);
-    
+    [self readInfoPlist];
     NSString* funcName = [NSString stringWithFormat:@"%s", __PRETTY_FUNCTION__];
     
     [self createEventObjectWithEventName:funcName date:[NSDate date]];
@@ -111,6 +120,37 @@
     
     [self.arrayForObjects addObject:obj];
     
+}
+
+-(void)createPlist{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:@"/Users/eugenemekhedov/Documents/logs.plist"];
+    
+    NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    documentsPath = [documentsPath stringByAppendingPathComponent:@"logs.plist"];
+    BOOL writtenSuccessfully;
+    
+    if(![fileManager fileExistsAtPath:documentsPath]){
+        writtenSuccessfully = [plistDictionary writeToFile:documentsPath atomically:YES];
+    }
+    
+    NSLog(@"Written:%d",writtenSuccessfully);
+}
+
+-(void)readInfoPlist{
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSLog(@"%%%@%%(%%%@%%)", [infoDict objectForKey:@"CFBundleVersion"], [infoDict objectForKey:@"CFBundleShortVersionString"]);
+}
+
+- (void)resetDefaults {
+    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
+    NSDictionary * dict = [defs dictionaryRepresentation];
+    for (id key in dict) {
+        [defs removeObjectForKey:key];
+    }
+    [defs synchronize];
 }
 
 @end
