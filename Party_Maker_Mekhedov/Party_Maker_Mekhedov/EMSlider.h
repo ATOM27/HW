@@ -14,5 +14,6 @@
 
 - (instancetype)initWithFrame:(CGRect)frame inMainView:(UIView*)mainView timeLabelFrame:(CGRect)timeLabelFrame;
 
+-(void)actionValueChanged:(EMSlider*) sender;
 
 @end

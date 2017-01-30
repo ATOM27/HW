@@ -15,4 +15,5 @@
 - (instancetype)initWithFrame:(CGRect)frame color:(UIColor*)color text:(NSString*)text;
 -(void) alertWithTitle:(NSString*) title message:(NSString*)message andViewConctroller:(UIViewController*)vc;
 
+-(void)actionButtonTouchUpInside:(UIButton*) sender;
 @end

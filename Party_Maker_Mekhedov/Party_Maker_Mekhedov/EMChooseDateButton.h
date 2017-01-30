@@ -16,6 +16,6 @@
 
 
 - (instancetype)initWithObjectView:(UIView*)objectsView mainView:(UIView*)mainView;
-
+-(void)actionChooseDate:(UIButton*) sender;
 
 @end

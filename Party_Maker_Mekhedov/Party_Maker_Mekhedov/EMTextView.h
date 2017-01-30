@@ -13,5 +13,6 @@
 @property (strong, nonatomic) UIView* mainView;
 
 - (instancetype)initWithFrame:(CGRect)frame andMainView:(UIView*)view;
+-(void)makeNotifications;
 
 @end

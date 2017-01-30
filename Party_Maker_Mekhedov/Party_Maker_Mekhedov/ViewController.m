@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "EMPartyViewController.h"
+#import "EMXibPartyViewController.h"
 
 @interface ViewController ()
 
@@ -36,9 +37,14 @@
 
 -(void) actionAddParty:(UIBarButtonItem*) sender{
     
-    EMPartyViewController* partyVC = [[EMPartyViewController alloc] init];
+    //EMPartyViewController* partyVC = [[EMPartyViewController alloc] init];
     
+    EMXibPartyViewController* partyVC = [[EMXibPartyViewController alloc] init];
+    
+    //self.navigationController.navigationBar.translucent = NO;
     [self.navigationController pushViewController:partyVC animated:YES];
+    
+
 }
 
 
