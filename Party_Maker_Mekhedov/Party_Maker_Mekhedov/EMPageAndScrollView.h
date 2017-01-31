@@ -15,5 +15,6 @@
 @property (strong, nonatomic) UIPageControl* pageControl;
 
 - (instancetype)initWithPageFrame:(CGRect)pageFrame;
+-(void) createImagesInScrollView:(UIScrollView*) scrollView;
 
 @end

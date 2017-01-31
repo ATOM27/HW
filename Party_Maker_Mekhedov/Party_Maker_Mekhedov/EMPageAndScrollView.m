@@ -33,7 +33,6 @@
                                                                                      CGRectGetWidth(self.bounds),
                                                                                      25)];
         
-        pageControl.numberOfPages = [self.arrayWithImageView count];
         //[pageControl addTarget:self action:@selector(actionPageChanged:) forControlEvents:UIControlEventTouchDown];
         self.scrollView = scrollView;
         self.pageControl = pageControl;
@@ -62,19 +61,23 @@
         [scrollView addSubview:currentImageView];
         counter+=2;
     }
+    
+    self.scrollView.contentSize = CGSizeMake([self.arrayWithImageView count] * CGRectGetWidth(scrollView.frame), CGRectGetHeight(scrollView.frame));
 
+    self.pageControl.numberOfPages = [self.arrayWithImageView count];
 }
 
 #pragma mark - Actions
 
-//-(void) actionPageChanged:(UIPageControl*)sender{
-//    
-//    CGPoint contentOffset = CGPointMake(sender.currentPage * CGRectGetWidth(self.frame), 0);
-//    [self.scrollView setContentOffset:contentOffset
-//                             animated:YES];
-//    [self.scrollView setContentOffset:contentOffset animated:YES];
-//
-//}
+-(void) actionPageChanged:(UIPageControl*)sender{
+    
+    CGPoint contentOffset = CGPointMake(sender.currentPage * CGRectGetWidth(self.frame), 0);
+    [self.scrollView setContentOffset:contentOffset
+                             animated:YES];
+    [self.scrollView setContentOffset:contentOffset animated:YES];
+
+
+}
 
 #pragma mark - UIScrollViewDelegate
 

@@ -26,11 +26,19 @@
 @property (strong, nonatomic) IBOutlet EMSlider *endSlider;
 @property (strong, nonatomic) IBOutlet UILabel *timeEndLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet EMPageAndScrollView *pageAndScrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (strong, nonatomic) IBOutlet UIView *blueStripText;
 @property (strong, nonatomic) IBOutlet EMTextView *textView;
 @property (strong, nonatomic) IBOutlet EMButton *saveButton;
 @property (strong, nonatomic) IBOutlet EMButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIView *chooseDateCircle;
+@property (strong, nonatomic) IBOutlet UIView *partyNameCircle;
+@property (strong, nonatomic) IBOutlet UIView *startCicrle;
+@property (strong, nonatomic) IBOutlet UIView *endCircle;
+@property (strong, nonatomic) IBOutlet UIView *logoCircle;
+@property (strong, nonatomic) IBOutlet UIView *descriptionCircle;
+@property (strong, nonatomic) IBOutlet UIView *finalCircle;
 
 
 @end
@@ -47,28 +55,39 @@
     
     self.chooseDateButton.mainView = self.view;
     [self.chooseDateButton addTarget:self.chooseDateButton action:@selector(actionChooseDate:) forControlEvents:UIControlEventTouchUpInside];
+    self.chooseDateButton.circle = self.chooseDateCircle;
     
     self.partyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
                                                                               }
                                   ];
+    self.partyNameTextField.circle = self.partyNameCircle;
     self.partyNameTextField.returnKeyType = UIReturnKeyDone;
     self.partyNameTextField.delegate = self.partyNameTextField;
     
     [self.startSlider addTarget:self.startSlider action:@selector(actionValueChanged:) forControlEvents:UIControlEventValueChanged];
     self.startSlider.timeLabel = self.timeStartLabel;
+    self.startSlider.circle = self.startCicrle;
     
     [self.endSlider addTarget:self.endSlider action:@selector(actionValueChanged:) forControlEvents:UIControlEventValueChanged];
     self.endSlider.timeLabel = self.timeEndLabel;
+    self.endSlider.circle = self.endCircle;
+    
     [self.startSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
     [self.endSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
     
-    self.scrollView.delegate = self;
-    self.scrollView.pagingEnabled = YES;
-    [self createImagesInScrollView:self.scrollView];
     
+    
+    self.pageAndScrollView.scrollView = self.scrollView;
+    self.pageAndScrollView.pageControl = self.pageControll;
+    self.scrollView.delegate = self.pageAndScrollView;
+    self.scrollView.pagingEnabled = YES;
+    self.pageAndScrollView.circle = self.logoCircle;
+    [self.pageAndScrollView createImagesInScrollView:self.scrollView];
+
     self.textView.delegate = self.textView;
     self.textView.mainView = self.view;
+    self.textView.circle = self.descriptionCircle;
     [self.textView makeNotifications];
     
     [self.saveButton addTarget:self.saveButton action:@selector(actionButtonTouchUpInside:) forControlEvents:UIControlEventTouchUpInside];
@@ -90,6 +109,7 @@
     self.cancelButton.action = ^{
         [vc.navigationController popViewControllerAnimated:YES];
     };
+    self.cancelButton.circle = self.cancelButton;
 
     
     
@@ -161,40 +181,6 @@
     }
     
     return resultString;
-}
-
-#pragma mark - Scroll
-
--(void) createImagesInScrollView:(UIScrollView*) scrollView{
-    
-    UIImageView* imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"No Alcohol-100.png"]];
-    UIImageView* imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Coconut Cocktail-100.png"]];
-    UIImageView* imageView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Christmas Tree-100.png"]];
-    UIImageView* imageView4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Champagne-100.png"]];
-    UIImageView* imageView5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Birthday Cake-100.png"]];
-    UIImageView* imageView6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Beer-100.png"]];
-    
-    NSArray* arrayWithImageView = @[imageView1, imageView2, imageView3, imageView4, imageView5, imageView6];
-    
-    int counter = 1;
-    for (UIImageView* currentImageView in arrayWithImageView){
-        
-        currentImageView.transform = CGAffineTransformScale(imageView1.transform, 0.7, 0.7);
-        currentImageView.center = CGPointMake(scrollView.center.x * counter, scrollView.center.y - 10);
-        [scrollView addSubview:currentImageView];
-        counter+=2;
-    }
-    
-    self.scrollView.contentSize = CGSizeMake([arrayWithImageView count] * CGRectGetWidth(scrollView.frame), CGRectGetHeight(scrollView.frame));
-    self.pageControll.numberOfPages = [arrayWithImageView count];
-}
-
-#pragma mark - UIScrollViewDelegate
-
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-    //[self showCircle];
-    NSInteger currentPage = scrollView.contentOffset.x/CGRectGetWidth(self.scrollView.frame);
-    self.pageControll.currentPage = currentPage;
 }
 
 @end
