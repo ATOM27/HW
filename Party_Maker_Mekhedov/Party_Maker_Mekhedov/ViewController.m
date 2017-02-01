@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
-#import "EMPartyViewController.h"
+//#import "EMPartyViewController.h"
 #import "EMXibPartyViewController.h"
+#import "EMOldPartyViewController.h"
 
 @interface ViewController ()
 
@@ -37,7 +38,7 @@
 
 -(void) actionAddParty:(UIBarButtonItem*) sender{
     
-    //EMPartyViewController* partyVC = [[EMPartyViewController alloc] init];
+    //EMOldPartyViewController* partyVC = [[EMOldPartyViewController alloc] init];
     
     EMXibPartyViewController* partyVC = [[EMXibPartyViewController alloc] init];
     

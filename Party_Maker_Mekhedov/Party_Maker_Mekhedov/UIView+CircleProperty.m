@@ -15,7 +15,7 @@
 
 -(void) showCircle{
     if(![EMSelectedObject sharedManager].lastObject){
-        self.circle.hidden = NO;
+        [self.circle.subviews lastObject].hidden = NO;
         [EMSelectedObject sharedManager].lastObject = self;
     }else{
         if([[EMSelectedObject sharedManager].lastObject isEqual:self]){

@@ -33,7 +33,7 @@
                                                                                      CGRectGetWidth(self.bounds),
                                                                                      25)];
         
-        //[pageControl addTarget:self action:@selector(actionPageChanged:) forControlEvents:UIControlEventTouchDown];
+        [pageControl addTarget:self action:@selector(actionPageChanged:) forControlEvents:UIControlEventValueChanged];
         self.scrollView = scrollView;
         self.pageControl = pageControl;
         [self addSubview:pageControl];
@@ -75,7 +75,6 @@
     [self.scrollView setContentOffset:contentOffset
                              animated:YES];
     [self.scrollView setContentOffset:contentOffset animated:YES];
-
 
 }
 

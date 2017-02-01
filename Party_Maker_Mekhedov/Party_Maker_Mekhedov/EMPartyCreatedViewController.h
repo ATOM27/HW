@@ -1,5 +1,5 @@
 //
-//  EMPartyViewController.h
+//  EMPartyCreatedViewController.h
 //  Party_Maker_Mekhedov
 //
 //  Created by Eugene Mekhedov on 01.02.17.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EMPartyViewController : UIViewController
+@interface EMPartyCreatedViewController : UIViewController
+
+@property (strong, nonatomic) UINavigationController* navCont;
 
 @end

@@ -22,12 +22,14 @@
 		D64E4B531E39312F00E4E9D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B511E39312F00E4E9D4 /* Main.storyboard */; };
 		D64E4B551E39312F00E4E9D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B541E39312F00E4E9D4 /* Assets.xcassets */; };
 		D64E4B581E39312F00E4E9D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */; };
-		D64E4B611E39358200E4E9D4 /* EMPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */; };
+		D64E4B611E39358200E4E9D4 /* EMOldPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */; };
 		D6CF24851E3B5CEF00463849 /* No Alcohol-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6CF24841E3B5CEF00463849 /* No Alcohol-100.png */; };
 		D6CF248A1E3B636900463849 /* EMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24891E3B636900463849 /* EMTextView.m */; };
 		D6CF248D1E3B83D200463849 /* EMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248C1E3B83D200463849 /* EMButton.m */; };
 		D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */; };
 		D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24921E3BE86200463849 /* EMSelectedObject.m */; };
+		D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04111E42517A006C641D /* EMPartyViewController.m */; };
+		D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */; };
 		D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */; };
 		D6F68E2F1E3FC1180067CCAD /* EMXibPartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */; };
 /* End PBXBuildFile section */
@@ -56,8 +58,8 @@
 		D64E4B541E39312F00E4E9D4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D64E4B571E39312F00E4E9D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D64E4B591E39312F00E4E9D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D64E4B5F1E39358200E4E9D4 /* EMPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyViewController.h; sourceTree = "<group>"; };
-		D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyViewController.m; sourceTree = "<group>"; };
+		D64E4B5F1E39358200E4E9D4 /* EMOldPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMOldPartyViewController.h; sourceTree = "<group>"; };
+		D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMOldPartyViewController.m; sourceTree = "<group>"; };
 		D6CF24841E3B5CEF00463849 /* No Alcohol-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "No Alcohol-100.png"; sourceTree = "<group>"; };
 		D6CF24881E3B636900463849 /* EMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMTextView.h; sourceTree = "<group>"; };
 		D6CF24891E3B636900463849 /* EMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMTextView.m; sourceTree = "<group>"; };
@@ -67,6 +69,10 @@
 		D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CircleProperty.m"; sourceTree = "<group>"; };
 		D6CF24911E3BE86200463849 /* EMSelectedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSelectedObject.h; sourceTree = "<group>"; };
 		D6CF24921E3BE86200463849 /* EMSelectedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSelectedObject.m; sourceTree = "<group>"; };
+		D6EC04101E42517A006C641D /* EMPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyViewController.h; sourceTree = "<group>"; };
+		D6EC04111E42517A006C641D /* EMPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyViewController.m; sourceTree = "<group>"; };
+		D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyCreatedViewController.h; sourceTree = "<group>"; };
+		D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyCreatedViewController.m; sourceTree = "<group>"; };
 		D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMXibPartyViewController.h; sourceTree = "<group>"; };
 		D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMXibPartyViewController.m; sourceTree = "<group>"; };
 		D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMXibPartyViewController.xib; sourceTree = "<group>"; };
@@ -140,8 +146,12 @@
 				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
 				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
 				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
-				D64E4B5F1E39358200E4E9D4 /* EMPartyViewController.h */,
-				D64E4B601E39358200E4E9D4 /* EMPartyViewController.m */,
+				D6EC04101E42517A006C641D /* EMPartyViewController.h */,
+				D6EC04111E42517A006C641D /* EMPartyViewController.m */,
+				D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */,
+				D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */,
+				D64E4B5F1E39358200E4E9D4 /* EMOldPartyViewController.h */,
+				D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */,
 				D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */,
 				D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */,
 				D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */,
@@ -257,6 +267,7 @@
 				D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */,
 				D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */,
 				D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */,
+				D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */,
 				D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */,
 				D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */,
 				D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */,
@@ -264,7 +275,8 @@
 				D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */,
 				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
 				D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */,
-				D64E4B611E39358200E4E9D4 /* EMPartyViewController.m in Sources */,
+				D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */,
+				D64E4B611E39358200E4E9D4 /* EMOldPartyViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,49 +2,81 @@
 //  EMPartyViewController.m
 //  Party_Maker_Mekhedov
 //
-//  Created by Eugene Mekhedov on 25.01.17.
+//  Created by Eugene Mekhedov on 01.02.17.
 //  Copyright © 2017 Eugene Mekhedov. All rights reserved.
 //
 
 #import "EMPartyViewController.h"
-#import "EMChooseDateButton.h"
-#import "EMPartyNameTextField.h"
-#import "EMSlider.h"
-#import "EMPageAndScrollView.h"
-#import "EMTextView.h"
-#import "EMButton.h"
 #import "UIView+CircleProperty.h"
+#import "EMPartyCreatedViewController.h"
 
 @interface EMPartyViewController ()
 
-@property (strong, nonatomic) UIView* mapPointObjectsView;
-@property (strong, nonatomic) UIView* objectsView;
-@property (strong, nonatomic) EMSlider* startSlider;
-@property (strong, nonatomic) EMSlider* endSlider;
-@property (strong, nonatomic) NSDictionary* rightObjects;
+@property (strong, nonatomic) IBOutlet UIButton *chooseDateButton;
+@property (strong, nonatomic) IBOutlet UITextField *paratyNameTextField;
+@property (strong, nonatomic) IBOutlet UISlider *startSlider;
+@property (strong, nonatomic) IBOutlet UILabel *startLabel;
+@property (strong, nonatomic) IBOutlet UISlider *endSlider;
+@property (strong, nonatomic) IBOutlet UILabel *endLabel;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControll;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+
+@property (strong, nonatomic) IBOutlet UIView *chooseDateCircle;
+@property (strong, nonatomic) IBOutlet UIView *partyNameCircle;
+@property (strong, nonatomic) IBOutlet UIView *startCircle;
+@property (strong, nonatomic) IBOutlet UIView *endCircle;
+@property (strong, nonatomic) IBOutlet UIView *logoCircle;
+@property (strong, nonatomic) IBOutlet UIView *descriptionCircle;
+@property (strong, nonatomic) IBOutlet UIView *finalCircle;
 
 
+@property (strong, nonatomic) UIDatePicker* datePicker;
+@property (strong, nonatomic) UIToolbar* toolForDate;
+
+@property (strong, nonatomic) UIToolbar* toolForTextView;
+
+@property (strong, nonatomic) UIView* lastSelectedObject;
 @end
 
-const NSString* kChooseDateButton = @"chooseDateButton";
-const NSString* kPartyNameField = @"partyNameField";
-const NSString* kStartSlider = @"startSlider";
-const NSString* kEndSlider = @"endSlider";
-const NSString* kPageAndScroolView = @"pageAndScroolView";
-const NSString* kTextView = @"textView";
-const NSString* kSaveButton = @"saveButton";
-const NSString* kCloseButton = @"closeButton";
+NS_ENUM(NSInteger, EMSliderType){
+    EMSliderTypeStart,
+    EMSliderTypeEnd
+};
 
 @implementation EMPartyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.chooseDateButton.circle = self.chooseDateCircle;
+    self.paratyNameTextField.circle = self.partyNameCircle;
+    self.startSlider.circle = self.startCircle;
+    self.endSlider.circle = self.endCircle;
+    self.scrollView.circle = self.logoCircle;
+    self.textView.circle = self.descriptionCircle;
+    self.cancelButton.circle = self.finalCircle;
     
-    [self navigationBarSettings];
-    [self createObjectsView];
-    [self createMapPointView];
+    self.paratyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
+                                                                 attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
+                                                                              }
+                                  ];
+    [self createImagesInScrollView:self.scrollView];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
+                                                 name:UIKeyboardWillShowNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
+                                                 name:UIKeyboardWillHideNotification
+                                               object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,229 +84,166 @@ const NSString* kCloseButton = @"closeButton";
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation settings
+#pragma mark - Action choose date
 
--(void)navigationBarSettings{
+- (IBAction)actionChooseDate:(UIButton *)sender {
+    [self showCircleInView:sender];
+    //[sender showCircle];
+//    UIView* circleSelect = [[UIView alloc] initWithFrame:CGRectMake(25,
+//                                                                    0,
+//                                                                    25,
+//                                                                    25)];
+//    circleSelect.layer.cornerRadius = CGRectGetWidth(circleSelect.frame)/2;
+//    circleSelect.backgroundColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:1.f];
+//    circleSelect.center = CGPointMake(circleSelect.center.x, sender.center.y);
+//    
+//    [self.view addSubview:circleSelect];
     
-    self.view.backgroundColor = [UIColor colorWithRed:46.f/255.f green:49.f/255.f blue:56.f/255.f alpha:1.f];
+    UIDatePicker* datePicker = [[UIDatePicker alloc] init];
+    if(self.datePicker){
+        return;
+    }
+    self.datePicker = datePicker;
+    datePicker.frame = CGRectMake(0,
+                                  CGRectGetMaxY(self.view.frame),
+                                  CGRectGetWidth(self.view.frame), CGRectGetHeight(datePicker.frame));
     
-    self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:68.f/255.f green:73.f/255.f blue:83.f/255.f alpha:1.f];
+    datePicker.backgroundColor = [UIColor whiteColor];
+    datePicker.datePickerMode = UIDatePickerModeDate;
+    [self.view addSubview:datePicker];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],
-                                                                      NSFontAttributeName:[UIFont systemFontOfSize:16 weight:UIFontWeightBold]
-                                                                      }];
-    self.title = @"CREATE PARTY";
+    UIToolbar* toolForDate = [[UIToolbar alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(datePicker.frame), CGRectGetWidth(self.view.frame), 40)];
+    self.toolForDate = toolForDate;
+    
+    toolForDate.barTintColor = [UIColor colorWithRed:68.f/255.f green:73.f/255.f blue:83.f/255.f alpha:1.f];
+    toolForDate.tintColor = [UIColor whiteColor];
+    
+    UIBarButtonItem* cancelBar = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(actionCloseChooseDate:)];
+    
+    UIBarButtonItem* flexSpaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    
+    UIBarButtonItem* doneBar = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(actionDoneChooseDate:)];
+    
+    [doneBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17 weight:UIFontWeightBold]
+                                      } forState:UIControlStateNormal];
+    
+    toolForDate.items = @[cancelBar,flexSpaceBar, doneBar];
+    [self.view addSubview:toolForDate];
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         datePicker.frame = CGRectMake(0,
+                                                       CGRectGetMaxY(self.view.frame) - CGRectGetHeight(datePicker.frame) - CGRectGetHeight(self.tabBarController.tabBar.frame),
+                                                       CGRectGetWidth(self.view.frame), CGRectGetHeight(datePicker.frame));
+                         
+                         toolForDate.frame = CGRectMake(0, CGRectGetMinY(datePicker.frame) - 40, CGRectGetWidth(self.view.frame), 40);
+                     }
+                     completion:nil];
+    
+    
+
 }
 
-#pragma mark - Create views
+-(void)actionCloseChooseDate:(UIBarButtonItem*) sender{
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.datePicker.frame = CGRectMake(0,
+                                                            CGRectGetMaxY(self.view.frame),
+                                                            CGRectGetWidth(self.view.frame), CGRectGetHeight(self.datePicker.frame));
+                         
+                         self.toolForDate.frame = CGRectMake(0, CGRectGetMinY(self.datePicker.frame), CGRectGetWidth(self.view.frame), 40);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [self.datePicker removeFromSuperview];
+                         [self.toolForDate removeFromSuperview];
+                         self.datePicker = nil;
+                         self.toolForDate = nil;
+                     }];
+}
 
--(void) createMapPointView{
+-(void)actionDoneChooseDate:(UIBarButtonItem*) sender{
     
-    EMChooseDateButton* dateButton = [self.rightObjects objectForKey:kChooseDateButton];
-    EMButton* cancelButton = [self.rightObjects objectForKey:kCloseButton];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    //self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.datePicker.date] forState:UIControlStateNormal];
     
-    CGFloat heightLine = cancelButton.center.y - dateButton.center.y;
-    UIView* lineView = [[UIView alloc] initWithFrame:CGRectMake(20,
-                                                                dateButton.center.y,
-                                                                2,
-                                                                heightLine)];
-    lineView.backgroundColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:1.f];
+    [UIView animateWithDuration:0.3f
+                          delay:0.f
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+                         self.datePicker.frame = CGRectMake(0,
+                                                            CGRectGetMaxY(self.view.frame),
+                                                            CGRectGetWidth(self.view.frame), CGRectGetHeight(self.datePicker.frame));
+                         
+                         self.toolForDate.frame = CGRectMake(0, CGRectGetMinY(self.datePicker.frame), CGRectGetWidth(self.view.frame), 40);
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         [self.datePicker removeFromSuperview];
+                         [self.toolForDate removeFromSuperview];
+                         self.datePicker = nil;
+                         self.toolForDate = nil;
+                     }];
     
-    for(NSString* key in self.rightObjects){
-        
-        if([key isEqualToString:kSaveButton]){
-            continue;
-        }
-        UIView* obj = [self.rightObjects objectForKey:key];
-        
-        UIView* circle = [[UIView alloc] initWithFrame:CGRectMake(14,
-                                                                  0,
-                                                                  15,
-                                                                  15)];
-        
-        circle.center = CGPointMake(circle.center.x, obj.center.y);
-        circle.layer.cornerRadius = CGRectGetWidth(circle.frame)/2;
-        circle.backgroundColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:1.f];
-        
-        
-        UIView* circleBigger = [[UIView alloc] initWithFrame:CGRectMake(13,
-                                                                        0,
-                                                                        25,
-                                                                        25)];
-        circleBigger.center = CGPointMake(circle.center.x, obj.center.y);
-        circleBigger.layer.cornerRadius = CGRectGetWidth(circleBigger.frame)/2;
-        circleBigger.backgroundColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:0.5f];
-        circleBigger.hidden = YES;
-        obj.circle = circleBigger;
-        
-        UILabel* textLabel = [[UILabel alloc] init];
-        textLabel.textColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:1.f];
-        textLabel.text = [self choseTextForMapWithObjectKey:key];
-        textLabel.frame = CGRectMake(35,
-                                     obj.center.y - 10,
-                                     100,
-                                     20);
-        textLabel.font = [UIFont systemFontOfSize:12];
-        [self.mapPointObjectsView addSubview:textLabel];
-        [self.mapPointObjectsView addSubview:circle];
-        [self.mapPointObjectsView addSubview:circleBigger];
+}
 
+#pragma mark - UITextFieldDelegate for party name
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    
+    [textField resignFirstResponder];
+    
+    return NO;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    //[textField showCircle];
+    [self showCircleInView:textField];
+    return YES;
+}
+
+#pragma mark - Action slider
+
+- (IBAction)actionChangeScrollValue:(UISlider *)sender {
+    //[sender showCircle];
+    [self showCircleInView:sender];
+    NSInteger hours = sender.value/60.f;
+    NSInteger minutse = sender.value - hours*60;
+    
+    NSString* resultString = nil;
+    
+    if(hours >= 10){
+        resultString = [NSString stringWithFormat:@"%ld:", (long)hours];
+    }else{
+        resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
     }
     
-    [self.mapPointObjectsView addSubview:lineView];
-}
-
--(NSString*) choseTextForMapWithObjectKey:(NSString*)key{
+    if (minutse >= 10){
+        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)minutse]];
+    }else{
+        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
+    }
+    if(sender.tag == EMSliderTypeStart){
+        self.startLabel.text = resultString;
+    }else if(sender.tag == EMSliderTypeEnd){
+        self.endLabel.text = resultString;
+    }
     
-    NSString* returnString = nil;
-    
-    if([key isEqualToString:kChooseDateButton])
-            returnString = @"CHOOSE DATE";
-            
-    if([key isEqualToString:kPartyNameField])
-            returnString = @"PARTY NAME";
-    
-    if([key isEqualToString:kStartSlider])
-            returnString = @"START SLIDER";
-    
-    if([key isEqualToString:kEndSlider])
-            returnString = @"END SLIDER";
-    
-    if([key isEqualToString:kPageAndScroolView])
-            returnString = @"LOGO";
-    
-    if([key isEqualToString:kTextView])
-            returnString = @"DESCRIPTION";
-    
-    if([key isEqualToString:kCloseButton])
-            returnString = @"FINAL";
-
-    return returnString;
-}
-
--(void)createObjectsView{
-    
-    UIView* mapPointObjectsView = [[UIView alloc] initWithFrame:CGRectMake(0,
-                                                                    CGRectGetMaxY(self.navigationController.navigationBar.frame),
-                                                                    CGRectGetWidth(self.view.frame)*37.5/100,
-                                                                    CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.navigationController.navigationBar.frame))];
-    
-    [self.view addSubview:mapPointObjectsView];
-    self.mapPointObjectsView = mapPointObjectsView;
-    
-    UIView* objectsView = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.mapPointObjectsView.frame) + 1.f,
-                                                                   CGRectGetMaxY(self.navigationController.navigationBar.frame),
-                                                                   CGRectGetWidth(self.view.frame)*59.4/100,
-                                                                   CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.navigationController.navigationBar.frame))];
-    self.objectsView = objectsView;
-    
-    UIButton* chooseDateButton = [[EMChooseDateButton alloc] initWithObjectView:self.objectsView mainView:self.view];
-    [objectsView addSubview:chooseDateButton];
-    
-    UITextField* partyNameField = [[EMPartyNameTextField alloc] initWithFrame:CGRectMake(0,
-                                                                                10 + CGRectGetHeight(chooseDateButton.frame) + CGRectGetHeight(self.view.frame)*1.9f/100,
-                                                                                CGRectGetWidth(objectsView.frame),
-                                                                                CGRectGetHeight(self.view.frame)*6.4f/100)];
-    [objectsView addSubview:partyNameField];
-    
-    
-    EMSlider* startSlider = [[EMSlider alloc] initWithFrame:CGRectMake(45,
-                                                                       CGRectGetMaxY(partyNameField.frame) + 30,
-                                                                       CGRectGetWidth(objectsView.frame) - 45,
-                                                                       10.f)
-                                                 inMainView:objectsView
-                                             timeLabelFrame:CGRectMake(0,
-                                                                       CGRectGetMaxY(partyNameField.frame) + 15,
-                                                                       40,
-                                                                       30)];
-    self.startSlider = startSlider;
-    [objectsView addSubview:startSlider];
-    
-    EMSlider* endSlider = [[EMSlider alloc] initWithFrame:CGRectMake(0,
-                                                                     CGRectGetMaxY(startSlider.frame) + 30,
-                                                                     CGRectGetWidth(objectsView.frame) - 45,
-                                                                     10.f)
-                                               inMainView:objectsView
-                                           timeLabelFrame:CGRectMake(CGRectGetWidth(objectsView.frame) - 45,
-                                                                     CGRectGetMaxY(startSlider.frame) + 15,
-                                                                     40,
-                                                                     30)];
-    self.endSlider = endSlider;
-    
-    [startSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
-    [endSlider addTarget:self action:@selector(actionCheckForSliderRange:) forControlEvents:UIControlEventTouchUpInside];
-    [objectsView addSubview:endSlider];
-    
-    
-    [self.view addSubview:objectsView];
-    
-    EMPageAndScrollView* pageAndScroolView = [[EMPageAndScrollView alloc] initWithPageFrame:CGRectMake(0,
-                                                                                         CGRectGetMaxY(endSlider.frame) + 25,
-                                                                                         CGRectGetWidth(objectsView.frame),
-                                                                                         CGRectGetHeight(self.view.frame)*17.6f/100)];
-    
-    [objectsView addSubview:pageAndScroolView];
-    
-    EMTextView* textView = [[EMTextView alloc] initWithFrame:CGRectMake(0,
-                                                                        (CGRectGetMaxY(pageAndScroolView.frame) + CGRectGetHeight(self.view.frame)*1.9f/100),
-                                                                        CGRectGetWidth(objectsView.frame),
-                                                                        CGRectGetHeight(self.view.frame)*17.5f/100)
-                                               andMainView:self.view];
-    [objectsView addSubview:textView];
-   
-    EMButton* saveButton = [[EMButton alloc] initWithFrame:CGRectMake(0,
-                                                                     (CGRectGetMaxY(textView.frame) + CGRectGetHeight(self.view.frame)*1.9f/100),
-                                                                     CGRectGetWidth(objectsView.frame),
-                                                                     CGRectGetHeight(self.view.frame)*6.3f/100)
-                                                     color:[UIColor colorWithRed:140.f/255.f green:186.f/255.f blue:29.f/255.f alpha:1.f]
-                                                      text:@"SAVE"];
-    [objectsView addSubview:saveButton];
-    
-    __weak EMButton* weakButton = saveButton;
-    saveButton.action = ^{
-        
-        if([chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
-            [weakButton alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
-            
-        }else if([partyNameField.text isEqualToString:@""]){
-            [weakButton alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
-        }else{
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-    };
-    
-    EMButton* closeButton = [[EMButton alloc] initWithFrame:CGRectMake(0,
-                                                                       (CGRectGetMaxY(saveButton.frame) + CGRectGetHeight(self.view.frame)*1.9f/100),
-                                                                       CGRectGetWidth(objectsView.frame),
-                                                                       CGRectGetHeight(self.view.frame)*6.3f/100)
-                                                      color:[UIColor colorWithRed:236.f/255.f green:71.f/255.f blue:19.f/255.f alpha:1.f]
-                                                       text:@"CANCEL"];
-    
-    closeButton.action = ^{
-        [self.navigationController popViewControllerAnimated:YES];
-    };
-    
-    [objectsView addSubview:closeButton];
-    
-    self.rightObjects = @{kChooseDateButton:chooseDateButton,
-                          kPartyNameField: partyNameField,
-                          kStartSlider: startSlider,
-                          kEndSlider: endSlider,
-                          kPageAndScroolView: pageAndScroolView,
-                          kTextView: textView,
-                          kSaveButton: saveButton,
-                          kCloseButton: closeButton
-                         };
-    
-    
-    
-}
-
-#pragma mark - Actions
-
--(void)actionCheckForSliderRange:(EMSlider*) sender{
-
-    if([sender isEqual:self.startSlider]){
+    if(sender.tag == EMSliderTypeStart){
         
         NSInteger difference = self.endSlider.value - sender.value;
         if(difference < 30){
@@ -282,18 +251,18 @@ const NSString* kCloseButton = @"closeButton";
                 difference *= -1;
             }
             self.endSlider.value +=difference + 30;
-            self.endSlider.timeLabel.text = [self getStringForSliderValue:self.endSlider.value];
+            self.endLabel.text = [self getStringForSliderValue:self.endSlider.value];
         }
-    }else{
+    }else if(sender.tag == EMSliderTypeEnd){
         NSInteger difference = sender.value - self.startSlider.value;
         if(difference < 30){
             if(difference < 0){
                 difference *= -1;
             }
             self.startSlider.value -= difference + 30;
-            self.startSlider.timeLabel.text = [self getStringForSliderValue:self.startSlider.value];
+            self.startLabel.text = [self getStringForSliderValue:self.startSlider.value];
         }
-    
+        
     }
 }
 
@@ -319,6 +288,207 @@ const NSString* kCloseButton = @"closeButton";
     return resultString;
 }
 
+#pragma mark - EMPageAndScrollView
 
+-(void) createImagesInScrollView:(UIScrollView*) scrollView{
+    
+    UIImageView* imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"No Alcohol-100.png"]];
+    UIImageView* imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Coconut Cocktail-100.png"]];
+    UIImageView* imageView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Christmas Tree-100.png"]];
+    UIImageView* imageView4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Champagne-100.png"]];
+    UIImageView* imageView5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Birthday Cake-100.png"]];
+    UIImageView* imageView6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Beer-100.png"]];
+    
+    NSArray* arrayWithImageView = @[imageView1, imageView2, imageView3, imageView4, imageView5, imageView6];
+    
+    int counter = 1;
+    for (UIImageView* currentImageView in arrayWithImageView){
+        
+        currentImageView.transform = CGAffineTransformScale(imageView1.transform, 0.7, 0.7);
+        currentImageView.center = CGPointMake(scrollView.center.x * counter, scrollView.center.y - 10);
+        [scrollView addSubview:currentImageView];
+        counter+=2;
+    }
+    
+    self.scrollView.contentSize = CGSizeMake([arrayWithImageView count] * CGRectGetWidth(scrollView.frame), CGRectGetHeight(scrollView.frame));
+    
+    self.pageControll.numberOfPages = [arrayWithImageView count];
+}
+
+- (IBAction)actionPageChanged:(UIPageControl *)sender {
+    CGPoint contentOffset = CGPointMake(sender.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
+    [self.scrollView setContentOffset:contentOffset
+                             animated:YES];
+    [self.scrollView setContentOffset:contentOffset animated:YES];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+   // [scrollView showCircle];
+    [self showCircleInView:scrollView];
+    NSInteger currentPage = scrollView.contentOffset.x/CGRectGetWidth(scrollView.frame);
+    self.pageControll.currentPage = currentPage;
+}
+
+
+#pragma mark - Notifications
+
+-(void)keyboardWillShow:(NSNotification*)notification{
+    if([self.textView isFirstResponder]){
+        CGRect keyboardRect =
+        [[[notification userInfo]
+          objectForKey:UIKeyboardFrameBeginUserInfoKey]
+         CGRectValue];
+        
+        float duration =
+        [[[notification userInfo]
+          objectForKey:UIKeyboardAnimationDurationUserInfoKey]
+         floatValue];
+        
+        
+        [self createToolBarWithKeyboardRect:keyboardRect];
+        
+        [UIView animateWithDuration:duration animations:^{
+            CGRect viewFrame = self.view.frame;
+            viewFrame.origin.y -= keyboardRect.size.height; //+ CGRectGetHeight(self.frame);
+            self.view.frame = viewFrame;
+        }];
+    }
+}
+
+-(void)keyboardWillHide:(NSNotification*)notification {
+    if([self.textView isFirstResponder]){
+        
+        float duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
+        //__block __weak UIView *mainView = self.mainView;
+        [UIView animateWithDuration:duration animations:^{
+            CGRect viewFrame = self.view.frame;
+            viewFrame.origin.y = 0;
+            self.view.frame = viewFrame;
+        }];
+    }
+}
+
+#pragma mark - UITextView
+
+-(void)actionCloseTextView:(UIBarButtonItem*) sender{
+    [self.toolForTextView removeFromSuperview];
+    self.toolForTextView = nil;
+    [self.textView resignFirstResponder];
+}
+
+-(void)actionDoneTextView:(UIBarButtonItem*) sender{
+    [self.toolForTextView removeFromSuperview];
+    self.toolForTextView = nil;
+    [self.textView resignFirstResponder];
+}
+
+-(void) createToolBarWithKeyboardRect:(CGRect)keyboardRect{
+    
+    UIToolbar* toolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, CGRectGetMinY(keyboardRect) - 40, CGRectGetWidth(keyboardRect), 40)];
+    toolBar.barTintColor = [UIColor colorWithRed:68.f/255.f green:73.f/255.f blue:83.f/255.f alpha:1.f];
+    toolBar.tintColor = [UIColor whiteColor];
+    self.toolForTextView = toolBar;
+    UIBarButtonItem* cancelBar = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(actionCloseTextView:)];
+    
+    UIBarButtonItem* flexSpaceBar = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    
+    UIBarButtonItem* doneBar = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                style:UIBarButtonItemStylePlain
+                                                               target:self
+                                                               action:@selector(actionDoneTextView:)];
+    
+    [doneBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17 weight:UIFontWeightBold]
+                                      } forState:UIControlStateNormal];
+    
+    toolBar.items = @[cancelBar,flexSpaceBar, doneBar];
+    [self.view addSubview:toolBar];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
+   // [self.textView showCircle];
+    [self showCircleInView:textView];
+    return YES;
+}
+
+#pragma mark - Alert controller
+
+-(void) alertWithTitle:(NSString*) title message:(NSString*)message andViewConctroller:(UIViewController*) vc{
+    
+    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+    [alertController addAction:ok];
+    
+    [vc presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - Save button
+
+- (IBAction)actionSaveButtonTouched:(UIButton *)sender {
+    //[sender showCircle];
+    [self showCircleInView:sender];
+    if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
+        
+    }else if([self.paratyNameTextField.text isEqualToString:@""]){
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
+    }else{
+        [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+
+}
+
+
+#pragma mark - Cancel button
+
+- (IBAction)actionCancelButtonTouched:(id)sender {
+    
+   // [sender showCircle];
+    [self showCircleInView:sender];
+    [self.navigationController popViewControllerAnimated:YES];
+
+}
+
+#pragma mark - Show circle
+
+-(void) showCircleInView:(UIView*) view{
+    if(!self.lastSelectedObject){
+        [view.circle.subviews lastObject].hidden = NO;
+        self.lastSelectedObject = view;
+    }else{
+        if([self.lastSelectedObject isEqual:view]){
+            return;
+        }
+        [view.circle.subviews lastObject].hidden = NO;
+        [self.lastSelectedObject.circle.subviews lastObject].hidden = YES;
+        self.lastSelectedObject = view;
+    }
+}
+
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"PartyCreatedIdentifier"]){
+        if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
+            [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
+            
+        }else if([self.paratyNameTextField.text isEqualToString:@""]){
+            [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
+        }else{
+            EMPartyCreatedViewController* vc = segue.destinationViewController;
+            vc.navCont = self.navigationController;
+            //[self.navigationController popViewControllerAnimated:YES];
+        }
+    }
+}
 
 @end
