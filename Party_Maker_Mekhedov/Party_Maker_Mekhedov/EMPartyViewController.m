@@ -63,8 +63,6 @@ NS_ENUM(NSInteger, EMSliderType){
                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
                                                                               }
                                   ];
-    [self createImagesInScrollView:self.scrollView];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:)
                                                  name:UIKeyboardWillShowNotification
                                                object:nil];
@@ -74,6 +72,9 @@ NS_ENUM(NSInteger, EMSliderType){
                                                object:nil];
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [self createImagesInScrollView:self.scrollView];
+}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -300,14 +301,14 @@ NS_ENUM(NSInteger, EMSliderType){
     UIImageView* imageView6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Beer-100.png"]];
     
     NSArray* arrayWithImageView = @[imageView1, imageView2, imageView3, imageView4, imageView5, imageView6];
-    
+    self.scrollView.contentMode = UIViewContentModeCenter;
     int counter = 1;
     for (UIImageView* currentImageView in arrayWithImageView){
         
         currentImageView.transform = CGAffineTransformScale(imageView1.transform, 0.7, 0.7);
         currentImageView.center = CGPointMake(scrollView.center.x * counter, scrollView.center.y - 10);
         [scrollView addSubview:currentImageView];
-        counter+=2;
+            counter+=2;
     }
     
     self.scrollView.contentSize = CGSizeMake([arrayWithImageView count] * CGRectGetWidth(scrollView.frame), CGRectGetHeight(scrollView.frame));
