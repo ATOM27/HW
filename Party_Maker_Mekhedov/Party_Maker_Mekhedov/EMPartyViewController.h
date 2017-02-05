@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EMParty.h"
+
+static NSString* kParties = @"parties";
 
 @interface EMPartyViewController : UIViewController
+
+@property (strong, nonatomic) EMParty* currentParty;
+@property (assign, nonatomic) NSInteger indexParty;
+
 
 @end

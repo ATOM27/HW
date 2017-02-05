@@ -39,6 +39,7 @@
 @property (strong, nonatomic) UIToolbar* toolForTextView;
 
 @property (strong, nonatomic) UIView* lastSelectedObject;
+
 @end
 
 NS_ENUM(NSInteger, EMSliderType){
@@ -59,6 +60,18 @@ NS_ENUM(NSInteger, EMSliderType){
     self.textView.circle = self.descriptionCircle;
     self.cancelButton.circle = self.finalCircle;
     
+    if(self.currentParty){
+        
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.date] forState:UIControlStateNormal];
+        self.paratyNameTextField.text = self.currentParty.name;
+        self.startSlider.value = self.currentParty.startParty;
+        self.endSlider.value = self.currentParty.endParty;
+        self.pageControll.currentPage = self.currentParty.logoPage;
+        //self.scrollView
+        self.textView.text = self.currentParty.descriptionText;
+    }
     self.paratyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
                                                                               }
@@ -436,19 +449,84 @@ NS_ENUM(NSInteger, EMSliderType){
 - (IBAction)actionSaveButtonTouched:(UIButton *)sender {
     //[sender showCircle];
     [self showCircleInView:sender];
-    if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
-        [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
-        
-    }else if([self.paratyNameTextField.text isEqualToString:@""]){
-        [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
-    }else{
-        [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-        [self.navigationController popViewControllerAnimated:YES];
+    if([self isDataPartyOK]){
+            [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+            [self.navigationController popViewControllerAnimated:YES];
     }
-
 }
 
+#pragma mark - Check data
 
+-(BOOL)isDataPartyOK{
+    BOOL result = YES;;
+    if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
+        result = NO;
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
+    }else if([self.paratyNameTextField.text isEqualToString:@""]){
+        result = NO;
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
+    }
+    return result;
+}
+
+-(void)saveParty{
+    if(self.currentParty){
+        [self saveChangesToCurrentParty];
+        return;
+    }
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    NSDate* date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
+    
+    
+    UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
+    EMParty* party = [[EMParty alloc] initWithDate:date
+                                              name:self.paratyNameTextField.text
+                                    startPartyTime:self.startSlider.value
+                                      endPartyTime:self.endSlider.value
+                                          logoPage:self.pageControll.currentPage
+                                         logoImage:imageView.image
+                                   descriptionText:self.textView.text];
+    
+    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
+    
+    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    if(dataParties){
+        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+    }
+    
+    [arrayWithParties addObject:party];
+    
+    dataParties = nil;
+    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
+    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+-(void)saveChangesToCurrentParty{
+    NSArray* parties = [[NSArray alloc] init];
+    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+    EMParty* party = [parties objectAtIndex:self.indexParty];
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    
+    party.name = self.paratyNameTextField.text;
+    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
+    party.startParty = self.startSlider.value;
+    party.endParty = self.endSlider.value;
+    party.logoPage = self.pageControll.currentPage;
+    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
+    party.descriptionText = self.textView.text;
+
+    
+    dataParties = nil;
+    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
+    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
 #pragma mark - Cancel button
 
 - (IBAction)actionCancelButtonTouched:(id)sender {
@@ -479,12 +557,8 @@ NS_ENUM(NSInteger, EMSliderType){
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"PartyCreatedIdentifier"]){
-        if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
-            [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
-            
-        }else if([self.paratyNameTextField.text isEqualToString:@""]){
-            [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
-        }else{
+        if([self isDataPartyOK]){
+            [self saveParty];
             EMPartyCreatedViewController* vc = segue.destinationViewController;
             vc.navCont = self.navigationController;
             //[self.navigationController popViewControllerAnimated:YES];

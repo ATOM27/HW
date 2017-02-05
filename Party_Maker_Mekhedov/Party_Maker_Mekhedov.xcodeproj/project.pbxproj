@@ -10,6 +10,9 @@
 		D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A431E3A4CAF0085C7ED /* EMChooseDateButton.m */; };
 		D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A461E3A65210085C7ED /* EMPartyNameTextField.m */; };
 		D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = D6050A4A1E3A79620085C7ED /* EMSlider.m */; };
+		D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A201E4620E700DBE2E8 /* EMParty.m */; };
+		D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */; };
+		D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */; };
 		D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */; };
 		D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9E1E3B4DD7009150C1 /* Beer-100.png */; };
 		D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */; };
@@ -41,6 +44,12 @@
 		D6050A461E3A65210085C7ED /* EMPartyNameTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyNameTextField.m; sourceTree = "<group>"; };
 		D6050A491E3A79620085C7ED /* EMSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSlider.h; sourceTree = "<group>"; };
 		D6050A4A1E3A79620085C7ED /* EMSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSlider.m; sourceTree = "<group>"; };
+		D6064A1F1E4620E700DBE2E8 /* EMParty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EMParty.h; path = Party_Maker_Mekhedov/EMParty.h; sourceTree = SOURCE_ROOT; };
+		D6064A201E4620E700DBE2E8 /* EMParty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EMParty.m; path = Party_Maker_Mekhedov/EMParty.m; sourceTree = SOURCE_ROOT; };
+		D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListViewController.h; sourceTree = "<group>"; };
+		D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListViewController.m; sourceTree = "<group>"; };
+		D6064A281E462E2A00DBE2E8 /* EMPartyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListCell.h; sourceTree = "<group>"; };
+		D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListCell.m; sourceTree = "<group>"; };
 		D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPageAndScrollView.h; sourceTree = "<group>"; };
 		D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPageAndScrollView.m; sourceTree = "<group>"; };
 		D6418D9E1E3B4DD7009150C1 /* Beer-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer-100.png"; sourceTree = "<group>"; };
@@ -109,6 +118,27 @@
 			name = "EMPartyViewController views";
 			sourceTree = "<group>";
 		};
+		D6064A221E462D9E00DBE2E8 /* OLD */ = {
+			isa = PBXGroup;
+			children = (
+				D64E4B5F1E39358200E4E9D4 /* EMOldPartyViewController.h */,
+				D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */,
+				D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */,
+				D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */,
+				D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */,
+			);
+			name = OLD;
+			sourceTree = "<group>";
+		};
+		D6064A271E462E0700DBE2E8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				D6064A281E462E2A00DBE2E8 /* EMPartyListCell.h */,
+				D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		D6418D9D1E3B4DD7009150C1 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,19 +172,20 @@
 			isa = PBXGroup;
 			children = (
 				D6418D9D1E3B4DD7009150C1 /* images */,
+				D6064A1F1E4620E700DBE2E8 /* EMParty.h */,
+				D6064A201E4620E700DBE2E8 /* EMParty.m */,
 				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
 				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
 				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
 				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
+				D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */,
+				D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */,
 				D6EC04101E42517A006C641D /* EMPartyViewController.h */,
 				D6EC04111E42517A006C641D /* EMPartyViewController.m */,
 				D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */,
 				D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */,
-				D64E4B5F1E39358200E4E9D4 /* EMOldPartyViewController.h */,
-				D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */,
-				D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */,
-				D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */,
-				D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */,
+				D6064A271E462E0700DBE2E8 /* Cell */,
+				D6064A221E462D9E00DBE2E8 /* OLD */,
 				D6050A481E3A65D40085C7ED /* EMPartyViewController views */,
 				D64E4B511E39312F00E4E9D4 /* Main.storyboard */,
 				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
@@ -262,13 +293,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */,
 				D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */,
 				D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */,
 				D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */,
 				D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */,
 				D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */,
 				D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */,
+				D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */,
 				D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */,
+				D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */,
 				D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */,
 				D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */,
 				D6CF248A1E3B636900463849 /* EMTextView.m in Sources */,

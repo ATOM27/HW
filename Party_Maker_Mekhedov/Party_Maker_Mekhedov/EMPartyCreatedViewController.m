@@ -7,7 +7,7 @@
 //
 
 #import "EMPartyCreatedViewController.h"
-
+#import "EMPartyListViewController.h"
 @interface EMPartyCreatedViewController ()
 
 @end
@@ -25,6 +25,7 @@
 }
 - (IBAction)actionOkTouched:(UIButton *)sender {
     [self.navCont popToRootViewControllerAnimated:NO];
+    [[(EMPartyListViewController*)[self.navCont.viewControllers firstObject] tableView] reloadData];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
