@@ -598,13 +598,13 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOGO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vsP-9M-q3O">
-                                <rect key="frame" x="34" y="328" width="36.666666666666671" height="16"/>
+                                <rect key="frame" x="34" y="328.33333333333331" width="36.666666666666671" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.90196078430000004" green="0.87843137250000003" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="23j-xy-1wo">
-                                <rect key="frame" x="13" y="500" width="15" height="15"/>
+                                <rect key="frame" x="13" y="500.33333333333337" width="15" height="15.000000000000114"/>
                                 <subviews>
                                     <view hidden="YES" alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4gH-xj-Hte">
                                         <rect key="frame" x="-5" y="-5" width="25" height="25"/>
@@ -625,7 +625,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DESCRIPTION" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGK-gp-xpV">
-                                <rect key="frame" x="34" y="497" width="86" height="21"/>
+                                <rect key="frame" x="34" y="497.33333333333337" width="86" height="21.000000000000114"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.90196078430000004" green="0.87843137250000003" blue="0.83529411760000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -781,14 +781,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="New Party has been created!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECy-fI-bir">
-                                <rect key="frame" x="33" y="181" width="309" height="185"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taz-7e-duc">
-                                <rect key="frame" x="142" y="374" width="90" height="76"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Taz-7e-duc">
+                                <rect key="frame" x="162" y="317.66666666666669" width="90" height="76"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="90" id="fOR-e1-2Ch"/>
                                     <constraint firstAttribute="height" constant="76" id="k1h-g1-kGf"/>
@@ -799,25 +793,26 @@
                                     <action selector="actionOkTouched:" destination="UUf-6D-HEh" eventType="touchUpInside" id="uec-9b-6Dm"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Party has been created!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECy-fI-bir">
+                                <rect key="frame" x="28" y="198" width="358" height="33.666666666666657"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.17994517087936401" green="0.1916658878326416" blue="0.22074142098426819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Taz-7e-duc" firstAttribute="centerX" secondItem="ECy-fI-bir" secondAttribute="centerX" id="DN2-78-dhl"/>
-                            <constraint firstItem="ECy-fI-bir" firstAttribute="centerX" secondItem="p6g-Zq-X6c" secondAttribute="centerX" id="DQT-77-4TO"/>
-                            <constraint firstItem="ECy-fI-bir" firstAttribute="leading" secondItem="p6g-Zq-X6c" secondAttribute="leadingMargin" constant="17" id="FMh-yp-WdB"/>
+                            <constraint firstItem="Taz-7e-duc" firstAttribute="top" secondItem="ECy-fI-bir" secondAttribute="bottom" constant="86" id="MeM-0R-5Tg"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ECy-fI-bir" secondAttribute="trailing" constant="8" id="NKV-az-yfe"/>
+                            <constraint firstItem="ECy-fI-bir" firstAttribute="top" secondItem="nbC-8P-hlV" secondAttribute="bottom" constant="178" id="PFH-2F-Yly"/>
                             <constraint firstItem="Taz-7e-duc" firstAttribute="centerX" secondItem="p6g-Zq-X6c" secondAttribute="centerX" id="as3-Tt-JY5"/>
-                            <constraint firstItem="ECy-fI-bir" firstAttribute="top" secondItem="nbC-8P-hlV" secondAttribute="bottom" constant="161" id="d3B-e1-5dr"/>
-                            <constraint firstItem="Taz-7e-duc" firstAttribute="leading" secondItem="p6g-Zq-X6c" secondAttribute="leadingMargin" constant="126" id="fnJ-OO-QBE"/>
-                            <constraint firstItem="XGa-Cy-wh8" firstAttribute="top" secondItem="Taz-7e-duc" secondAttribute="bottom" constant="217" id="mph-gq-eEd"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Taz-7e-duc" secondAttribute="trailing" constant="127" id="nNB-Fr-Qzg"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ECy-fI-bir" secondAttribute="trailing" constant="17" id="uHc-hD-6bv"/>
-                            <constraint firstItem="Taz-7e-duc" firstAttribute="top" secondItem="ECy-fI-bir" secondAttribute="bottom" constant="8" id="wYC-6a-qXx"/>
+                            <constraint firstItem="ECy-fI-bir" firstAttribute="leading" secondItem="p6g-Zq-X6c" secondAttribute="leadingMargin" constant="8" id="vtx-tz-VZY"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYh-Cz-7qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3092" y="-490.70464767616198"/>
+            <point key="canvasLocation" x="3090.4000000000001" y="-491.60419790104953"/>
         </scene>
         <!--Settings-->
         <scene sceneID="cHk-1c-kS5">
