@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pwu-7z-Pnu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Pwu-7z-Pnu">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -95,7 +95,7 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5.f"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="iRD-OR-Rjz" kind="show" id="EVa-Li-zwj"/>
+                                            <action selector="actionSignInTouched:" destination="Pwu-7z-Pnu" eventType="touchUpInside" id="Tho-Ud-BRc"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -141,6 +141,7 @@
                         <outlet property="loginTextField" destination="jn1-9Q-XvW" id="JNY-80-mkl"/>
                         <outlet property="loginView" destination="Ace-cL-9gF" id="ZDa-je-BVV"/>
                         <outlet property="passwordTextField" destination="iZV-1Y-T3a" id="fEG-d3-9qn"/>
+                        <segue destination="iRD-OR-Rjz" kind="presentation" identifier="TabBarIdentifier" id="1mo-A7-7C7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NIN-mx-EzF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -207,7 +208,7 @@
                                         <rect key="frame" x="0.0" y="28" width="414" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b3D-lQ-qMF" id="x9p-MI-2Zd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="88.666666666666671"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="88.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v34-jL-W90">

@@ -7,6 +7,7 @@
 //
 
 #import "EMLoginViewController.h"
+#import "EMHTTPManager.h";
 
 @interface EMLoginViewController ()
 
@@ -62,5 +63,18 @@ NS_ENUM(NSInteger, EMTextField){
     return YES;
 }
 
+#pragma mark - Actions
 
+- (IBAction)actionSignInTouched:(UIButton *)sender {
+    
+    [[EMHTTPManager sharedManager] loginWithName:self.loginTextField.text password:self.passwordTextField.text completion:^(NSDictionary *response, NSError *error) {
+        if(error){
+            NSLog(@"%@",[error localizedDescription]);
+        }else{
+            if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
+                [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
+            }
+        }
+    }];
+}
 @end

@@ -13,6 +13,7 @@
 		D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A201E4620E700DBE2E8 /* EMParty.m */; };
 		D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */; };
 		D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */; };
+		D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */; };
 		D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */; };
 		D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9E1E3B4DD7009150C1 /* Beer-100.png */; };
 		D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */; };
@@ -52,6 +53,8 @@
 		D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListViewController.m; sourceTree = "<group>"; };
 		D6064A281E462E2A00DBE2E8 /* EMPartyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListCell.h; sourceTree = "<group>"; };
 		D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListCell.m; sourceTree = "<group>"; };
+		D612A2F51E4B9FB100F1818B /* EMHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPManager.h; sourceTree = "<group>"; };
+		D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHTTPManager.m; sourceTree = "<group>"; };
 		D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPageAndScrollView.h; sourceTree = "<group>"; };
 		D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPageAndScrollView.m; sourceTree = "<group>"; };
 		D6418D9E1E3B4DD7009150C1 /* Beer-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer-100.png"; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		D6064A221E462D9E00DBE2E8 /* OLD */ = {
 			isa = PBXGroup;
 			children = (
+				D6050A481E3A65D40085C7ED /* EMPartyViewController views */,
 				D64E4B5F1E39358200E4E9D4 /* EMOldPartyViewController.h */,
 				D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */,
 				D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */,
@@ -142,6 +146,51 @@
 				D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		D612A2F81E4B9FB600F1818B /* HTTP */ = {
+			isa = PBXGroup;
+			children = (
+				D612A2F51E4B9FB100F1818B /* EMHTTPManager.h */,
+				D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */,
+			);
+			name = HTTP;
+			sourceTree = "<group>";
+		};
+		D612A2F91E4B9FC600F1818B /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				ECA6853A1E48933C006BEBBD /* EMLoginViewController.h */,
+				ECA6853B1E48933C006BEBBD /* EMLoginViewController.m */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		D612A2FA1E4B9FCF00F1818B /* Party list */ = {
+			isa = PBXGroup;
+			children = (
+				D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */,
+				D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */,
+			);
+			name = "Party list";
+			sourceTree = "<group>";
+		};
+		D612A2FB1E4B9FDF00F1818B /* Create party */ = {
+			isa = PBXGroup;
+			children = (
+				D6EC04101E42517A006C641D /* EMPartyViewController.h */,
+				D6EC04111E42517A006C641D /* EMPartyViewController.m */,
+			);
+			name = "Create party";
+			sourceTree = "<group>";
+		};
+		D612A2FC1E4B9FFB00F1818B /* Party created */ = {
+			isa = PBXGroup;
+			children = (
+				D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */,
+				D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */,
+			);
+			name = "Party created";
 			sourceTree = "<group>";
 		};
 		D6418D9D1E3B4DD7009150C1 /* images */ = {
@@ -180,21 +229,17 @@
 				D6418D9D1E3B4DD7009150C1 /* images */,
 				D6064A1F1E4620E700DBE2E8 /* EMParty.h */,
 				D6064A201E4620E700DBE2E8 /* EMParty.m */,
+				D612A2F81E4B9FB600F1818B /* HTTP */,
 				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
 				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
 				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
 				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
-				ECA6853A1E48933C006BEBBD /* EMLoginViewController.h */,
-				ECA6853B1E48933C006BEBBD /* EMLoginViewController.m */,
-				D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */,
-				D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */,
-				D6EC04101E42517A006C641D /* EMPartyViewController.h */,
-				D6EC04111E42517A006C641D /* EMPartyViewController.m */,
-				D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */,
-				D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */,
+				D612A2F91E4B9FC600F1818B /* Login */,
+				D612A2FA1E4B9FCF00F1818B /* Party list */,
+				D612A2FB1E4B9FDF00F1818B /* Create party */,
+				D612A2FC1E4B9FFB00F1818B /* Party created */,
 				D6064A271E462E0700DBE2E8 /* Cell */,
 				D6064A221E462D9E00DBE2E8 /* OLD */,
-				D6050A481E3A65D40085C7ED /* EMPartyViewController views */,
 				D64E4B511E39312F00E4E9D4 /* Main.storyboard */,
 				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
 				D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */,
@@ -317,6 +362,7 @@
 				D6CF248A1E3B636900463849 /* EMTextView.m in Sources */,
 				D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */,
 				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
+				D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */,
 				D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */,
 				D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */,
 				D64E4B611E39358200E4E9D4 /* EMOldPartyViewController.m in Sources */,

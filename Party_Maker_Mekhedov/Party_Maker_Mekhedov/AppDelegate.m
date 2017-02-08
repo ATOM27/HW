@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "EMHTTPManager.h"
 
 @interface AppDelegate ()
 
@@ -29,6 +30,7 @@
 //    self.window.rootViewController = nav;
 //    
 //    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 

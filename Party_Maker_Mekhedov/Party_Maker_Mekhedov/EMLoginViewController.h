@@ -14,4 +14,5 @@
 @property (strong, nonatomic) IBOutlet UIView *loginView;
 @property (strong, nonatomic) IBOutlet UITextField *loginTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+- (IBAction)actionSignInTouched:(UIButton *)sender;
 @end
