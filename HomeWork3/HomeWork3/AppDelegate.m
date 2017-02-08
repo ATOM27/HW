@@ -74,7 +74,7 @@
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     documentsPath = [documentsPath stringByAppendingPathComponent:@"logs.plist"];
-    BOOL a = [data writeToFile:documentsPath atomically:YES];
+    [data writeToFile:documentsPath atomically:YES];
 }
 
 
@@ -112,12 +112,7 @@
 
 -(void) createEventObjectWithEventName:(NSString*)eventName date:(NSDate*)eventDate{
     
-    EMEventObject* obj = [[EMEventObject alloc] init];
-    
-    obj.eventName = eventName;
-    obj.eventDate = eventDate;
-    obj.eventID = [[NSUUID UUID] UUIDString];
-    
+    EMEventObject* obj = [[EMEventObject alloc] initWithEventName:eventName date:eventDate];
     [self.arrayForObjects addObject:obj];
     
 }
@@ -125,8 +120,11 @@
 -(void)createPlist{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:@"/Users/eugenemekhedov/Documents/logs.plist"];
+    NSString* bundleString = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"logs.plist"];
     
+    
+    //NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:@"/Users/eugenemekhedov/Documents/logs.plist"];
+    NSDictionary *plistDictionary = [NSDictionary dictionaryWithContentsOfFile:bundleString];
     NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
     
     documentsPath = [documentsPath stringByAppendingPathComponent:@"logs.plist"];
@@ -141,7 +139,7 @@
 
 -(void)readInfoPlist{
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
-    NSLog(@"%%%@%%(%%%@%%)", [infoDict objectForKey:@"CFBundleVersion"], [infoDict objectForKey:@"CFBundleShortVersionString"]);
+    NSLog(@"%%%@%%(%%%@%%)", [infoDict objectForKey:(__bridge NSString*)kCFBundleVersionKey], [infoDict objectForKey:@"CFBundleShortVersionString"]);
 }
 
 - (void)resetDefaults {

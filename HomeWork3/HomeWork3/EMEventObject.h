@@ -14,4 +14,6 @@
 @property (strong, nonatomic) NSDate* eventDate;
 @property (strong, nonatomic) NSString* eventID;
 
+- (instancetype)initWithEventName:(NSString*)eventName date:(NSDate*)eventDate;
+
 @end

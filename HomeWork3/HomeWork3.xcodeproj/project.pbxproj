@@ -16,6 +16,7 @@
 		D6C515BA1E325C1C004298F8 /* HomeWork3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C515B91E325C1C004298F8 /* HomeWork3Tests.m */; };
 		D6C515C51E325C1C004298F8 /* HomeWork3UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C515C41E325C1C004298F8 /* HomeWork3UITests.m */; };
 		D6C515D41E32620C004298F8 /* EMEventObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C515D31E32620C004298F8 /* EMEventObject.m */; };
+		ECE6B3191E4B4A3E0048B5FE /* logs.plist in Resources */ = {isa = PBXBuildFile; fileRef = ECE6B3181E4B4A3E0048B5FE /* logs.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D6C515C61E325C1C004298F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6C515D21E32620C004298F8 /* EMEventObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMEventObject.h; sourceTree = "<group>"; };
 		D6C515D31E32620C004298F8 /* EMEventObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMEventObject.m; sourceTree = "<group>"; };
+		ECE6B3181E4B4A3E0048B5FE /* logs.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = logs.plist; path = HomeWork3/logs.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		D6C515931E325C1C004298F8 = {
 			isa = PBXGroup;
 			children = (
+				ECE6B3181E4B4A3E0048B5FE /* logs.plist */,
 				D6C5159E1E325C1C004298F8 /* HomeWork3 */,
 				D6C515B81E325C1C004298F8 /* HomeWork3Tests */,
 				D6C515C31E325C1C004298F8 /* HomeWork3UITests */,
@@ -252,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6C515AF1E325C1C004298F8 /* LaunchScreen.storyboard in Resources */,
+				ECE6B3191E4B4A3E0048B5FE /* logs.plist in Resources */,
 				D6C515AC1E325C1C004298F8 /* Assets.xcassets in Resources */,
 				D6C515AA1E325C1C004298F8 /* Main.storyboard in Resources */,
 			);

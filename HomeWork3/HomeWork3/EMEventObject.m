@@ -29,4 +29,16 @@
     [aCoder encodeObject:self.eventID forKey:@"eventID"];
 }
 
+- (instancetype)initWithEventName:(NSString*)eventName date:(NSDate*)eventDate
+{
+    self = [super init];
+    if (self) {
+        
+        self.eventName = eventName;
+        self.eventDate = eventDate;
+        self.eventID = [[NSUUID UUID] UUIDString];
+    }
+    return self;
+}
+
 @end
