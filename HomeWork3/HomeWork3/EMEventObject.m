@@ -37,8 +37,8 @@
         self.eventName = eventName;
         self.eventDate = eventDate;
         self.eventID = [[NSUUID UUID] UUIDString];
+
     }
     return self;
 }
-
 @end

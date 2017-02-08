@@ -139,6 +139,7 @@
 
 -(void)readInfoPlist{
     NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+
     NSLog(@"%%%@%%(%%%@%%)", [infoDict objectForKey:(__bridge NSString*)kCFBundleVersionKey], [infoDict objectForKey:@"CFBundleShortVersionString"]);
 }
 

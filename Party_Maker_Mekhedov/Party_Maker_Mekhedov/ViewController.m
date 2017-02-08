@@ -38,9 +38,9 @@
 
 -(void) actionAddParty:(UIBarButtonItem*) sender{
     
-    //EMOldPartyViewController* partyVC = [[EMOldPartyViewController alloc] init];
+    EMOldPartyViewController* partyVC = [[EMOldPartyViewController alloc] init];
     
-    EMXibPartyViewController* partyVC = [[EMXibPartyViewController alloc] init];
+    //EMXibPartyViewController* partyVC = [[EMXibPartyViewController alloc] init];
     
     //self.navigationController.navigationBar.translucent = NO;
     [self.navigationController pushViewController:partyVC animated:YES];

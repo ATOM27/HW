@@ -26,14 +26,14 @@
 
 @end
 
-const NSString* kChooseDateButton = @"chooseDateButton";
-const NSString* kPartyNameField = @"partyNameField";
-const NSString* kStartSlider = @"startSlider";
-const NSString* kEndSlider = @"endSlider";
-const NSString* kPageAndScroolView = @"pageAndScroolView";
-const NSString* kTextView = @"textView";
-const NSString* kSaveButton = @"saveButton";
-const NSString* kCloseButton = @"closeButton";
+NSString* const kChooseDateButton = @"chooseDateButton";
+NSString* const kPartyNameField = @"partyNameField";
+NSString* const kStartSlider = @"startSlider";
+NSString* const kEndSlider = @"endSlider";
+NSString* const kPageAndScroolView = @"pageAndScroolView";
+NSString* const kTextView = @"textView";
+NSString* const kSaveButton = @"saveButton";
+NSString* const kCloseButton = @"closeButton";
 
 @implementation EMOldPartyViewController
 
@@ -306,13 +306,13 @@ const NSString* kCloseButton = @"closeButton";
     if(hours >= 10){
         resultString = [NSString stringWithFormat:@"%ld:", (long)hours];
     }else{
-        resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
+        resultString = [NSString stringWithFormat:@"%02ld:", (long)hours];
     }
     
     if (minutse >= 10){
         resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)minutse]];
     }else{
-        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
+        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%02ld", (long)minutse]];
     }
     
     return resultString;

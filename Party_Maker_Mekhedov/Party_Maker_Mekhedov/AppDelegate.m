@@ -18,17 +18,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    
-//    ViewController* vc = [[ViewController alloc] init];
-//    vc.view.backgroundColor = [UIColor colorWithRed:46.f/255.f green:49.f/255.f blue:56.f/255.f alpha:1.f];
-//    vc.title = @"Party list";
-//    
-//    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:vc];
-//    
-//    self.window.rootViewController = nav;
-//    
-//    [self.window makeKeyAndVisible];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    ViewController* vc = [[ViewController alloc] init];
+    vc.view.backgroundColor = [UIColor colorWithRed:46.f/255.f green:49.f/255.f blue:56.f/255.f alpha:1.f];
+    vc.title = @"Party list";
+    
+    UINavigationController* nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    
+    self.window.rootViewController = nav;
+    
+    [self.window makeKeyAndVisible];
     return YES;
 }
 
