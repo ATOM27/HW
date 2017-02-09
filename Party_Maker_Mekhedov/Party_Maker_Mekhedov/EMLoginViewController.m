@@ -67,14 +67,16 @@ NS_ENUM(NSInteger, EMTextField){
 
 - (IBAction)actionSignInTouched:(UIButton *)sender {
     
-    [[EMHTTPManager sharedManager] loginWithName:self.loginTextField.text password:self.passwordTextField.text completion:^(NSDictionary *response, NSError *error) {
-        if(error){
-            NSLog(@"%@",[error localizedDescription]);
-        }else{
-            if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
-                [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
-            }
-        }
-    }];
+    [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
+    
+//    [[EMHTTPManager sharedManager] loginWithName:self.loginTextField.text password:self.passwordTextField.text completion:^(NSDictionary *response, NSError *error) {
+//        if(error){
+//            NSLog(@"%@",[error localizedDescription]);
+//        }else{
+//            if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
+//                [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
+//            }
+//        }
+//    }];
 }
 @end
