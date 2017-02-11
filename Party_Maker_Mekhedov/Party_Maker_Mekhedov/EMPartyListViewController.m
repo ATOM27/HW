@@ -10,11 +10,13 @@
 #import "EMPartyViewController.h"
 #import "EMPartyListCell.h"
 #import "EMParty.h"
+#import "PMRCoreDataManager+Party.h"
+#import "PMRParty.h"
 
 @interface EMPartyListViewController ()
 
 @property(strong, nonatomic) NSArray* arrayWithParties;
-@property(strong, nonatomic) EMParty* selectedParty;
+@property(strong, nonatomic) PMRParty* selectedParty;
 
 @end
 
@@ -45,10 +47,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    if(dataParties){
-        self.arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-    }
+    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
+//    if(dataParties){
+//        self.arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+//    }
     
     return [self.arrayWithParties count];
 }
@@ -56,9 +59,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     EMPartyListCell* cell = [self.tableView dequeueReusableCellWithIdentifier:[EMPartyListCell reuseIdentifier]];
-    EMParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
-    
-    [cell configureWithImage:party.logoImage partyName:party.name partyDate:party.date partyStartTime:party.startParty];
+    //EMParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
+    PMRParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
+    [cell configureWithImageName:party.logoImageName partyName:party.name partyDate:party.startDate];
+    //[cell configureWithImage:party.logoImage partyName:party.name partyDate:party.date partyStartTime:party.startParty];
     
     return cell;
 }

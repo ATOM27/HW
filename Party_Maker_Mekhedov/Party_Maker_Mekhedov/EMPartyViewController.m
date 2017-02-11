@@ -9,6 +9,7 @@
 #import "EMPartyViewController.h"
 #import "UIView+CircleProperty.h"
 #import "EMPartyCreatedViewController.h"
+#import "PMRCoreDataManager+Party.h"
 
 @interface EMPartyViewController ()
 
@@ -40,6 +41,7 @@
 
 @property (strong, nonatomic) UIView* lastSelectedObject;
 
+@property (strong, nonatomic) NSArray* arrayWithImageNames;
 @end
 
 NS_ENUM(NSInteger, EMSliderType){
@@ -64,12 +66,14 @@ NS_ENUM(NSInteger, EMSliderType){
         
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.date] forState:UIControlStateNormal];
+        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.creationDate] forState:UIControlStateNormal];
         self.paratyNameTextField.text = self.currentParty.name;
-        self.startSlider.value = self.currentParty.startParty;
-        self.endSlider.value = self.currentParty.endParty;
-        self.pageControll.currentPage = self.currentParty.logoPage;
-        //self.scrollView
+        [dateFormatter setDateFormat:@"HH:mm"];
+        self.startLabel.text = [dateFormatter stringFromDate:self.currentParty.startDate];
+        self.startSlider.value = [self valueForSliderWithDate:self.currentParty.startDate];
+        self.endSlider.value = [self valueForSliderWithDate:self.currentParty.endDate];
+        self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
+        //self.pageControll.currentPage = self.currentParty.logoPage;
         self.textView.text = self.currentParty.descriptionText;
     }
     self.paratyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
@@ -87,6 +91,13 @@ NS_ENUM(NSInteger, EMSliderType){
 
 -(void)viewDidAppear:(BOOL)animated{
     [self createImagesInScrollView:self.scrollView];
+    if(self.currentParty){
+        self.pageControll.currentPage = [self.arrayWithImageNames indexOfObject:self.currentParty.logoImageName];
+        CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
+        [self.scrollView setContentOffset:contentOffset
+                                 animated:YES];
+        [self.scrollView setContentOffset:contentOffset animated:YES];
+    }
 }
 - (void)dealloc
 {
@@ -96,6 +107,26 @@ NS_ENUM(NSInteger, EMSliderType){
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private methods
+
+-(NSInteger)valueForSliderWithDate:(NSDate*)date{
+    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString* strDate = [dateFormatter stringFromDate:date];
+
+    NSArray* arr = [strDate componentsSeparatedByString:@":"];
+    return ([[arr firstObject] integerValue]*60 + [[arr lastObject] integerValue]);
+}
+
+-(NSDate*)getDateWithSliderValue:(NSInteger)value{
+    NSString* dateStr = [self getStringForSliderValue:value];
+    dateStr = [NSString stringWithFormat:@"%@ %@", self.chooseDateButton.titleLabel.text, dateStr];
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+    return [dateFormatter dateFromString:dateStr];
 }
 
 #pragma mark - Action choose date
@@ -235,22 +266,9 @@ NS_ENUM(NSInteger, EMSliderType){
 - (IBAction)actionChangeScrollValue:(UISlider *)sender {
     //[sender showCircle];
     [self showCircleInView:sender];
-    NSInteger hours = sender.value/60.f;
-    NSInteger minutse = sender.value - hours*60;
+
+    NSString* resultString = [self getStringForSliderValue:sender.value];
     
-    NSString* resultString = nil;
-    
-    if(hours >= 10){
-        resultString = [NSString stringWithFormat:@"%ld:", (long)hours];
-    }else{
-        resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
-    }
-    
-    if (minutse >= 10){
-        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)minutse]];
-    }else{
-        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
-    }
     if(sender.tag == EMSliderTypeStart){
         self.startLabel.text = resultString;
     }else if(sender.tag == EMSliderTypeEnd){
@@ -314,6 +332,7 @@ NS_ENUM(NSInteger, EMSliderType){
     UIImageView* imageView6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Beer-100.png"]];
     
     NSArray* arrayWithImageView = @[imageView1, imageView2, imageView3, imageView4, imageView5, imageView6];
+    self.arrayWithImageNames = @[@"No Alcohol-100.png", @"Coconut Cocktail-100.png", @"Christmas Tree-100.png", @"Champagne-100.png", @"Birthday Cake-100.png", @"Beer-100.png"];
     self.scrollView.contentMode = UIViewContentModeCenter;
     int counter = 1;
     for (UIImageView* currentImageView in arrayWithImageView){
@@ -479,53 +498,96 @@ NS_ENUM(NSInteger, EMSliderType){
     NSDate* date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
     
     
-    UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
-    EMParty* party = [[EMParty alloc] initWithDate:date
-                                              name:self.paratyNameTextField.text
-                                    startPartyTime:self.startSlider.value
-                                      endPartyTime:self.endSlider.value
-                                          logoPage:self.pageControll.currentPage
-                                         logoImage:imageView.image
-                                   descriptionText:self.textView.text];
+    //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
+    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
+                                                   name:self.paratyNameTextField.text
+                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
+                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
+                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+                                        descriptionText:self.textView.text
+                                           creationDate:date
+                                       modificationDate:nil
+                                              creatorID:nil
+                                               latitude:nil
+                                             longtitude:nil];
     
-    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
+    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+        if(success){
+        }
+    }];
+//    [[EMParty alloc] initWithDate:date
+//                                              name:self.paratyNameTextField.text
+//                                    startPartyTime:self.startSlider.value
+//                                      endPartyTime:self.endSlider.value
+//                                          logoPage:self.pageControll.currentPage
+//                                         logoImage:imageView.image
+//                                   descriptionText:self.textView.text];
     
-    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    if(dataParties){
-        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-    }
-    
-    [arrayWithParties addObject:party];
-    
-    dataParties = nil;
-    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
-    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
+//    
+//    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+//    if(dataParties){
+//        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+//    }
+//    
+//    [arrayWithParties addObject:party];
+//    
+//    dataParties = nil;
+//    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
+//    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
 -(void)saveChangesToCurrentParty{
-    NSArray* parties = [[NSArray alloc] init];
-    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-    EMParty* party = [parties objectAtIndex:self.indexParty];
     
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+        
+        NSDate* date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
+        PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
+                                                       name:self.paratyNameTextField.text
+                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
+                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
+                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+                                            descriptionText:self.textView.text
+                                               creationDate:date
+                                           modificationDate:nil
+                                                  creatorID:nil
+                                                   latitude:nil
+                                                 longtitude:nil];
+        
+        [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+            if(success){
+            }
+        }];
+
+    }];
     
-    party.name = self.paratyNameTextField.text;
-    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
-    party.startParty = self.startSlider.value;
-    party.endParty = self.endSlider.value;
-    party.logoPage = self.pageControll.currentPage;
-    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
-    party.descriptionText = self.textView.text;
+    //NSArray* parties = [[NSArray alloc] init];
+    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    //parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+//    parties = [[PMRCoreDataManager sharedStore] getParties];
+//    PMRParty* party = [parties objectAtIndex:self.indexParty];
+//    
+//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    
+    
+//    party.name = self.paratyNameTextField.text;
+//    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
+//    party.startParty = self.startSlider.value;
+//    party.endParty = self.endSlider.value;
+//    party.logoPage = self.pageControll.currentPage;
+//    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
+//    party.descriptionText = self.textView.text;
 
     
-    dataParties = nil;
-    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
-    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    dataParties = nil;
+//    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
+//    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 #pragma mark - Cancel button
 

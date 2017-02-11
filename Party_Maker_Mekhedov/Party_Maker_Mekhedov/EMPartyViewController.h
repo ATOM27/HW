@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "EMParty.h"
+#import "PMRParty.h"
 
 static NSString* kParties = @"parties";
 
 @interface EMPartyViewController : UIViewController
 
-@property (strong, nonatomic) EMParty* currentParty;
+//@property (strong, nonatomic) EMParty* currentParty;
+@property (strong, nonatomic) PMRParty* currentParty;
 @property (assign, nonatomic) NSInteger indexParty;
 
 

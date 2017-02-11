@@ -7,7 +7,7 @@
 //
 
 #import "EMLoginViewController.h"
-#import "EMHTTPManager.h";
+#import "EMHTTPManager.h"
 
 @interface EMLoginViewController ()
 

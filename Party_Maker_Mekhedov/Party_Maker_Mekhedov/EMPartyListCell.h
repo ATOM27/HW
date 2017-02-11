@@ -13,9 +13,8 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imageV;
 @property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
-@property (strong, nonatomic) IBOutlet UILabel *startPartyLabel;
 
--(void)configureWithImage:(UIImage*)image partyName:(NSString*)partyName partyDate:(NSDate*)partyDate partyStartTime:(NSInteger)startTime;
+-(void)configureWithImageName:(NSString*)imageName partyName:(NSString*)partyName partyDate:(NSDate*)partyDate;
 -(void)prepareForReuse;
 
 +(NSString*)reuseIdentifier;
