@@ -125,6 +125,7 @@ NS_ENUM(NSInteger, EMSliderType){
     NSString* dateStr = [self getStringForSliderValue:value];
     dateStr = [NSString stringWithFormat:@"%@ %@", self.chooseDateButton.titleLabel.text, dateStr];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
     return [dateFormatter dateFromString:dateStr];
 }
@@ -513,6 +514,15 @@ NS_ENUM(NSInteger, EMSliderType){
     
     [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
         if(success){
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            
+            localNotification.alertBody = [NSString stringWithFormat:@"%@ is about to begin!", party.name];
+            localNotification.fireDate = [party.startDate dateByAddingTimeInterval:-3600];
+            localNotification.userInfo = @{ @"name" : party.name };
+            localNotification.soundName = UILocalNotificationDefaultSoundName;
+            localNotification.category = @"LocalNotificationDefaultCategory";
+
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
         }
     }];
 //    [[EMParty alloc] initWithDate:date
