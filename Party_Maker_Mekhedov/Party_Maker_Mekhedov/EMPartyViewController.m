@@ -61,7 +61,7 @@ NS_ENUM(NSInteger, EMSliderType){
     self.scrollView.circle = self.logoCircle;
     self.textView.circle = self.descriptionCircle;
     self.cancelButton.circle = self.finalCircle;
-    
+
     if(self.currentParty){
         
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -90,6 +90,7 @@ NS_ENUM(NSInteger, EMSliderType){
 }
 
 -(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
     [self createImagesInScrollView:self.scrollView];
     if(self.currentParty){
         self.pageControll.currentPage = [self.arrayWithImageNames indexOfObject:self.currentParty.logoImageName];
