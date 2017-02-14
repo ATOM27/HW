@@ -10,6 +10,7 @@
 #import "UIView+CircleProperty.h"
 #import "EMPartyCreatedViewController.h"
 #import "PMRCoreDataManager+Party.h"
+#import "UIViewController+Alert.h"
 
 @interface EMPartyViewController ()
 
@@ -451,18 +452,6 @@ NS_ENUM(NSInteger, EMSliderType){
     return YES;
 }
 
-#pragma mark - Alert controller
-
--(void) alertWithTitle:(NSString*) title message:(NSString*)message andViewConctroller:(UIViewController*) vc{
-    
-    UIAlertController* alertController = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-    
-    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:ok];
-    
-    [vc presentViewController:alertController animated:YES completion:nil];
-}
-
 #pragma mark - Save button
 
 //- (IBAction)actionSaveButtonTouched:(UIButton *)sender {
@@ -480,10 +469,10 @@ NS_ENUM(NSInteger, EMSliderType){
     BOOL result = YES;;
     if([self.chooseDateButton.titleLabel.text isEqualToString:@"CHOOSE DATE"]){
         result = NO;
-        [self alertWithTitle:@"Error!" message:@"You shoud enter the date!" andViewConctroller:self];
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the date!"];
     }else if([self.paratyNameTextField.text isEqualToString:@""]){
         result = NO;
-        [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!" andViewConctroller:self];
+        [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!"];
     }
     return result;
 }

@@ -10,6 +10,7 @@
 
 @interface EMPartyListViewController : UIViewController
 
+@property (strong, nonatomic) NSString* creatorID;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end

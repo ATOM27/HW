@@ -21,14 +21,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Champagne-100.png" translatesAutoresizingMaskIntoConstraints="NO" id="Olx-05-hJE">
-                                <rect key="frame" x="90" y="237" width="194" height="193"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="back.png" translatesAutoresizingMaskIntoConstraints="NO" id="YAP-RK-7cM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AaM-KI-ENK">
+                                <rect key="frame" x="61.5" y="303.5" width="252" height="60"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PARTY MAKER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUN-2Q-1aS">
+                                        <rect key="frame" x="1" y="1" width="250" height="58"/>
+                                        <color key="backgroundColor" red="0.92549019610000005" green="0.2784313725" blue="0.074509803920000006" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="2k0-zo-FZA"/>
+                                    <constraint firstItem="dUN-2Q-1aS" firstAttribute="top" secondItem="AaM-KI-ENK" secondAttribute="top" constant="1" id="50V-4E-GFd"/>
+                                    <constraint firstAttribute="width" constant="252" id="9FC-Rq-2d4"/>
+                                    <constraint firstItem="dUN-2Q-1aS" firstAttribute="leading" secondItem="AaM-KI-ENK" secondAttribute="leading" constant="1" id="ZeS-kX-KHy"/>
+                                    <constraint firstAttribute="trailing" secondItem="dUN-2Q-1aS" secondAttribute="trailing" constant="1" id="jmB-UA-Qf7"/>
+                                    <constraint firstAttribute="bottom" secondItem="dUN-2Q-1aS" secondAttribute="bottom" constant="1" id="tcn-z4-wXM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Olx-05-hJE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="37R-2u-gzI"/>
-                            <constraint firstItem="Olx-05-hJE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="mvg-kC-AuK"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="YAP-RK-7cM" secondAttribute="bottom" id="DVu-xw-kGN"/>
+                            <constraint firstItem="YAP-RK-7cM" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="EXs-Dc-cpg"/>
+                            <constraint firstItem="AaM-KI-ENK" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="PbW-qR-wyU"/>
+                            <constraint firstItem="AaM-KI-ENK" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="ls0-40-YKE"/>
+                            <constraint firstAttribute="trailing" secondItem="YAP-RK-7cM" secondAttribute="trailing" id="yky-wA-RjB"/>
+                            <constraint firstItem="YAP-RK-7cM" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zSB-TN-ea0"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -38,6 +63,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Champagne-100.png" width="125" height="126"/>
+        <image name="back.png" width="640" height="1136"/>
     </resources>
 </document>

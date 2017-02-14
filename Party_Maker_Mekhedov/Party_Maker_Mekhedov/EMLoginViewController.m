@@ -8,15 +8,21 @@
 
 #import "EMLoginViewController.h"
 #import "EMHTTPManager.h"
+#import "UIViewController+Alert.h"
+#import "EMPartyListViewController.h"
 
 @interface EMLoginViewController ()
+
+@property(strong, nonatomic) NSString* creatorID;
 
 @end
 
 NS_ENUM(NSInteger, EMTextField){
-    EMTextFieldLogin,
+    EMTextFieldName,
     EMTextFieldPassword
 };
+
+NSString* const tabBarIdentifier = @"TabBarIdentifier";
 
 @implementation EMLoginViewController
 
@@ -24,16 +30,19 @@ NS_ENUM(NSInteger, EMTextField){
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.loginView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
+    
     UIView* paddingLogginView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
-    self.loginTextField.leftView = paddingLogginView;
-    self.loginTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.nameTextField.leftView = paddingLogginView;
+    self.nameTextField.leftViewMode = UITextFieldViewModeAlways;
     
     UIView* paddingPasswordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
 
     self.passwordTextField.leftView = paddingPasswordView;
     self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     
-    self.loginTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Login"
+    self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name"
                                                                                      attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
                                                                                                   }
                                                       ];
@@ -54,7 +63,7 @@ NS_ENUM(NSInteger, EMTextField){
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField.tag == EMTextFieldLogin){
+    if(textField.tag == EMTextFieldName){
         [self.passwordTextField becomeFirstResponder];
     }else{
         [textField resignFirstResponder];
@@ -63,20 +72,42 @@ NS_ENUM(NSInteger, EMTextField){
     return YES;
 }
 
-#pragma mark - Actions
-
 - (IBAction)actionSignInTouched:(UIButton *)sender {
-    
-    [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
-    
-//    [[EMHTTPManager sharedManager] loginWithName:self.loginTextField.text password:self.passwordTextField.text completion:^(NSDictionary *response, NSError *error) {
-//        if(error){
-//            NSLog(@"%@",[error localizedDescription]);
-//        }else{
-//            if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
-//                [self performSegueWithIdentifier:@"TabBarIdentifier" sender:self];
-//            }
-//        }
-//    }];
+    [[EMHTTPManager sharedManager] loginWithName:self.nameTextField.text
+                                        password:self.passwordTextField.text
+                                      completion:^(NSDictionary *response, NSError *error) {
+                                          if(error){
+                                              NSLog(@"%@", [error localizedDescription]);
+                                          }else{
+                                              if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      self.creatorID = [response valueForKey:@"id"];
+                                                      [self performSegueWithIdentifier:tabBarIdentifier sender:self];
+                                                  });
+                                              }else{
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      [self alertWithTitle:@"Ops!" message:@"Wrong name or password"];
+                                                  });
+                                              }
+                                          }
+                                      }];
 }
+
+#pragma mark - Segue
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:tabBarIdentifier]){
+        UITabBarController* tabBarVC = segue.destinationViewController;
+        EMPartyListViewController* vc;
+        for(UINavigationController* neededVC in tabBarVC.viewControllers){
+            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMPartyListViewController class]]){
+                vc = [neededVC.viewControllers firstObject];
+                break;
+            }
+        }
+        vc.creatorID = self.creatorID;
+    }
+}
+
+
 @end

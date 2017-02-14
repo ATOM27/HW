@@ -12,6 +12,7 @@
 #import "EMParty.h"
 #import "PMRCoreDataManager+Party.h"
 #import "PMRParty.h"
+#import "EMHTTPManager.h"
 
 @interface EMPartyListViewController ()
 
@@ -26,7 +27,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self resetDefaults];
+    //[UITabBar appearance]
     self.arrayWithParties = [[NSArray alloc] init];
+#warning END HERE
+    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID
+                                           completion:^(NSDictionary *response, NSError *error) {
+                                               
+                                           }];
 //    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
 //    if(dataParties){
 //        self.arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
