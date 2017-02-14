@@ -13,6 +13,7 @@
 -(void)configureWithImageName:(NSString*)imageName partyName:(NSString*)partyName partyDate:(NSDate*)partyDate{
     
     self.imageV.image = [UIImage imageNamed:imageName];
+    self.imageV.transform = CGAffineTransformMakeScale(0.7, 0.78);
     self.partyNameLabel.text = partyName;
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];

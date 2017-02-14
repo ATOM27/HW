@@ -22,9 +22,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
-@property (strong, nonatomic) IBOutlet UIButton *saveButton;
-
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 @property (strong, nonatomic) IBOutlet UIView *chooseDateCircle;
 @property (strong, nonatomic) IBOutlet UIView *partyNameCircle;
 @property (strong, nonatomic) IBOutlet UIView *startCircle;
@@ -60,7 +58,7 @@ NS_ENUM(NSInteger, EMSliderType){
     self.endSlider.circle = self.endCircle;
     self.scrollView.circle = self.logoCircle;
     self.textView.circle = self.descriptionCircle;
-    self.cancelButton.circle = self.finalCircle;
+    self.locationButton.circle = self.finalCircle;
 
     if(self.currentParty){
         
@@ -467,14 +465,14 @@ NS_ENUM(NSInteger, EMSliderType){
 
 #pragma mark - Save button
 
-- (IBAction)actionSaveButtonTouched:(UIButton *)sender {
-    //[sender showCircle];
-    [self showCircleInView:sender];
-    if([self isDataPartyOK]){
-            [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-            [self.navigationController popViewControllerAnimated:YES];
-    }
-}
+//- (IBAction)actionSaveButtonTouched:(UIButton *)sender {
+//    //[sender showCircle];
+//    [self showCircleInView:sender];
+//    if([self isDataPartyOK]){
+//            [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+//            [self.navigationController popViewControllerAnimated:YES];
+//    }
+//}
 
 #pragma mark - Check data
 
@@ -600,15 +598,13 @@ NS_ENUM(NSInteger, EMSliderType){
 //    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
 //    [[NSUserDefaults standardUserDefaults] synchronize];
 }
-#pragma mark - Cancel button
 
-- (IBAction)actionCancelButtonTouched:(id)sender {
-    
-   // [sender showCircle];
+#pragma mark - Choose location button
+
+- (IBAction)actionChooseLocationButtonTouched:(UIButton *)sender {
     [self showCircleInView:sender];
-    [self.navigationController popViewControllerAnimated:YES];
-
 }
+
 
 #pragma mark - Show circle
 

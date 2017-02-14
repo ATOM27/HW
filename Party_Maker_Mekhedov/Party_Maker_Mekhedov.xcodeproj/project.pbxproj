@@ -13,6 +13,8 @@
 		D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A201E4620E700DBE2E8 /* EMParty.m */; };
 		D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */; };
 		D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */; };
+		D60D3E6B1E523C5C0053A7D8 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D3E6A1E523C5C0053A7D8 /* settings.png */; };
+		D60D3E771E5240230053A7D8 /* floating-balloons.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D3E761E5240230053A7D8 /* floating-balloons.png */; };
 		D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */; };
 		D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */; };
 		D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9E1E3B4DD7009150C1 /* Beer-100.png */; };
@@ -62,6 +64,8 @@
 		D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListViewController.m; sourceTree = "<group>"; };
 		D6064A281E462E2A00DBE2E8 /* EMPartyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListCell.h; sourceTree = "<group>"; };
 		D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListCell.m; sourceTree = "<group>"; };
+		D60D3E6A1E523C5C0053A7D8 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		D60D3E761E5240230053A7D8 /* floating-balloons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "floating-balloons.png"; sourceTree = "<group>"; };
 		D612A2F51E4B9FB100F1818B /* EMHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPManager.h; sourceTree = "<group>"; };
 		D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHTTPManager.m; sourceTree = "<group>"; };
 		D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPageAndScrollView.h; sourceTree = "<group>"; };
@@ -224,6 +228,8 @@
 		D6418D9D1E3B4DD7009150C1 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				D60D3E761E5240230053A7D8 /* floating-balloons.png */,
+				D60D3E6A1E523C5C0053A7D8 /* settings.png */,
 				D6418D9E1E3B4DD7009150C1 /* Beer-100.png */,
 				D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */,
 				D6418DA01E3B4DD7009150C1 /* Champagne-100.png */,
@@ -394,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60D3E6B1E523C5C0053A7D8 /* settings.png in Resources */,
 				D6418DA71E3B4DD7009150C1 /* Christmas Tree-100.png in Resources */,
 				ECA6853E1E48945C006BEBBD /* Background.png in Resources */,
 				D64E4B581E39312F00E4E9D4 /* LaunchScreen.storyboard in Resources */,
@@ -402,6 +409,7 @@
 				D6CF24851E3B5CEF00463849 /* No Alcohol-100.png in Resources */,
 				D64E4B551E39312F00E4E9D4 /* Assets.xcassets in Resources */,
 				D64E4B531E39312F00E4E9D4 /* Main.storyboard in Resources */,
+				D60D3E771E5240230053A7D8 /* floating-balloons.png in Resources */,
 				D6418DA81E3B4DD7009150C1 /* Coconut Cocktail-100.png in Resources */,
 				D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */,
 				D6F68E2F1E3FC1180067CCAD /* EMXibPartyViewController.xib in Resources */,
