@@ -100,14 +100,22 @@
     [defs synchronize];
 }
 
+#pragma mark - Tab bar actions
+
+- (IBAction)actionAddParty:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"addPartyIdentifier" sender:self];
+}
+
+
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
+    EMPartyViewController* vc = segue.destinationViewController;
+    vc.creatorID = self.creatorID;
+    
     if([segue.identifier isEqualToString:@"changePartyIdentifier"]){
         self.selectedParty = [self.arrayWithParties objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-        EMPartyViewController* vc = segue.destinationViewController;
-        vc.creatorID = self.creatorID;
         vc.currentParty = self.selectedParty;
         vc.indexParty = [self.tableView indexPathForSelectedRow].row;
     }

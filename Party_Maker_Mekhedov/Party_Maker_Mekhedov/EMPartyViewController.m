@@ -465,7 +465,8 @@ NS_ENUM(NSInteger, EMSliderType){
         return;
     }
 
-    
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
     //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
     NSString* idString = [NSString stringWithFormat:@"%ld",
                           [[[[[PMRCoreDataManager sharedStore] getParties] lastObject] partyID] integerValue]+1];
@@ -479,31 +480,32 @@ NS_ENUM(NSInteger, EMSliderType){
                                            creationDate:[NSDate date]
                                        modificationDate:[NSDate date]
                                               creatorID:self.creatorID
-                                               latitude:nil
-                                             longtitude:nil];
-    
-    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-        if(success){
-            [self makeNotificationToPaty:party];
-            [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
-                                                     name:party.name
-                                                startTime:[NSDateFormatter localizedStringFromDate:party.startDate
-                                                                                         dateStyle:NSDateFormatterFullStyle
-                                                                                         timeStyle:NSDateFormatterFullStyle]
-                                                  endTime:[NSDateFormatter localizedStringFromDate:party.endDate
-                                                                                         dateStyle:NSDateFormatterFullStyle
-                                                                                         timeStyle:NSDateFormatterFullStyle]
+                                               latitude:@""
+                                             longtitude:@""];
 
-                                                   logoID:party.logoImageName
-                                                  comment:party.description
-                                                creatorID:self.creatorID
-                                                 latitude:nil
-                                                longitude:nil
-                                               completion:^(NSDictionary *response, NSError *error) {
-                                                   [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-                                               }];
-        }
-    }];
+    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+                                             name:party.name
+                                        startTime:[NSString stringWithFormat:@"%@", party.startDate]
+                                          endTime:[NSString stringWithFormat:@"%@", party.endDate]
+                                           logoID:party.logoImageName
+                                          comment:party.description
+                                        creatorID:self.creatorID
+                                         latitude:@""
+                                        longitude:@""
+                                       completion:^(NSDictionary *response, NSError *error) {
+                                           if(error){
+                                               NSLog(@"%@", [error localizedDescription]);
+                                           }
+                                           if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
+                                           [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                   if(success){
+                                                       [self makeNotificationToPaty:party];
+                                                       [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                   }
+                                            }];
+                                           }
+                                       }];
+    
     //    [[EMParty alloc] initWithDate:date
     //                                              name:self.paratyNameTextField.text
     //                                    startPartyTime:self.startSlider.value

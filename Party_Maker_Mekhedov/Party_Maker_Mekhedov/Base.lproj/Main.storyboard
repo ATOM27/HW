@@ -211,7 +211,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b3D-lQ-qMF" id="x9p-MI-2Zd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="88.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v34-jL-W90">
@@ -270,12 +270,13 @@
                     <navigationItem key="navigationItem" title="Party list" id="VWj-HI-BM5">
                         <barButtonItem key="rightBarButtonItem" title="Add Party" id="aXk-qo-QCD">
                             <connections>
-                                <segue destination="CoL-M1-5bM" kind="show" id="hFI-QQ-xy3"/>
+                                <action selector="actionAddParty:" destination="dQr-XL-FD5" id="UBF-jb-Ksf"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="pqa-kr-1pE" id="VJQ-8w-pF5"/>
+                        <segue destination="CoL-M1-5bM" kind="show" identifier="addPartyIdentifier" id="OSY-gs-U75"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZxB-9U-fvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -795,7 +796,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYh-Cz-7qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3088" y="-163"/>
+            <point key="canvasLocation" x="3273" y="-471"/>
         </scene>
         <!--Settings-->
         <scene sceneID="cHk-1c-kS5">
@@ -829,7 +830,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kIQ-6B-Dy2" id="Rlh-hC-wTl">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -993,6 +994,6 @@
         <image name="settings.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hFI-QQ-xy3"/>
+        <segue reference="OSY-gs-U75"/>
     </inferredMetricsTieBreakers>
 </document>
