@@ -35,7 +35,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Eugene" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
                                         <rect key="frame" x="8" y="101" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -51,7 +51,7 @@
                                             <outlet property="delegate" destination="Pwu-7z-Pnu" id="bHH-CC-f2Q"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
                                         <rect key="frame" x="8" y="163" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -723,7 +723,7 @@
                     <navigationItem key="navigationItem" title="CREATE PARTY" id="Gu7-Vh-Ju0">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="Ut4-yq-b3s">
                             <connections>
-                                <segue destination="UUf-6D-HEh" kind="presentation" identifier="PartyCreatedIdentifier" id="mCT-HD-LuC"/>
+                                <action selector="actionSaveParty:" destination="CoL-M1-5bM" id="57a-10-AGg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -745,6 +745,7 @@
                         <outlet property="startLabel" destination="FxX-4k-nyy" id="Fmu-6v-Ltg"/>
                         <outlet property="startSlider" destination="7cd-Au-geR" id="bq7-Qr-gjz"/>
                         <outlet property="textView" destination="KLE-1b-VXx" id="4Re-O5-N0O"/>
+                        <segue destination="UUf-6D-HEh" kind="presentation" identifier="PartyCreatedIdentifier" id="Zpi-Xp-6go"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCu-PR-dLW" userLabel="First Responder" sceneMemberID="firstResponder"/>

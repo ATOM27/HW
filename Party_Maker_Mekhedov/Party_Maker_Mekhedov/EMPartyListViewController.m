@@ -11,6 +11,7 @@
 #import "EMPartyListCell.h"
 #import "EMParty.h"
 #import "PMRCoreDataManager+Party.h"
+#import "PMRParty+initWithDictionary.h"
 #import "PMRParty.h"
 #import "EMHTTPManager.h"
 
@@ -22,17 +23,31 @@
 @end
 
 @implementation EMPartyListViewController
+-(void)loadView{
+    [super loadView];
+    [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
+        
+    }];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self resetDefaults];
-    //[UITabBar appearance]
     self.arrayWithParties = [[NSArray alloc] init];
-#warning END HERE
-    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID
+    
+    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID//@"354"
                                            completion:^(NSDictionary *response, NSError *error) {
+                                               NSArray* parties = [response objectForKey:@"response"];
                                                
+                                               if(parties){
+                                                   for (NSDictionary* partyDict in parties){
+                                                       PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
+                                                       [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                           [self.tableView reloadData];
+                                                       }];
+                                                   }
+                                               }
                                            }];
 //    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
 //    if(dataParties){
@@ -92,6 +107,7 @@
     if([segue.identifier isEqualToString:@"changePartyIdentifier"]){
         self.selectedParty = [self.arrayWithParties objectAtIndex:[self.tableView indexPathForSelectedRow].row];
         EMPartyViewController* vc = segue.destinationViewController;
+        vc.creatorID = self.creatorID;
         vc.currentParty = self.selectedParty;
         vc.indexParty = [self.tableView indexPathForSelectedRow].row;
     }

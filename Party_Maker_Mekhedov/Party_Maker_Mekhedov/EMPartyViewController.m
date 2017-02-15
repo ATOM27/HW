@@ -11,6 +11,7 @@
 #import "EMPartyCreatedViewController.h"
 #import "PMRCoreDataManager+Party.h"
 #import "UIViewController+Alert.h"
+#import "EMHTTPManager.h"
 
 @interface EMPartyViewController ()
 
@@ -65,7 +66,7 @@ NS_ENUM(NSInteger, EMSliderType){
         
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.creationDate] forState:UIControlStateNormal];
+        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.startDate] forState:UIControlStateNormal];
         self.paratyNameTextField.text = self.currentParty.name;
         [dateFormatter setDateFormat:@"HH:mm"];
         self.startLabel.text = [dateFormatter stringFromDate:self.currentParty.startDate];
@@ -125,7 +126,6 @@ NS_ENUM(NSInteger, EMSliderType){
     NSString* dateStr = [self getStringForSliderValue:value];
     dateStr = [NSString stringWithFormat:@"%@ %@", self.chooseDateButton.titleLabel.text, dateStr];
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone systemTimeZone]];
     [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
     return [dateFormatter dateFromString:dateStr];
 }
@@ -452,16 +452,81 @@ NS_ENUM(NSInteger, EMSliderType){
     return YES;
 }
 
-#pragma mark - Save button
+#pragma mark - Save bar button
 
-//- (IBAction)actionSaveButtonTouched:(UIButton *)sender {
-//    //[sender showCircle];
-//    [self showCircleInView:sender];
-//    if([self isDataPartyOK]){
-//            [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-//            [self.navigationController popViewControllerAnimated:YES];
-//    }
-//}
+- (IBAction)actionSaveParty:(UIBarButtonItem *)sender {
+    
+    if (![self isDataPartyOK]){
+        return;
+    }
+    
+    if(self.currentParty){
+        [self saveChangesToCurrentParty];
+        return;
+    }
+
+    
+    //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
+    NSString* idString = [NSString stringWithFormat:@"%ld",
+                          [[[[[PMRCoreDataManager sharedStore] getParties] lastObject] partyID] integerValue]+1];
+    
+    PMRParty* party = [[PMRParty alloc] initWithPartyID:idString
+                                                   name:self.paratyNameTextField.text
+                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
+                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
+                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+                                        descriptionText:self.textView.text
+                                           creationDate:[NSDate date]
+                                       modificationDate:[NSDate date]
+                                              creatorID:self.creatorID
+                                               latitude:nil
+                                             longtitude:nil];
+    
+    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+        if(success){
+            [self makeNotificationToPaty:party];
+            [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+                                                     name:party.name
+                                                startTime:[NSDateFormatter localizedStringFromDate:party.startDate
+                                                                                         dateStyle:NSDateFormatterFullStyle
+                                                                                         timeStyle:NSDateFormatterFullStyle]
+                                                  endTime:[NSDateFormatter localizedStringFromDate:party.endDate
+                                                                                         dateStyle:NSDateFormatterFullStyle
+                                                                                         timeStyle:NSDateFormatterFullStyle]
+
+                                                   logoID:party.logoImageName
+                                                  comment:party.description
+                                                creatorID:self.creatorID
+                                                 latitude:nil
+                                                longitude:nil
+                                               completion:^(NSDictionary *response, NSError *error) {
+                                                   [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                               }];
+        }
+    }];
+    //    [[EMParty alloc] initWithDate:date
+    //                                              name:self.paratyNameTextField.text
+    //                                    startPartyTime:self.startSlider.value
+    //                                      endPartyTime:self.endSlider.value
+    //                                          logoPage:self.pageControll.currentPage
+    //                                         logoImage:imageView.image
+    //                                   descriptionText:self.textView.text];
+    
+    //    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
+    //
+    //    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    //    if(dataParties){
+    //        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+    //    }
+    //
+    //    [arrayWithParties addObject:party];
+    //
+    //    dataParties = nil;
+    //    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
+    //    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
 
 #pragma mark - Check data
 
@@ -477,80 +542,19 @@ NS_ENUM(NSInteger, EMSliderType){
     return result;
 }
 
--(void)saveParty{
-    if(self.currentParty){
-        [self saveChangesToCurrentParty];
-        return;
-    }
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    NSDate* date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
-    
-    
-    //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
-    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
-                                                   name:self.paratyNameTextField.text
-                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
-                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
-                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-                                        descriptionText:self.textView.text
-                                           creationDate:date
-                                       modificationDate:nil
-                                              creatorID:nil
-                                               latitude:nil
-                                             longtitude:nil];
-    
-    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-        if(success){
-            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
-            
-            localNotification.alertBody = [NSString stringWithFormat:@"%@ is about to begin!", party.name];
-            localNotification.fireDate = [party.startDate dateByAddingTimeInterval:-3600];
-            localNotification.userInfo = @{ @"name" : party.name };
-            localNotification.soundName = UILocalNotificationDefaultSoundName;
-            localNotification.category = @"LocalNotificationDefaultCategory";
-
-            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
-        }
-    }];
-//    [[EMParty alloc] initWithDate:date
-//                                              name:self.paratyNameTextField.text
-//                                    startPartyTime:self.startSlider.value
-//                                      endPartyTime:self.endSlider.value
-//                                          logoPage:self.pageControll.currentPage
-//                                         logoImage:imageView.image
-//                                   descriptionText:self.textView.text];
-    
-//    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
-//    
-//    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-//    if(dataParties){
-//        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-//    }
-//    
-//    [arrayWithParties addObject:party];
-//    
-//    dataParties = nil;
-//    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
-//    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-    
-}
-
 -(void)saveChangesToCurrentParty{
     
     [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd.MM.yyyy"];
         
-        NSDate* date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
-        PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
+        PMRParty* party = [[PMRParty alloc] initWithPartyID:self.currentParty.partyID
                                                        name:self.paratyNameTextField.text
                                                   startDate:[self getDateWithSliderValue:self.startSlider.value]
                                                     endDate:[self getDateWithSliderValue:self.endSlider.value]
                                               logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
                                             descriptionText:self.textView.text
-                                               creationDate:date
+                                               creationDate:[NSDate date]
                                            modificationDate:nil
                                                   creatorID:nil
                                                    latitude:nil
@@ -588,6 +592,20 @@ NS_ENUM(NSInteger, EMSliderType){
 //    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
+#pragma mark - Local notification
+
+-(void) makeNotificationToPaty:(PMRParty*) party{
+    UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+    
+    localNotification.alertBody = [NSString stringWithFormat:@"%@ is about to begin!", party.name];
+    localNotification.fireDate = [party.startDate dateByAddingTimeInterval:-3600];
+    localNotification.userInfo = @{ @"name" : party.name };
+    localNotification.soundName = UILocalNotificationDefaultSoundName;
+    localNotification.category = @"LocalNotificationDefaultCategory";
+    
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+}
+
 #pragma mark - Choose location button
 
 - (IBAction)actionChooseLocationButtonTouched:(UIButton *)sender {
@@ -615,12 +633,9 @@ NS_ENUM(NSInteger, EMSliderType){
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"PartyCreatedIdentifier"]){
-        if([self isDataPartyOK]){
-            [self saveParty];
-            EMPartyCreatedViewController* vc = segue.destinationViewController;
-            vc.navCont = self.navigationController;
-            //[self.navigationController popViewControllerAnimated:YES];
-        }
+        EMPartyCreatedViewController* vc = segue.destinationViewController;
+        vc.navCont = self.navigationController;
+        //[self.navigationController popViewControllerAnimated:YES];
     }
 }
 
