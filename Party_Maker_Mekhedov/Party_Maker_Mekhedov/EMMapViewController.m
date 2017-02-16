@@ -7,23 +7,19 @@
 //
 
 #import "EMMapViewController.h"
+#import "UIViewController+Alert.h"
 
 @interface EMMapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager* locationManager;
-
 @end
 
 @implementation EMMapViewController 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    self.locationManager = [[CLLocationManager alloc] init];
-    [self.locationManager requestWhenInUseAuthorization];
-    self.locationManager.delegate = self;
-    [self.locationManager requestLocation];
+    [self locationAuthorization];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -33,7 +29,69 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Actions
+-(void) makeAnotationWithCoordinate:(CLLocationCoordinate2D) coordinate{
+    MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
+    annotation.title = @"Title";
+    annotation.subtitle = @"Subtitle";
+    annotation.coordinate = coordinate;
+    [self.mapView addAnnotation:annotation];
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (nullable MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
+    
+    if ([annotation isKindOfClass:[MKUserLocation class]]){
+        return nil;
+    }
+    
+    static NSString* identifier = @"Annotation";
+    
+    MKPinAnnotationView* pin = (MKPinAnnotationView*)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    
+    if (!pin){
+        pin = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        pin.animatesDrop = YES;
+        pin.canShowCallout = YES;
+        pin.draggable = YES;
+        pin.pinTintColor = [UIColor orangeColor];
+        
+//        UIButton* descriptionButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+//        [descriptionButton addTarget:self action:@selector(actionDescription:) forControlEvents:UIControlEventTouchUpInside];
+//        
+//        pin.rightCalloutAccessoryView = descriptionButton;
+    }else{
+        pin.annotation = annotation;
+    }
+    
+    return pin;
+
+}
+
+#pragma mark - Location
+
+-(void)locationAuthorization{
+    self.locationManager = [[CLLocationManager alloc] init];
+    self.locationManager.delegate = self;
+
+    switch ([CLLocationManager authorizationStatus]) {
+        case kCLAuthorizationStatusNotDetermined:
+            [self.locationManager requestWhenInUseAuthorization];
+            break;
+        case kCLAuthorizationStatusAuthorizedAlways:
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+            break;
+        default:
+            [self alertForLocationWithTitle:@"You need to allow app access to your lcoation in settings" message:@"The app uses your location to make the party place"];
+            break;
+    }
+    
+    if ([CLLocationManager locationServicesEnabled]){
+        [self.locationManager requestLocation];
+    }
+}
+
+#pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
@@ -43,6 +101,8 @@
               location.coordinate.latitude,
               location.coordinate.longitude);
     
+    [self makeAnotationWithCoordinate:location.coordinate];
+    
     MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1));
     [self.mapView setRegion:region animated:YES];
 }
@@ -51,14 +111,5 @@
        didFailWithError:(NSError *)error{
     NSLog(@"%@", [error localizedDescription]);
 }
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

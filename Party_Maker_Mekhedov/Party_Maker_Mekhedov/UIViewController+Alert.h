@@ -11,5 +11,6 @@
 @interface UIViewController (Alert)
 
 -(void) alertWithTitle:(NSString*) title message:(NSString*)message;
+-(void) alertForLocationWithTitle:(NSString*) title message:(NSString*)message;
 
 @end
