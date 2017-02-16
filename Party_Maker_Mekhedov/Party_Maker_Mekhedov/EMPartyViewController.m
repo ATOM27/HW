@@ -12,6 +12,7 @@
 #import "PMRCoreDataManager+Party.h"
 #import "UIViewController+Alert.h"
 #import "EMHTTPManager.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface EMPartyViewController ()
 
@@ -465,13 +466,10 @@ NS_ENUM(NSInteger, EMSliderType){
         return;
     }
 
-    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy HH:mm"];
+
     //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
-    NSString* idString = [NSString stringWithFormat:@"%ld",
-                          [[[[[PMRCoreDataManager sharedStore] getParties] lastObject] partyID] integerValue]+1];
     
-    PMRParty* party = [[PMRParty alloc] initWithPartyID:idString
+    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
                                                    name:self.paratyNameTextField.text
                                               startDate:[self getDateWithSliderValue:self.startSlider.value]
                                                 endDate:[self getDateWithSliderValue:self.endSlider.value]
@@ -483,7 +481,7 @@ NS_ENUM(NSInteger, EMSliderType){
                                                latitude:@""
                                              longtitude:@""];
 
-    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+    [[EMHTTPManager sharedManager] addPartyWithID:@""
                                              name:party.name
                                         startTime:[NSString stringWithFormat:@"%@", party.startDate]
                                           endTime:[NSString stringWithFormat:@"%@", party.endDate]
@@ -612,6 +610,7 @@ NS_ENUM(NSInteger, EMSliderType){
 
 - (IBAction)actionChooseLocationButtonTouched:(UIButton *)sender {
     [self showCircleInView:sender];
+    [self performSegueWithIdentifier:@"showMapIdentifier" sender:self];
 }
 
 

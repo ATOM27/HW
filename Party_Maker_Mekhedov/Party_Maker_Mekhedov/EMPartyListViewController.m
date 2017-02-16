@@ -28,6 +28,7 @@
     [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
         
     }];
+
 }
 
 - (void)viewDidLoad {

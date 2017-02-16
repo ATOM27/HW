@@ -47,6 +47,9 @@
 		D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */; };
 		D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */; };
 		D6F68E2F1E3FC1180067CCAD /* EMXibPartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */; };
+		EC3440111E55BADD00950CA1 /* EMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3440101E55BADD00950CA1 /* EMSettingsViewController.m */; };
+		EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3440141E55CB8A00950CA1 /* EMMapViewController.m */; };
+		EC3440191E55CC2C00950CA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3440181E55CC2C00950CA1 /* MapKit.framework */; };
 		ECA1A38C1E53278900687D63 /* EMRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A38B1E53278900687D63 /* EMRegisterViewController.m */; };
 		ECA1A38F1E53411000687D63 /* UIViewController+Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA1A38E1E53411000687D63 /* UIViewController+Alert.m */; };
 		ECA6853C1E48933C006BEBBD /* EMLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ECA6853B1E48933C006BEBBD /* EMLoginViewController.m */; };
@@ -123,6 +126,11 @@
 		D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMXibPartyViewController.h; sourceTree = "<group>"; };
 		D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMXibPartyViewController.m; sourceTree = "<group>"; };
 		D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EMXibPartyViewController.xib; sourceTree = "<group>"; };
+		EC34400F1E55BADD00950CA1 /* EMSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSettingsViewController.h; sourceTree = "<group>"; };
+		EC3440101E55BADD00950CA1 /* EMSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSettingsViewController.m; sourceTree = "<group>"; };
+		EC3440131E55CB8A00950CA1 /* EMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMapViewController.h; sourceTree = "<group>"; };
+		EC3440141E55CB8A00950CA1 /* EMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMapViewController.m; sourceTree = "<group>"; };
+		EC3440181E55CC2C00950CA1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		ECA1A38A1E53278900687D63 /* EMRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMRegisterViewController.h; sourceTree = "<group>"; };
 		ECA1A38B1E53278900687D63 /* EMRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMRegisterViewController.m; sourceTree = "<group>"; };
 		ECA1A38D1E53411000687D63 /* UIViewController+Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Alert.h"; sourceTree = "<group>"; };
@@ -138,6 +146,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3440191E55CC2C00950CA1 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +257,7 @@
 			children = (
 				D64E4B471E39312F00E4E9D4 /* Party_Maker_Mekhedov */,
 				D64E4B461E39312F00E4E9D4 /* Products */,
+				EC3440171E55CC2C00950CA1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,25 +272,27 @@
 		D64E4B471E39312F00E4E9D4 /* Party_Maker_Mekhedov */ = {
 			isa = PBXGroup;
 			children = (
-				D6C946101E4CF53800FF1606 /* Core data */,
 				D6418D9D1E3B4DD7009150C1 /* images */,
+				D6C946101E4CF53800FF1606 /* Core data */,
 				D612A2F81E4B9FB600F1818B /* HTTP */,
-				ECA1A3901E53411D00687D63 /* Alert */,
-				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
-				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
-				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
-				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
 				D612A2F91E4B9FC600F1818B /* Login */,
 				ECDAC2EC1E5323A00005E1AE /* Register */,
 				D612A2FA1E4B9FCF00F1818B /* Party list */,
 				D612A2FB1E4B9FDF00F1818B /* Create party */,
 				D612A2FC1E4B9FFB00F1818B /* Party created */,
-				D6064A271E462E0700DBE2E8 /* Cell */,
-				D6064A221E462D9E00DBE2E8 /* OLD */,
+				EC3440161E55CB8E00950CA1 /* Map */,
+				EC3440121E55BAE100950CA1 /* Settings */,
+				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
+				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
+				D64E4B4E1E39312F00E4E9D4 /* ViewController.h */,
+				D64E4B4F1E39312F00E4E9D4 /* ViewController.m */,
 				D64E4B511E39312F00E4E9D4 /* Main.storyboard */,
 				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
 				D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */,
 				D64E4B591E39312F00E4E9D4 /* Info.plist */,
+				D6064A271E462E0700DBE2E8 /* Cell */,
+				ECA1A3901E53411D00687D63 /* Alert */,
+				D6064A221E462D9E00DBE2E8 /* OLD */,
 				D64E4B481E39312F00E4E9D4 /* Supporting Files */,
 			);
 			path = Party_Maker_Mekhedov;
@@ -343,6 +355,32 @@
 				D6CF24921E3BE86200463849 /* EMSelectedObject.m */,
 			);
 			name = "highlight circle";
+			sourceTree = "<group>";
+		};
+		EC3440121E55BAE100950CA1 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				EC34400F1E55BADD00950CA1 /* EMSettingsViewController.h */,
+				EC3440101E55BADD00950CA1 /* EMSettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		EC3440161E55CB8E00950CA1 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				EC3440131E55CB8A00950CA1 /* EMMapViewController.h */,
+				EC3440141E55CB8A00950CA1 /* EMMapViewController.m */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		EC3440171E55CC2C00950CA1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EC3440181E55CC2C00950CA1 /* MapKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		ECA1A3901E53411D00687D63 /* Alert */ = {
@@ -427,6 +465,11 @@
 						CreatedOnToolsVersion = 8.2.1;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -490,6 +533,7 @@
 				D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */,
 				D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */,
 				ECA1A38C1E53278900687D63 /* EMRegisterViewController.m in Sources */,
+				EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */,
 				D6811E771E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataClass.m in Sources */,
 				D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */,
 				D6C946371E4CF7EF00FF1606 /* PMRCoreDataManager.m in Sources */,
@@ -500,6 +544,7 @@
 				D6CF248A1E3B636900463849 /* EMTextView.m in Sources */,
 				D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */,
 				D6C9463A1E4CF7EF00FF1606 /* PMRParty+initWithDictionary.m in Sources */,
+				EC3440111E55BADD00950CA1 /* EMSettingsViewController.m in Sources */,
 				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
 				D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */,
 				D6C946391E4CF7EF00FF1606 /* PMRParty.m in Sources */,
