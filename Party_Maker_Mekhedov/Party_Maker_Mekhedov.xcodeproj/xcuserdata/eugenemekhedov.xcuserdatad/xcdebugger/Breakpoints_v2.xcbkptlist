@@ -562,12 +562,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "508974218.09078"
+            timestampString = "509030831.957981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "-makeAnotationWithCoordinate:"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "-makeAnotationWithLocation:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -578,11 +578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "508974218.09078"
+            timestampString = "509030831.957981"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "43"
-            endingLineNumber = "43"
+            startingLineNumber = "99"
+            endingLineNumber = "99"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "7">
          </BreakpointContent>

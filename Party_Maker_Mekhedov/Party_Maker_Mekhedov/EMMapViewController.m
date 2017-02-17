@@ -8,11 +8,13 @@
 
 #import "EMMapViewController.h"
 #import "UIViewController+Alert.h"
+#import <AddressBookUI/AddressBookUI.h>
 
 @interface EMMapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager* locationManager;
+@property (strong, nonatomic) MKPinAnnotationView* pin;
 @end
 
 @implementation EMMapViewController 
@@ -20,6 +22,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self locationAuthorization];
+    
+    UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tapGesture];
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -29,13 +34,64 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void) makeAnotationWithCoordinate:(CLLocationCoordinate2D) coordinate{
-    MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
-    annotation.title = @"Title";
-    annotation.subtitle = @"Subtitle";
-    annotation.coordinate = coordinate;
+#pragma mark - Annotation
+
+-(void) makeAnotationWithLocation:(CLLocation*) location{
+     MKPointAnnotation* annotation = [[MKPointAnnotation alloc] init];
+    
+    [self getTitleAndSubtitleForAnnotation:annotation inLocation:location];
+
+    annotation.coordinate = location.coordinate;
     [self.mapView addAnnotation:annotation];
 }
+
+-(void)getTitleAndSubtitleForAnnotation:(MKPointAnnotation*) annotation inLocation:(CLLocation*)location{
+    CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+    
+    [geoCoder reverseGeocodeLocation:location
+                   completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                       
+                       NSString* name = nil;
+                       NSString* address = nil;
+                       
+                       if (error){
+                           NSLog(@"%@", [error localizedDescription]);
+                       }else{
+                           
+                           if ([placemarks count] > 0){
+                               
+                               CLPlacemark* placeMark = [placemarks firstObject];
+                               
+                               name = placeMark.name;
+                               address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                           }
+                           
+                           annotation.title = name;
+                           annotation.subtitle = address;
+                           
+                       }
+                   }];
+
+}
+
+#pragma mark - Gesture
+
+-(void)handleTap:(UITapGestureRecognizer*) tapGesture{
+    
+    CGPoint tapPoint = [tapGesture locationInView:self.view];
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.f
+                        options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:tapPoint toCoordinateFromView:self.view];
+                         [self.pin.annotation setCoordinate:newCoordinate];
+                         
+                         CLLocation* location = [[CLLocation alloc] initWithLatitude:newCoordinate.latitude longitude:newCoordinate.longitude];
+                         [self getTitleAndSubtitleForAnnotation:self.pin.annotation inLocation:location];
+
+                     } completion:nil];
+     }
 
 #pragma mark - MKMapViewDelegate
 
@@ -64,8 +120,14 @@
         pin.annotation = annotation;
     }
     
+    self.pin = pin;
     return pin;
 
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    [mapView selectAnnotation:self.pin.annotation animated:FALSE];
 }
 
 #pragma mark - Location
@@ -101,9 +163,9 @@
               location.coordinate.latitude,
               location.coordinate.longitude);
     
-    [self makeAnotationWithCoordinate:location.coordinate];
+    [self makeAnotationWithLocation:location];
     
-    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.1, 0.1));
+    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.01, 0.01));
     [self.mapView setRegion:region animated:YES];
 }
 
