@@ -22,7 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self locationAuthorization];
+    if(self.existingLongitude && self.existingLatitude){
+        CLLocation* location = [[CLLocation alloc] initWithLatitude:self.existingLatitude longitude:self.existingLongitude];
+        [self makeAnotationWithLocation:location];
+    }else{
+        [self locationAuthorization];
+    }
     
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -44,6 +49,9 @@
 
     annotation.coordinate = location.coordinate;
     [self.mapView addAnnotation:annotation];
+    
+    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.01, 0.01));
+    [self.mapView setRegion:region animated:YES];
 }
 
 -(void)getTitleAndSubtitleForAnnotation:(MKPointAnnotation*) annotation inLocation:(CLLocation*)location{
@@ -149,6 +157,8 @@
     NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
     EMPartyViewController* vc = [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
     [vc.locationButton setTitle:self.pin.annotation.subtitle forState:UIControlStateNormal];
+    vc.longitude = [NSString stringWithFormat:@"%f", self.pin.annotation.coordinate.longitude];
+    vc.latitude = [NSString stringWithFormat:@"%f", self.pin.annotation.coordinate.latitude];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -181,9 +191,6 @@
      didUpdateLocations:(NSArray *)locations {
     
     CLLocation* location = [locations lastObject];
-    
-    MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.01, 0.01));
-    [self.mapView setRegion:region animated:YES];
     
     [self makeAnotationWithLocation:location];
     

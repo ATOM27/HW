@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "772"
-            endingLineNumber = "772">
+            startingLineNumber = "785"
+            endingLineNumber = "785">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -72,11 +72,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "838"
-            endingLineNumber = "838">
+            startingLineNumber = "851"
+            endingLineNumber = "851">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "678"
-            endingLineNumber = "678">
+            startingLineNumber = "691"
+            endingLineNumber = "691">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "710"
-            endingLineNumber = "710">
+            startingLineNumber = "723"
+            endingLineNumber = "723">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -210,11 +210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "339"
-            endingLineNumber = "339"
+            startingLineNumber = "343"
+            endingLineNumber = "343"
             landmarkName = "-createImagesInScrollView:"
             landmarkType = "7">
          </BreakpointContent>
@@ -274,11 +274,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "-viewDidLoad"
             landmarkType = "7">
          </BreakpointContent>
@@ -290,11 +290,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "578"
-            endingLineNumber = "578"
+            startingLineNumber = "583"
+            endingLineNumber = "583"
             landmarkName = "-saveChangesToCurrentParty"
             landmarkType = "7">
          </BreakpointContent>
@@ -370,11 +370,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "113"
-            endingLineNumber = "113"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
             landmarkName = "@implementation EMPartyViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -386,11 +386,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
             landmarkName = "@implementation EMPartyViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -402,11 +402,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "362"
-            endingLineNumber = "362"
+            startingLineNumber = "366"
+            endingLineNumber = "366"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "7">
          </BreakpointContent>
@@ -418,11 +418,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
             landmarkName = "-valueForSliderWithDate:"
             landmarkType = "7">
          </BreakpointContent>
@@ -482,11 +482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "495"
-            endingLineNumber = "495"
+            startingLineNumber = "500"
+            endingLineNumber = "500"
             landmarkName = "-actionSaveParty:"
             landmarkType = "7">
          </BreakpointContent>
@@ -498,11 +498,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
+            startingLineNumber = "489"
+            endingLineNumber = "489"
             landmarkName = "-actionSaveParty:"
             landmarkType = "7">
          </BreakpointContent>
@@ -514,11 +514,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
-            timestampString = "509056628.764155"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "470"
-            endingLineNumber = "470"
+            startingLineNumber = "475"
+            endingLineNumber = "475"
             landmarkName = "-actionSaveParty:"
             landmarkType = "7">
          </BreakpointContent>
@@ -530,11 +530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130175.148144"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "-makeAnotationWithLocation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -546,11 +546,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
             landmarkName = "-mapView:viewForAnnotation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -562,11 +562,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509102671.093545"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "-handleTap:"
             landmarkType = "7">
          </BreakpointContent>
@@ -578,11 +578,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "-getTitleAndSubtitleForAnnotation:inLocation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -594,11 +594,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "-handleTap:"
             landmarkType = "7">
          </BreakpointContent>
@@ -610,11 +610,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "-actionAddLocation:"
             landmarkType = "7">
          </BreakpointContent>
@@ -626,12 +626,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMMapViewController.m"
-            timestampString = "509064975.682106"
+            timestampString = "509130968.966428"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "-getTitleAndSubtitleForAnnotation:inLocation:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Party_Maker_Mekhedov/EMPartyViewController.m"
+            timestampString = "509130175.148144"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-actionChooseDate:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

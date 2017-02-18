@@ -11,4 +11,7 @@
 
 @interface EMMapViewController : UIViewController <CLLocationManagerDelegate>
 
+@property (assign, nonatomic) CGFloat existingLatitude;
+@property (assign, nonatomic) CGFloat existingLongitude;
+
 @end

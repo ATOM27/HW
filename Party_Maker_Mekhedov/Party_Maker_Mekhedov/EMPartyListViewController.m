@@ -110,13 +110,13 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    EMPartyViewController* vc = segue.destinationViewController;
-    vc.creatorID = self.creatorID;
+    //EMPartyViewController* vc = segue.destinationViewController;
+    //vc.creatorID = self.creatorID;
     
     if([segue.identifier isEqualToString:@"changePartyIdentifier"]){
         self.selectedParty = [self.arrayWithParties objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-        vc.currentParty = self.selectedParty;
-        vc.indexParty = [self.tableView indexPathForSelectedRow].row;
+  //      vc.currentParty = self.selectedParty;
+   //     vc.indexParty = [self.tableView indexPathForSelectedRow].row;
     }
 }
 @end

@@ -13,6 +13,7 @@
 #import "UIViewController+Alert.h"
 #import "EMHTTPManager.h"
 #import <CoreLocation/CoreLocation.h>
+#import "EMMapViewController.h"
 
 @interface EMPartyViewController ()
 
@@ -53,7 +54,10 @@ NS_ENUM(NSInteger, EMSliderType){
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.longitude = @"";
+    self.latitude = @"";
+    
     self.chooseDateButton.circle = self.chooseDateCircle;
     self.paratyNameTextField.circle = self.partyNameCircle;
     self.startSlider.circle = self.startCircle;
@@ -468,6 +472,7 @@ NS_ENUM(NSInteger, EMSliderType){
 
     //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
     
+    
     PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
                                                    name:self.paratyNameTextField.text
                                               startDate:[self getDateWithSliderValue:self.startSlider.value]
@@ -477,8 +482,8 @@ NS_ENUM(NSInteger, EMSliderType){
                                            creationDate:[NSDate date]
                                        modificationDate:[NSDate date]
                                               creatorID:self.creatorID
-                                               latitude:@""
-                                             longtitude:@""];
+                                               latitude:self.latitude
+                                             longtitude:self.longitude];
 
     [[EMHTTPManager sharedManager] addPartyWithID:@""
                                              name:party.name
@@ -487,8 +492,8 @@ NS_ENUM(NSInteger, EMSliderType){
                                            logoID:party.logoImageName
                                           comment:party.description
                                         creatorID:self.creatorID
-                                         latitude:@""
-                                        longitude:@""
+                                         latitude:self.latitude
+                                        longitude:self.longitude
                                        completion:^(NSDictionary *response, NSError *error) {
                                            if(error){
                                                NSLog(@"%@", [error localizedDescription]);
@@ -636,6 +641,14 @@ NS_ENUM(NSInteger, EMSliderType){
         EMPartyCreatedViewController* vc = segue.destinationViewController;
         vc.navCont = self.navigationController;
         //[self.navigationController popViewControllerAnimated:YES];
+    }
+    
+    if ([segue.identifier isEqualToString:@"showMapIdentifier"]){
+        EMMapViewController* vc = segue.destinationViewController;
+        if(![self.longitude isEqualToString:@""] && ![self.latitude isEqualToString:@""]){
+            vc.existingLatitude = [self.latitude floatValue];
+            vc.existingLongitude = [self.longitude floatValue];
+        }
     }
 }
 
