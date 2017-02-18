@@ -25,18 +25,16 @@
 @implementation EMPartyListViewController
 -(void)loadView{
     [super loadView];
-    [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
-        
-    }];
-
+    
+    self.arrayWithParties = [[NSArray alloc] init];
+    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self resetDefaults];
-    self.arrayWithParties = [[NSArray alloc] init];
-    
     [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID//@"354"
                                            completion:^(NSDictionary *response, NSError *error) {
                                                NSArray* parties = [response objectForKey:@"response"];

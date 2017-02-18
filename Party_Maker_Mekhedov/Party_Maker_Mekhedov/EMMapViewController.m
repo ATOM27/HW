@@ -9,6 +9,7 @@
 #import "EMMapViewController.h"
 #import "UIViewController+Alert.h"
 #import <AddressBookUI/AddressBookUI.h>
+#import "EMPartyViewController.h"
 
 @interface EMMapViewController ()
 
@@ -47,7 +48,6 @@
 
 -(void)getTitleAndSubtitleForAnnotation:(MKPointAnnotation*) annotation inLocation:(CLLocation*)location{
     CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
-    
     [geoCoder reverseGeocodeLocation:location
                    completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
                        
@@ -79,20 +79,27 @@
 -(void)handleTap:(UITapGestureRecognizer*) tapGesture{
     
     CGPoint tapPoint = [tapGesture locationInView:self.view];
+    CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:tapPoint toCoordinateFromView:self.view];
+    CLLocation* location = [[CLLocation alloc] initWithLatitude:newCoordinate.latitude longitude:newCoordinate.longitude];
+
+    if(self.mapView.annotations.count > 1){
+        [self.mapView removeAnnotations:self.mapView.annotations];
+    }
     
+    if(!self.pin.annotation){
+        [self makeAnotationWithLocation:location];
+    }else{
     [UIView animateWithDuration:0.3f
                           delay:0.f
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                      animations:^{
-                         CLLocationCoordinate2D newCoordinate = [self.mapView convertPoint:tapPoint toCoordinateFromView:self.view];
-                         [self.pin.annotation setCoordinate:newCoordinate];
                          
-                         CLLocation* location = [[CLLocation alloc] initWithLatitude:newCoordinate.latitude longitude:newCoordinate.longitude];
+                         [self.pin.annotation setCoordinate:newCoordinate];
                          [self getTitleAndSubtitleForAnnotation:self.pin.annotation inLocation:location];
 
                      } completion:nil];
      }
-
+}
 #pragma mark - MKMapViewDelegate
 
 - (nullable MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
@@ -112,10 +119,10 @@
         pin.draggable = YES;
         pin.pinTintColor = [UIColor orangeColor];
         
-//        UIButton* descriptionButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//        [descriptionButton addTarget:self action:@selector(actionDescription:) forControlEvents:UIControlEventTouchUpInside];
-//        
-//        pin.rightCalloutAccessoryView = descriptionButton;
+        UIButton* addLocationPartyButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        [addLocationPartyButton addTarget:self action:@selector(actionAddLocation:) forControlEvents:UIControlEventTouchUpInside];
+        
+        pin.rightCalloutAccessoryView = addLocationPartyButton;
     }else{
         pin.annotation = annotation;
     }
@@ -125,9 +132,24 @@
 
 }
 
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-{
-    [mapView selectAnnotation:self.pin.annotation animated:FALSE];
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view didChangeDragState:(MKAnnotationViewDragState)newState
+   fromOldState:(MKAnnotationViewDragState)oldState{
+    
+    if (newState == MKAnnotationViewDragStateEnding){
+        
+        CLLocation* location = [[CLLocation alloc] initWithLatitude:view.annotation.coordinate.latitude longitude:view.annotation.coordinate.longitude] ;
+        [self getTitleAndSubtitleForAnnotation:view.annotation inLocation:location];
+    }
+
+}
+
+#pragma mark - Action
+
+-(void)actionAddLocation:(UIButton*)sender{
+    NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
+    EMPartyViewController* vc = [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
+    [vc.locationButton setTitle:self.pin.annotation.subtitle forState:UIControlStateNormal];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - Location
@@ -159,15 +181,13 @@
      didUpdateLocations:(NSArray *)locations {
     
     CLLocation* location = [locations lastObject];
-        NSLog(@"latitude %+.6f, longitude %+.6f\n",
-              location.coordinate.latitude,
-              location.coordinate.longitude);
-    
-    [self makeAnotationWithLocation:location];
     
     MKCoordinateRegion region = MKCoordinateRegionMake(location.coordinate, MKCoordinateSpanMake(0.01, 0.01));
     [self.mapView setRegion:region animated:YES];
-}
+    
+    [self makeAnotationWithLocation:location];
+    
+    }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error{

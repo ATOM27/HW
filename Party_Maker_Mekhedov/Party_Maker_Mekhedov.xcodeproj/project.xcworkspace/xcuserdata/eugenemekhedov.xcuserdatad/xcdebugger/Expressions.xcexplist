@@ -3,6 +3,12 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[EMMapViewController actionAddLocation:]:EMMapViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__33-[EMMapViewController handleTap:]_block_invoke:EMMapViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[EMMapViewController locationAuthorization]:EMMapViewController.m">
          <PersistentStrings>
             <PersistentString

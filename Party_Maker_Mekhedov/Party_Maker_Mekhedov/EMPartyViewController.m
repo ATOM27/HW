@@ -25,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControll;
 @property (strong, nonatomic) IBOutlet UITextView *textView;
-@property (strong, nonatomic) IBOutlet UIButton *locationButton;
 @property (strong, nonatomic) IBOutlet UIView *chooseDateCircle;
 @property (strong, nonatomic) IBOutlet UIView *partyNameCircle;
 @property (strong, nonatomic) IBOutlet UIView *startCircle;

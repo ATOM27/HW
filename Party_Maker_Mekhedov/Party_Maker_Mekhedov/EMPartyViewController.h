@@ -18,6 +18,8 @@ static NSString* kParties = @"parties";
 @property (strong, nonatomic) NSString* creatorID;
 @property (strong, nonatomic) PMRParty* currentParty;
 @property (assign, nonatomic) NSInteger indexParty;
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
+
 
 
 @end
