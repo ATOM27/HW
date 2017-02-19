@@ -11,6 +11,7 @@
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary {
 
+    
     return [self initWithPartyID:dictionary[@"id"]
                             name:dictionary[@"name"]
                        startDate:[NSDate dateWithTimeIntervalSince1970:([dictionary[@"start_time"] doubleValue])]
@@ -21,7 +22,7 @@
                 modificationDate:[NSDate date]//dictionary[@"modificationDate"]
                        creatorID:dictionary[@"creator_id"]
                         latitude:dictionary[@"latitude"]
-                      longtitude:dictionary[@"longtitude"]];
+                      longtitude:dictionary[@"longitude"]];
 }
 
 @end

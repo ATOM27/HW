@@ -6,7 +6,7 @@
 //  Copyright © 2017 Eugene Mekhedov. All rights reserved.
 //
 
-#import "EMPartyViewController.h"
+#import "EMAddPartyViewController.h"
 #import "UIView+CircleProperty.h"
 #import "EMPartyCreatedViewController.h"
 #import "PMRCoreDataManager+Party.h"
@@ -14,8 +14,10 @@
 #import "EMHTTPManager.h"
 #import <CoreLocation/CoreLocation.h>
 #import "EMMapViewController.h"
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface EMPartyViewController ()
+
+@interface EMAddPartyViewController ()
 
 @property (strong, nonatomic) IBOutlet UIButton *chooseDateButton;
 @property (strong, nonatomic) IBOutlet UITextField *paratyNameTextField;
@@ -50,7 +52,7 @@ NS_ENUM(NSInteger, EMSliderType){
     EMSliderTypeEnd
 };
 
-@implementation EMPartyViewController
+@implementation EMAddPartyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -79,6 +81,30 @@ NS_ENUM(NSInteger, EMSliderType){
         self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
         //self.pageControll.currentPage = self.currentParty.logoPage;
         self.textView.text = self.currentParty.descriptionText;
+        
+        if(![self.currentParty.latitude isEqualToString:@""] || ![self.currentParty.longtitude isEqualToString:@""]){
+            CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
+            
+            CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+            [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            
+            NSString* address = nil;
+            
+            if (error){
+                NSLog(@"%@", [error localizedDescription]);
+            }else{
+                
+                if ([placemarks count] > 0){
+                    
+                    CLPlacemark* placeMark = [placemarks firstObject];
+                    address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                }
+                
+                [self.locationButton setTitle:address forState:UIControlStateNormal];
+                
+            }
+        }];
+        }
     }
     self.paratyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
@@ -487,8 +513,8 @@ NS_ENUM(NSInteger, EMSliderType){
 
     [[EMHTTPManager sharedManager] addPartyWithID:@""
                                              name:party.name
-                                        startTime:[NSString stringWithFormat:@"%@", party.startDate]
-                                          endTime:[NSString stringWithFormat:@"%@", party.endDate]
+                                        startTime:[NSString stringWithFormat:@"%f",[party.startDate timeIntervalSince1970]]
+                                          endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
                                            logoID:party.logoImageName
                                           comment:party.description
                                         creatorID:self.creatorID
@@ -532,6 +558,86 @@ NS_ENUM(NSInteger, EMSliderType){
     
 }
 
+-(void)saveChangesToCurrentParty{
+    
+    NSString* latitude;
+    NSString* longtitude;
+    if(![self.latitude isEqualToString:@""] && ![self.longitude isEqualToString:@""]){
+        latitude = self.latitude;
+        longtitude = self.longitude;
+    }else{
+        latitude = self.currentParty.latitude;
+        longtitude = self.currentParty.longtitude;
+    }
+    
+    NSString* partyID = self.currentParty.partyID;
+    
+    [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
+        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+        
+        PMRParty* party = [[PMRParty alloc] initWithPartyID:partyID
+                                                       name:self.paratyNameTextField.text
+                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
+                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
+                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+                                            descriptionText:self.textView.text
+                                               creationDate:self.currentParty.creationDate
+                                           modificationDate:nil
+                                                  creatorID:self.creatorID
+                                                   latitude:latitude
+                                                 longtitude:longtitude];
+        
+        [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+                                                 name:party.name
+                                            startTime:[NSString stringWithFormat:@"%f", [party.startDate timeIntervalSince1970]]
+                                              endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
+                                               logoID:party.logoImageName
+                                              comment:party.descriptionText
+                                            creatorID:party.creatorID
+                                             latitude:party.latitude
+                                            longitude:party.longtitude
+                                           completion:^(NSDictionary *response, NSError *error) {
+                                               if(error){
+                                                   NSLog(@"%@", [error localizedDescription]);
+                                               }
+                                               if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
+                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                       if(success){
+                                                           self.currentParty = party;// for partyCreatedController label text
+                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                       }
+                                                   }];
+                                                   
+                                               }
+                                           }];
+    }];
+    //NSArray* parties = [[NSArray alloc] init];
+    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
+    //parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
+    //    parties = [[PMRCoreDataManager sharedStore] getParties];
+    //    PMRParty* party = [parties objectAtIndex:self.indexParty];
+    //
+    //    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    //    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    
+    
+    //    party.name = self.paratyNameTextField.text;
+    //    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
+    //    party.startParty = self.startSlider.value;
+    //    party.endParty = self.endSlider.value;
+    //    party.logoPage = self.pageControll.currentPage;
+    //    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
+    //    party.descriptionText = self.textView.text;
+    
+    
+    //    dataParties = nil;
+    //    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
+    //    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
+    //    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
 #pragma mark - Check data
 
 -(BOOL)isDataPartyOK{
@@ -544,56 +650,6 @@ NS_ENUM(NSInteger, EMSliderType){
         [self alertWithTitle:@"Error!" message:@"You shoud enter the party name!"];
     }
     return result;
-}
-
--(void)saveChangesToCurrentParty{
-    
-    [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        
-        PMRParty* party = [[PMRParty alloc] initWithPartyID:self.currentParty.partyID
-                                                       name:self.paratyNameTextField.text
-                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
-                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
-                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-                                            descriptionText:self.textView.text
-                                               creationDate:[NSDate date]
-                                           modificationDate:nil
-                                                  creatorID:nil
-                                                   latitude:nil
-                                                 longtitude:nil];
-        
-        [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-            if(success){
-            }
-        }];
-
-    }];
-    
-    //NSArray* parties = [[NSArray alloc] init];
-    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    //parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-//    parties = [[PMRCoreDataManager sharedStore] getParties];
-//    PMRParty* party = [parties objectAtIndex:self.indexParty];
-//    
-//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    
-    
-//    party.name = self.paratyNameTextField.text;
-//    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
-//    party.startParty = self.startSlider.value;
-//    party.endParty = self.endSlider.value;
-//    party.logoPage = self.pageControll.currentPage;
-//    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
-//    party.descriptionText = self.textView.text;
-
-    
-//    dataParties = nil;
-//    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
-//    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 #pragma mark - Local notification
@@ -640,15 +696,25 @@ NS_ENUM(NSInteger, EMSliderType){
     if ([segue.identifier isEqualToString:@"PartyCreatedIdentifier"]){
         EMPartyCreatedViewController* vc = segue.destinationViewController;
         vc.navCont = self.navigationController;
+        if(self.currentParty){
+            vc.partyStatus = [NSString stringWithFormat:@"\"%@\" has been updated!", self.currentParty.name];
+        }else{
+            vc.partyStatus = @"New Party has been created!";
+        }
         //[self.navigationController popViewControllerAnimated:YES];
     }
     
     if ([segue.identifier isEqualToString:@"showMapIdentifier"]){
         EMMapViewController* vc = segue.destinationViewController;
-        if(![self.longitude isEqualToString:@""] && ![self.latitude isEqualToString:@""]){
+        if((![self.currentParty.longtitude isEqualToString:@""] && ![self.currentParty.latitude isEqualToString:@""]) || ([self.currentParty isEqual:nil])){
+            vc.existingLatitude = [self.currentParty.latitude floatValue];
+            vc.existingLongitude = [self.currentParty.longtitude floatValue];
+        }
+        if(![self.latitude isEqualToString:@""]){
             vc.existingLatitude = [self.latitude floatValue];
             vc.existingLongitude = [self.longitude floatValue];
         }
+ 
     }
 }
 

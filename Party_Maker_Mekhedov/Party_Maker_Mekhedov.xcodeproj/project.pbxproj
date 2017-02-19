@@ -22,6 +22,8 @@
 		D6418DA61E3B4DD7009150C1 /* Champagne-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA01E3B4DD7009150C1 /* Champagne-100.png */; };
 		D6418DA71E3B4DD7009150C1 /* Christmas Tree-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA11E3B4DD7009150C1 /* Christmas Tree-100.png */; };
 		D6418DA81E3B4DD7009150C1 /* Coconut Cocktail-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418DA21E3B4DD7009150C1 /* Coconut Cocktail-100.png */; };
+		D645B0211E59BE71005824CC /* EMPartyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D645B0201E59BE71005824CC /* EMPartyInfoViewController.m */; };
+		D645B0251E5A3DC3005824CC /* EMMapInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D645B0241E5A3DC3005824CC /* EMMapInfoViewController.m */; };
 		D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B491E39312F00E4E9D4 /* main.m */; };
 		D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */; };
 		D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B4F1E39312F00E4E9D4 /* ViewController.m */; };
@@ -43,7 +45,7 @@
 		D6CF248D1E3B83D200463849 /* EMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248C1E3B83D200463849 /* EMButton.m */; };
 		D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */; };
 		D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24921E3BE86200463849 /* EMSelectedObject.m */; };
-		D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04111E42517A006C641D /* EMPartyViewController.m */; };
+		D6EC04121E42517A006C641D /* EMAddPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04111E42517A006C641D /* EMAddPartyViewController.m */; };
 		D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */; };
 		D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */; };
 		D6F68E2F1E3FC1180067CCAD /* EMXibPartyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D6F68E2D1E3FC1180067CCAD /* EMXibPartyViewController.xib */; };
@@ -81,6 +83,10 @@
 		D6418DA01E3B4DD7009150C1 /* Champagne-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Champagne-100.png"; sourceTree = "<group>"; };
 		D6418DA11E3B4DD7009150C1 /* Christmas Tree-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Christmas Tree-100.png"; sourceTree = "<group>"; };
 		D6418DA21E3B4DD7009150C1 /* Coconut Cocktail-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Coconut Cocktail-100.png"; sourceTree = "<group>"; };
+		D645B01F1E59BE71005824CC /* EMPartyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyInfoViewController.h; sourceTree = "<group>"; };
+		D645B0201E59BE71005824CC /* EMPartyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyInfoViewController.m; sourceTree = "<group>"; };
+		D645B0231E5A3DC3005824CC /* EMMapInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMapInfoViewController.h; sourceTree = "<group>"; };
+		D645B0241E5A3DC3005824CC /* EMMapInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMapInfoViewController.m; sourceTree = "<group>"; };
 		D64E4B451E39312F00E4E9D4 /* Party_Maker_Mekhedov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Party_Maker_Mekhedov.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64E4B491E39312F00E4E9D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -119,8 +125,8 @@
 		D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CircleProperty.m"; sourceTree = "<group>"; };
 		D6CF24911E3BE86200463849 /* EMSelectedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSelectedObject.h; sourceTree = "<group>"; };
 		D6CF24921E3BE86200463849 /* EMSelectedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSelectedObject.m; sourceTree = "<group>"; };
-		D6EC04101E42517A006C641D /* EMPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyViewController.h; sourceTree = "<group>"; };
-		D6EC04111E42517A006C641D /* EMPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyViewController.m; sourceTree = "<group>"; };
+		D6EC04101E42517A006C641D /* EMAddPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAddPartyViewController.h; sourceTree = "<group>"; };
+		D6EC04111E42517A006C641D /* EMAddPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAddPartyViewController.m; sourceTree = "<group>"; };
 		D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyCreatedViewController.h; sourceTree = "<group>"; };
 		D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyCreatedViewController.m; sourceTree = "<group>"; };
 		D6F68E2B1E3FC1180067CCAD /* EMXibPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMXibPartyViewController.h; sourceTree = "<group>"; };
@@ -227,8 +233,9 @@
 		D612A2FB1E4B9FDF00F1818B /* Create party */ = {
 			isa = PBXGroup;
 			children = (
-				D6EC04101E42517A006C641D /* EMPartyViewController.h */,
-				D6EC04111E42517A006C641D /* EMPartyViewController.m */,
+				D6EC04101E42517A006C641D /* EMAddPartyViewController.h */,
+				D6EC04111E42517A006C641D /* EMAddPartyViewController.m */,
+				EC3440161E55CB8E00950CA1 /* Map */,
 			);
 			name = "Create party";
 			sourceTree = "<group>";
@@ -250,6 +257,25 @@
 				ECDAC2E81E5320B50005E1AE /* Party logo */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		D645B0221E59BE76005824CC /* Party info */ = {
+			isa = PBXGroup;
+			children = (
+				D645B01F1E59BE71005824CC /* EMPartyInfoViewController.h */,
+				D645B0201E59BE71005824CC /* EMPartyInfoViewController.m */,
+				D645B0261E5A3DC9005824CC /* Map */,
+			);
+			name = "Party info";
+			sourceTree = "<group>";
+		};
+		D645B0261E5A3DC9005824CC /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				D645B0231E5A3DC3005824CC /* EMMapInfoViewController.h */,
+				D645B0241E5A3DC3005824CC /* EMMapInfoViewController.m */,
+			);
+			name = Map;
 			sourceTree = "<group>";
 		};
 		D64E4B3C1E39312F00E4E9D4 = {
@@ -280,7 +306,7 @@
 				D612A2FA1E4B9FCF00F1818B /* Party list */,
 				D612A2FB1E4B9FDF00F1818B /* Create party */,
 				D612A2FC1E4B9FFB00F1818B /* Party created */,
-				EC3440161E55CB8E00950CA1 /* Map */,
+				D645B0221E59BE76005824CC /* Party info */,
 				EC3440121E55BAE100950CA1 /* Settings */,
 				D64E4B4B1E39312F00E4E9D4 /* AppDelegate.h */,
 				D64E4B4C1E39312F00E4E9D4 /* AppDelegate.m */,
@@ -523,14 +549,16 @@
 				D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */,
 				D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */,
 				D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */,
+				D645B0211E59BE71005824CC /* EMPartyInfoViewController.m in Sources */,
 				D6C9463D1E4CF7EF00FF1606 /* PMRPersistanceStore.m in Sources */,
 				D6C946381E4CF7EF00FF1606 /* PMRCoreDataManager+Party.m in Sources */,
 				D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */,
 				D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */,
+				D645B0251E5A3DC3005824CC /* EMMapInfoViewController.m in Sources */,
 				ECA1A38F1E53411000687D63 /* UIViewController+Alert.m in Sources */,
 				D6C9468A1E4F7F7500FF1606 /* model.xcdatamodeld in Sources */,
 				D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */,
-				D6EC04121E42517A006C641D /* EMPartyViewController.m in Sources */,
+				D6EC04121E42517A006C641D /* EMAddPartyViewController.m in Sources */,
 				D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */,
 				ECA1A38C1E53278900687D63 /* EMRegisterViewController.m in Sources */,
 				EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */,

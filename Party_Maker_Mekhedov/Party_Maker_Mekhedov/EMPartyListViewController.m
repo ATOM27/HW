@@ -7,19 +7,18 @@
 //
 
 #import "EMPartyListViewController.h"
-#import "EMPartyViewController.h"
 #import "EMPartyListCell.h"
 #import "EMParty.h"
 #import "PMRCoreDataManager+Party.h"
 #import "PMRParty+initWithDictionary.h"
 #import "PMRParty.h"
 #import "EMHTTPManager.h"
+#import "EMAddPartyViewController.h"
+#import "EMPartyInfoViewController.h"
 
 @interface EMPartyListViewController ()
 
 @property(strong, nonatomic) NSArray* arrayWithParties;
-@property(strong, nonatomic) PMRParty* selectedParty;
-
 @end
 
 @implementation EMPartyListViewController
@@ -28,14 +27,16 @@
     
     self.arrayWithParties = [[NSArray alloc] init];
     self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
-    
+    [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
+        
+    }];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self resetDefaults];
-    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID//@"354"
+    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID
                                            completion:^(NSDictionary *response, NSError *error) {
                                                NSArray* parties = [response objectForKey:@"response"];
                                                
@@ -61,6 +62,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self performSegueWithIdentifier:@"partyInfoIdentifier" sender:self];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -110,13 +112,14 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
-    //EMPartyViewController* vc = segue.destinationViewController;
-    //vc.creatorID = self.creatorID;
-    
-    if([segue.identifier isEqualToString:@"changePartyIdentifier"]){
-        self.selectedParty = [self.arrayWithParties objectAtIndex:[self.tableView indexPathForSelectedRow].row];
-  //      vc.currentParty = self.selectedParty;
-   //     vc.indexParty = [self.tableView indexPathForSelectedRow].row;
+    if([segue.identifier isEqualToString:@"partyInfoIdentifier"]){
+        EMPartyInfoViewController* partyInfovc = segue.destinationViewController;
+        partyInfovc.creatorID = self.creatorID;
+        partyInfovc.currentParty = [self.arrayWithParties objectAtIndex:[self.tableView indexPathForSelectedRow].row];
+    }
+    if([segue.identifier isEqualToString:@"addPartyIdentifier"]){
+        EMAddPartyViewController* addPartyvc = segue.destinationViewController;
+        addPartyvc.creatorID = self.creatorID;
     }
 }
 @end

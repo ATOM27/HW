@@ -73,6 +73,7 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
 }
 
 - (IBAction)actionSignInTouched:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
     [[EMHTTPManager sharedManager] loginWithName:self.nameTextField.text
                                         password:self.passwordTextField.text
                                       completion:^(NSDictionary *response, NSError *error) {
@@ -91,6 +92,7 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
                                               }
                                           }
                                       }];
+    sender.userInteractionEnabled = YES;
 }
 
 #pragma mark - Segue

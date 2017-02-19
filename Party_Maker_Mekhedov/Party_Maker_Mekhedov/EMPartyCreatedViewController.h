@@ -11,5 +11,6 @@
 @interface EMPartyCreatedViewController : UIViewController
 
 @property (strong, nonatomic) UINavigationController* navCont;
-
+@property (strong, nonatomic) IBOutlet UILabel *partyStatusLabel;
+@property (strong, nonatomic) NSString* partyStatus;
 @end

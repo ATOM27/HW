@@ -6,15 +6,29 @@
          contextName = "-[EMMapViewController actionAddLocation:]:EMMapViewController.m">
       </ContextState>
       <ContextState
-         contextName = "__33-[EMMapViewController handleTap:]_block_invoke:EMMapViewController.m">
-      </ContextState>
-      <ContextState
          contextName = "-[EMMapViewController locationAuthorization]:EMMapViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "[CLLocationManager authorizationStatus]">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[EMAddPartyViewController viewDidLoad]:EMAddPartyViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "location.coordinate">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__33-[EMMapViewController handleTap:]_block_invoke:EMMapViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMPartyListViewController prepareForSegue:sender:]:EMPartyListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__53-[EMAddPartyViewController saveChangesToCurrentParty]_block_invoke:EMAddPartyViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

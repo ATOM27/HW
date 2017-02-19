@@ -9,20 +9,21 @@
 #import "EMMapViewController.h"
 #import "UIViewController+Alert.h"
 #import <AddressBookUI/AddressBookUI.h>
-#import "EMPartyViewController.h"
+#import "EMAddPartyViewController.h"
 
 @interface EMMapViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager* locationManager;
-@property (strong, nonatomic) MKPinAnnotationView* pin;
+@property (strong, nonatomic) MKPinAnnotationView*  pin;
+@property (assign, nonatomic) CLLocationCoordinate2D coordinate;
 @end
 
 @implementation EMMapViewController 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if(self.existingLongitude && self.existingLatitude){
+    if(self.existingLongitude){
         CLLocation* location = [[CLLocation alloc] initWithLatitude:self.existingLatitude longitude:self.existingLongitude];
         [self makeAnotationWithLocation:location];
     }else{
@@ -102,7 +103,9 @@
                         options:UIViewAnimationOptionBeginFromCurrentState | UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
-                         [self.pin.annotation setCoordinate:newCoordinate];
+                         self.pin.annotation.coordinate = newCoordinate;
+                         self.coordinate = newCoordinate;
+                         //[self.pin.annotation setCoordinate:newCoordinate];
                          [self getTitleAndSubtitleForAnnotation:self.pin.annotation inLocation:location];
 
                      } completion:nil];
@@ -134,7 +137,6 @@
     }else{
         pin.annotation = annotation;
     }
-    
     self.pin = pin;
     return pin;
 
@@ -155,10 +157,10 @@
 
 -(void)actionAddLocation:(UIButton*)sender{
     NSInteger numberOfViewControllers = self.navigationController.viewControllers.count;
-    EMPartyViewController* vc = [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
+    EMAddPartyViewController* vc = [self.navigationController.viewControllers objectAtIndex:numberOfViewControllers - 2];
     [vc.locationButton setTitle:self.pin.annotation.subtitle forState:UIControlStateNormal];
-    vc.longitude = [NSString stringWithFormat:@"%f", self.pin.annotation.coordinate.longitude];
-    vc.latitude = [NSString stringWithFormat:@"%f", self.pin.annotation.coordinate.latitude];
+    vc.longitude = [NSString stringWithFormat:@"%f", self.coordinate.longitude];
+    vc.latitude = [NSString stringWithFormat:@"%f", self.coordinate.latitude];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
