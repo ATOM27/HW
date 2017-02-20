@@ -191,9 +191,8 @@
 
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations {
-    
+
     CLLocation* location = [locations lastObject];
-    
     [self makeAnotationWithLocation:location];
     
     }

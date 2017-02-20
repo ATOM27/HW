@@ -69,42 +69,7 @@ NS_ENUM(NSInteger, EMSliderType){
     self.locationButton.circle = self.finalCircle;
 
     if(self.currentParty){
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.startDate] forState:UIControlStateNormal];
-        self.paratyNameTextField.text = self.currentParty.name;
-        [dateFormatter setDateFormat:@"HH:mm"];
-        self.startLabel.text = [dateFormatter stringFromDate:self.currentParty.startDate];
-        self.startSlider.value = [self valueForSliderWithDate:self.currentParty.startDate];
-        self.endSlider.value = [self valueForSliderWithDate:self.currentParty.endDate];
-        self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
-        //self.pageControll.currentPage = self.currentParty.logoPage;
-        self.textView.text = self.currentParty.descriptionText;
-        
-        if(![self.currentParty.latitude isEqualToString:@""] || ![self.currentParty.longtitude isEqualToString:@""]){
-            CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
-            
-            CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
-            [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            
-            NSString* address = nil;
-            
-            if (error){
-                NSLog(@"%@", [error localizedDescription]);
-            }else{
-                
-                if ([placemarks count] > 0){
-                    
-                    CLPlacemark* placeMark = [placemarks firstObject];
-                    address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
-                }
-                
-                [self.locationButton setTitle:address forState:UIControlStateNormal];
-                
-            }
-        }];
-        }
+        [self settingsForCurrentParty];
     }
     self.paratyNameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Your party name"
                                                                  attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
@@ -141,6 +106,44 @@ NS_ENUM(NSInteger, EMSliderType){
 }
 
 #pragma mark - Private methods
+
+-(void)settingsForCurrentParty{
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
+    [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.currentParty.startDate] forState:UIControlStateNormal];
+    self.paratyNameTextField.text = self.currentParty.name;
+    [dateFormatter setDateFormat:@"HH:mm"];
+    self.startLabel.text = [dateFormatter stringFromDate:self.currentParty.startDate];
+    self.startSlider.value = [self valueForSliderWithDate:self.currentParty.startDate];
+    self.endSlider.value = [self valueForSliderWithDate:self.currentParty.endDate];
+    self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
+    //self.pageControll.currentPage = self.currentParty.logoPage;
+    self.textView.text = self.currentParty.descriptionText;
+    
+    if(![self.currentParty.latitude isEqualToString:@""] || ![self.currentParty.longtitude isEqualToString:@""]){
+        CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
+        
+        CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            
+            NSString* address = nil;
+            
+            if (error){
+                NSLog(@"%@", [error localizedDescription]);
+            }else{
+                
+                if ([placemarks count] > 0){
+                    
+                    CLPlacemark* placeMark = [placemarks firstObject];
+                    address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                }
+                
+                [self.locationButton setTitle:address forState:UIControlStateNormal];
+                
+            }
+        }];
+    }
+}
 
 -(NSInteger)valueForSliderWithDate:(NSDate*)date{
     
@@ -511,7 +514,7 @@ NS_ENUM(NSInteger, EMSliderType){
                                                latitude:self.latitude
                                              longtitude:self.longitude];
 
-    [[EMHTTPManager sharedManager] addPartyWithID:@""
+    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
                                              name:party.name
                                         startTime:[NSString stringWithFormat:@"%f",[party.startDate timeIntervalSince1970]]
                                           endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
@@ -525,12 +528,21 @@ NS_ENUM(NSInteger, EMSliderType){
                                                NSLog(@"%@", [error localizedDescription]);
                                            }
                                            if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
-                                           [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-                                                   if(success){
-                                                       [self makeNotificationToPaty:party];
-                                                       [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-                                                   }
-                                            }];
+                                               //Need for partyID
+                                               [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID completion:^(NSDictionary *response, NSError *error) {
+                                                   NSArray* parties = [response objectForKey:@"response"];
+                                                   //Get partyID
+                                                   NSString* partyID = [[parties lastObject] objectForKey:@"id"];
+                                                   [party setValue:partyID forKey:@"partyID"];
+                                                   //Save party to core data
+                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                       if(success){
+                                                           [self makeNotificationToPaty:party];
+                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                       }
+                                                   }];
+ 
+                                               }];
                                            }
                                        }];
     
@@ -587,6 +599,8 @@ NS_ENUM(NSInteger, EMSliderType){
                                                   creatorID:self.creatorID
                                                    latitude:latitude
                                                  longtitude:longtitude];
+        
+
         
         [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
                                                  name:party.name

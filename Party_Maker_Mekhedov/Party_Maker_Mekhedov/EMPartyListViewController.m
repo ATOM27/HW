@@ -27,9 +27,6 @@
     
     self.arrayWithParties = [[NSArray alloc] init];
     self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
-    [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
-        
-    }];
 }
 
 - (void)viewDidLoad {

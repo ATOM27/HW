@@ -34,7 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.imageSuperView.layer.cornerRadius = CGRectGetHeight(self.imageSuperView.bounds)/2;
     self.imageSuperView.layer.borderWidth = 3.f;
     self.imageSuperView.layer.borderColor = [UIColor blackColor].CGColor;
     
@@ -56,6 +55,10 @@
     self.partyStartLabel.text = [dateFormatter stringFromDate:self.currentParty.startDate];
     self.partyEndLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
     
+}
+
+-(void)viewDidLayoutSubviews{
+    self.imageSuperView.layer.cornerRadius = CGRectGetHeight(self.imageSuperView.bounds)/2;
 }
 
 - (void)didReceiveMemoryWarning {
