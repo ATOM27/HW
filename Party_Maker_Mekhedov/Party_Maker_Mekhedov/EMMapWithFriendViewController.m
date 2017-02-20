@@ -15,8 +15,6 @@
 
 @interface EMMapWithFriendViewController ()
 
-@property(strong, nonatomic) CLGeocoder* geoCoder;
-
 @end
 
 @implementation EMMapWithFriendViewController
@@ -25,8 +23,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.checkedFriends = [[NSArray alloc] init];
-    self.geoCoder = [[CLGeocoder alloc] init];
-
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -42,16 +38,17 @@
 
 -(void)makeAnnotations{
     for(NSDictionary* currentFriend in self.checkedFriends){
-        [[EMHTTPManager sharedManager] partyWithCreatorID:[currentFriend objectForKey:@"id"]
-                                               completion:^(NSDictionary *response, NSError *error) {
-                                                   NSArray* parties = [response objectForKey:@"response"];
-                                                   for (NSDictionary* partyDict in parties){
-                                                       PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
-                                                       CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
-                                                       [self makeAnotationWithLocation:location andParty:party];
-                                                   }
-                                               }];
+            [[EMHTTPManager sharedManager] partyWithCreatorID:[currentFriend objectForKey:@"id"]
+                                                   completion:^(NSDictionary *response, NSError *error) {
+                                                           NSArray* parties = [response objectForKey:@"response"];
+                                                           for (NSDictionary* partyDict in parties){
+                                                               PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
+                                                               CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
+                                                               [self makeAnotationWithLocation:location andParty:party];
+                                                           }
+                                                   }];
     }
+                       
 }
 
 #pragma mark - Actions
@@ -77,7 +74,7 @@
 
 -(void) makeAnotationWithLocation:(CLLocation*) location andParty:(PMRParty*)party{
     EMMapFriendInfoAnnotation* annotation = [[EMMapFriendInfoAnnotation alloc] init];
-    
+
     [self getTitleAndSubtitleForAnnotation:annotation inLocation:location];
     
     annotation.party = party;
@@ -87,30 +84,30 @@
 }
 
 -(void)getTitleAndSubtitleForAnnotation:(EMMapFriendInfoAnnotation*) annotation inLocation:(CLLocation*)location{
-    [self.geoCoder reverseGeocodeLocation:location
-                   completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-                       
-                       NSString* name = nil;
-                       NSString* address = nil;
-                       
-                       if (error){
-                           NSLog(@"%@", [error localizedDescription]);
-                       }else{
-                           
-                           if ([placemarks count] > 0){
-                               
-                               CLPlacemark* placeMark = [placemarks firstObject];
-                               
-                               name = placeMark.name;
-                               address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
-                           }
-                           
-                           annotation.title = name;
-                           annotation.subtitle = address;
-                           
-                       }
-                   }];
-    
+    CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+    [geoCoder reverseGeocodeLocation:location
+                        completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                            
+                            NSString* name = nil;
+                            NSString* address = nil;
+                            
+                            if (error){
+                                NSLog(@"%@", [error localizedDescription]);
+                            }else{
+                                
+                                if ([placemarks count] > 0){
+                                    
+                                    CLPlacemark* placeMark = [placemarks firstObject];
+                                    
+                                    name = placeMark.name;
+                                    address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                                }
+                                
+                                annotation.title = name;
+                                annotation.subtitle = address;
+                                
+                            }
+    }];
 }
 
 #pragma mark - MKMapViewDelegate

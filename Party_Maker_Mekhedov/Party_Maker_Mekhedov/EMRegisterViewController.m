@@ -106,9 +106,13 @@ NS_ENUM(NSInteger, EMTextFieldType){
                                                           NSLog(@"%@",[error localizedDescription]);
                                                        }else{
                                                           if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
-                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  [self dismissViewControllerAnimated:YES completion:nil];
+                                                              });
                                                           }else{
-                                                              [self alertWithTitle:@"Ops!" message:@"Try another data."];
+                                                              dispatch_async(dispatch_get_main_queue(), ^{
+                                                                  [self alertWithTitle:@"Ops!" message:@"Try another data."];
+                                                              });
                                                           }
                                                        }
                                           }];

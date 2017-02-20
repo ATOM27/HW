@@ -25,6 +25,9 @@
 -(void)loadView{
     [super loadView];
     
+    [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
+        
+    }];
     self.arrayWithParties = [[NSArray alloc] init];
     self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
 }
