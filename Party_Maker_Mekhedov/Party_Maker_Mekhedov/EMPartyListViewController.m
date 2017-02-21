@@ -28,6 +28,7 @@
     [[PMRCoreDataManager sharedStore] deleteAllPartiesWithIDcompletion:^(BOOL success) {
         
     }];
+    self.creatorID = [[NSUserDefaults standardUserDefaults] objectForKey:@"creatorID"];
     self.arrayWithParties = [[NSArray alloc] init];
     self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
 }

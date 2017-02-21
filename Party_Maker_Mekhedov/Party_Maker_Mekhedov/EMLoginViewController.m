@@ -10,6 +10,7 @@
 #import "EMHTTPManager.h"
 #import "UIViewController+Alert.h"
 #import "EMPartyListViewController.h"
+#import "EMMapWithFriendViewController.h"
 
 @interface EMLoginViewController ()
 
@@ -82,7 +83,9 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
                                           }else{
                                               if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
                                                   dispatch_async(dispatch_get_main_queue(), ^{
-                                                      self.creatorID = [response valueForKey:@"id"];
+                                                      
+                                                      [[NSUserDefaults standardUserDefaults] setObject:[response valueForKey:@"id"] forKey:@"creatorID"];
+                                                      
                                                       [self performSegueWithIdentifier:tabBarIdentifier sender:self];
                                                   });
                                               }else{
@@ -98,17 +101,20 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:tabBarIdentifier]){
-        UITabBarController* tabBarVC = segue.destinationViewController;
-        EMPartyListViewController* vc;
-        for(UINavigationController* neededVC in tabBarVC.viewControllers){
-            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMPartyListViewController class]]){
-                vc = [neededVC.viewControllers firstObject];
-                break;
-            }
-        }
-        vc.creatorID = self.creatorID;
-    }
+//    if([segue.identifier isEqualToString:tabBarIdentifier]){
+//        UITabBarController* tabBarVC = segue.destinationViewController;
+//        EMPartyListViewController* vc;
+//        EMMapWithFriendViewController* vcMap;
+//        for(UINavigationController* neededVC in tabBarVC.viewControllers){
+//            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMPartyListViewController class]]){
+//                vc = [neededVC.viewControllers firstObject];
+//            }
+//            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMMapWithFriendViewController class]]){
+//                vc = [neededVC.viewControllers firstObject]
+//            }
+//        }
+//        vc.creatorID = self.creatorID;
+//    }
 }
 
 

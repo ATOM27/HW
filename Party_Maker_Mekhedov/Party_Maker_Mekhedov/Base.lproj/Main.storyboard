@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -339,7 +340,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5.f"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1440" translatesAutoresizingMaskIntoConstraints="NO" id="7cd-Au-geR">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1439" translatesAutoresizingMaskIntoConstraints="NO" id="7cd-Au-geR">
                                 <rect key="frame" x="188" y="175" width="179" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.92549019610000005" green="0.69411764710000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="maximumTrackTintColor" red="0.10980392160000001" green="0.1137254902" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -347,7 +348,7 @@
                                     <action selector="actionChangeScrollValue:" destination="CoL-M1-5bM" eventType="valueChanged" id="3iI-L0-yJQ"/>
                                 </connections>
                             </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="849-er-0A4">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:30" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="849-er-0A4">
                                 <rect key="frame" x="325" y="215" width="40" height="27"/>
                                 <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.17254901959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -362,7 +363,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5.f"/>
                                 </userDefinedRuntimeAttributes>
                             </label>
-                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1440" translatesAutoresizingMaskIntoConstraints="NO" id="1CC-iP-eKd">
+                            <slider opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1439" translatesAutoresizingMaskIntoConstraints="NO" id="1CC-iP-eKd">
                                 <rect key="frame" x="140" y="213" width="175" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.92549019610000005" green="0.69411764710000001" blue="0.1137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="maximumTrackTintColor" red="0.10980392160000001" green="0.1137254902" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -754,7 +755,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCu-PR-dLW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2466" y="223"/>
+            <point key="canvasLocation" x="3468" y="-160"/>
         </scene>
         <!--CHOOSE PARTY LOCATION-->
         <scene sceneID="Uw1-Fa-rky">
@@ -789,7 +790,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K4J-8g-PZy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257" y="-160"/>
+            <point key="canvasLocation" x="4417" y="-490"/>
         </scene>
         <!--PARTY INFO-->
         <scene sceneID="dW1-u8-fnB">
@@ -822,15 +823,15 @@
                                             <constraint firstAttribute="width" secondItem="2Fx-s0-hHz" secondAttribute="height" multiplier="1:1" id="zCI-wD-2Mi"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="ROMANTIC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ENQ-p6-zXh">
-                                        <rect key="frame" x="109.5" y="163" width="124" height="27"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="NeY-Fb-PXe">
+                                        <rect key="frame" x="154" y="217" width="35" height="17"/>
+                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="NeY-Fb-PXe">
-                                        <rect key="frame" x="154" y="217" width="35" height="17"/>
-                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" misplaced="YES" text="ROMANTIC" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="ENQ-p6-zXh">
+                                        <rect key="frame" x="30" y="164" width="283" height="27"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -840,9 +841,13 @@
                                     <constraint firstItem="NeY-Fb-PXe" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ENQ-p6-zXh" secondAttribute="bottom" id="ApJ-Kd-01t"/>
                                     <constraint firstItem="ENQ-p6-zXh" firstAttribute="top" secondItem="2Fx-s0-hHz" secondAttribute="bottom" constant="20" id="LQh-3N-ElQ"/>
                                     <constraint firstItem="2Fx-s0-hHz" firstAttribute="leading" secondItem="53q-Vi-Whd" secondAttribute="leading" constant="110" id="Lo1-jR-zGt"/>
+                                    <constraint firstItem="NeY-Fb-PXe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="53q-Vi-Whd" secondAttribute="leading" constant="37" id="Php-x6-0Px"/>
                                     <constraint firstAttribute="bottom" secondItem="NeY-Fb-PXe" secondAttribute="bottom" constant="15" id="QEq-tx-Zd5"/>
                                     <constraint firstItem="NeY-Fb-PXe" firstAttribute="centerX" secondItem="53q-Vi-Whd" secondAttribute="centerX" id="RYO-PA-sDX"/>
                                     <constraint firstItem="2Fx-s0-hHz" firstAttribute="centerX" secondItem="53q-Vi-Whd" secondAttribute="centerX" id="XUI-hX-KO8"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NeY-Fb-PXe" secondAttribute="trailing" constant="37" id="cf3-fb-TeO"/>
+                                    <constraint firstAttribute="trailing" secondItem="ENQ-p6-zXh" secondAttribute="trailing" constant="30" id="eky-as-hPF"/>
+                                    <constraint firstItem="ENQ-p6-zXh" firstAttribute="leading" secondItem="53q-Vi-Whd" secondAttribute="leading" constant="30" id="j1g-AF-OUV"/>
                                     <constraint firstItem="ENQ-p6-zXh" firstAttribute="centerX" secondItem="53q-Vi-Whd" secondAttribute="centerX" id="tH6-Yu-Vsm"/>
                                     <constraint firstItem="2Fx-s0-hHz" firstAttribute="top" secondItem="53q-Vi-Whd" secondAttribute="top" constant="20" id="yGp-sQ-BrK"/>
                                 </constraints>
@@ -1012,7 +1017,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="QEP-qC-cr2" id="sFt-eE-Nyh"/>
+                        <outlet property="editButton" destination="TAk-Bq-hme" id="23z-Gl-78t"/>
                         <outlet property="imageSuperView" destination="2Fx-s0-hHz" id="tMF-58-8Im"/>
+                        <outlet property="locationButton" destination="XiV-Pe-gZa" id="1KS-rW-6zV"/>
                         <outlet property="partyDateLabel" destination="vTm-2L-sbx" id="5z6-M5-Xwb"/>
                         <outlet property="partyDescription" destination="NeY-Fb-PXe" id="EJl-rO-46K"/>
                         <outlet property="partyEndLabel" destination="rxR-Jd-IBY" id="nl9-Hc-b99"/>
@@ -1025,7 +1033,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5LM-98-hD0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2466.4000000000001" y="-534.78260869565224"/>
+            <point key="canvasLocation" x="2445.5999999999999" y="278.41079460269867"/>
         </scene>
         <!--Map Info View Controller-->
         <scene sceneID="p5m-op-O3U">
@@ -1060,7 +1068,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dEc-6e-paQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3256.8000000000002" y="-856.82158920539734"/>
+            <point key="canvasLocation" x="3468" y="643"/>
         </scene>
         <!--Party Created View Controller-->
         <scene sceneID="105-rt-jSH">
@@ -1108,7 +1116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UYh-Cz-7qd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3257" y="546"/>
+            <point key="canvasLocation" x="4417" y="179"/>
         </scene>
         <!--Settings-->
         <scene sceneID="cHk-1c-kS5">
@@ -1243,7 +1251,6 @@ Softheme iOS Internship
         <!--Location-->
         <scene sceneID="6Xd-gY-H5D">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HSX-tu-Bpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="p76-jt-Q7Q" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Location" image="map.png" id="RS9-Di-s3l"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BO0-uJ-w1h">
@@ -1256,6 +1263,7 @@ Softheme iOS Internship
                         <segue destination="OQc-OD-txF" kind="relationship" relationship="rootViewController" id="pdC-Cs-oZz"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HSX-tu-Bpl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="738" y="1273"/>
         </scene>
@@ -1292,15 +1300,23 @@ Softheme iOS Internship
                                 <action selector="actionSelectFriends:" destination="OQc-OD-txF" id="ljx-IU-9yO"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Reset" id="2WI-b7-6hT">
-                            <connections>
-                                <action selector="actionReset:" destination="OQc-OD-txF" id="z1v-k6-TLD"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="2WI-b7-6hT">
+                                <connections>
+                                    <action selector="actionReset:" destination="OQc-OD-txF" id="z1v-k6-TLD"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="search" id="gWJ-Gf-UX8">
+                                <connections>
+                                    <action selector="actionShowAll:" destination="OQc-OD-txF" id="r3J-zV-a8b"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="6LA-iR-dnT" id="orn-Hi-mMg"/>
                         <segue destination="9Jk-NK-vRN" kind="show" identifier="selectFriendsIdentifier" id="ZSh-pF-6La"/>
+                        <segue destination="bIV-wA-1Nv" kind="show" identifier="partyInfoIdentifier" id="Lwl-59-DcD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mRu-1F-Wg5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1310,7 +1326,6 @@ Softheme iOS Internship
         <!--Select Friends View Controller-->
         <scene sceneID="0dg-Lw-weh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iKf-PE-W5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="9Jk-NK-vRN" customClass="EMSelectFriendsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gAD-3x-Kxu"/>
@@ -1368,6 +1383,7 @@ Softheme iOS Internship
                         <outlet property="tableView" destination="kEr-Y5-zlB" id="7BG-FF-7X8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iKf-PE-W5w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2445.5999999999999" y="1270.6146926536733"/>
         </scene>
@@ -1521,6 +1537,7 @@ Softheme iOS Internship
         <image name="settings.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OSY-gs-U75"/>
+        <segue reference="Lwl-59-DcD"/>
+        <segue reference="CH8-pV-D5S"/>
     </inferredMetricsTieBreakers>
 </document>

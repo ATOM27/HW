@@ -33,6 +33,7 @@
 		D64E4B611E39358200E4E9D4 /* EMOldPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D64E4B601E39358200E4E9D4 /* EMOldPartyViewController.m */; };
 		D6811E771E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D6811E741E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataClass.m */; };
 		D6811E781E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = D6811E761E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataProperties.m */; };
+		D6862A451E5C772400221D4F /* UIView+superAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6862A441E5C772400221D4F /* UIView+superAnnotationView.m */; };
 		D6C946371E4CF7EF00FF1606 /* PMRCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C9462A1E4CF7EF00FF1606 /* PMRCoreDataManager.m */; };
 		D6C946381E4CF7EF00FF1606 /* PMRCoreDataManager+Party.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C9462C1E4CF7EF00FF1606 /* PMRCoreDataManager+Party.m */; };
 		D6C946391E4CF7EF00FF1606 /* PMRParty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6C9462E1E4CF7EF00FF1606 /* PMRParty.m */; };
@@ -107,6 +108,8 @@
 		D6811E741E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PMRPartyManagedObject+CoreDataClass.m"; sourceTree = "<group>"; };
 		D6811E751E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMRPartyManagedObject+CoreDataProperties.h"; sourceTree = "<group>"; };
 		D6811E761E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PMRPartyManagedObject+CoreDataProperties.m"; sourceTree = "<group>"; };
+		D6862A431E5C772400221D4F /* UIView+superAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+superAnnotationView.h"; sourceTree = "<group>"; };
+		D6862A441E5C772400221D4F /* UIView+superAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+superAnnotationView.m"; sourceTree = "<group>"; };
 		D6C946291E4CF7EF00FF1606 /* PMRCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PMRCoreDataManager.h; sourceTree = "<group>"; };
 		D6C9462A1E4CF7EF00FF1606 /* PMRCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PMRCoreDataManager.m; sourceTree = "<group>"; };
 		D6C9462B1E4CF7EF00FF1606 /* PMRCoreDataManager+Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PMRCoreDataManager+Party.h"; sourceTree = "<group>"; };
@@ -446,6 +449,8 @@
 			children = (
 				EC45C4461E5B30C9005D9B1E /* EMMapFriendInfoAnnotation.h */,
 				EC45C4471E5B30C9005D9B1E /* EMMapFriendInfoAnnotation.m */,
+				D6862A431E5C772400221D4F /* UIView+superAnnotationView.h */,
+				D6862A441E5C772400221D4F /* UIView+superAnnotationView.m */,
 			);
 			name = Annotation;
 			sourceTree = "<group>";
@@ -605,6 +610,7 @@
 				D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */,
 				ECA1A38C1E53278900687D63 /* EMRegisterViewController.m in Sources */,
 				EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */,
+				D6862A451E5C772400221D4F /* UIView+superAnnotationView.m in Sources */,
 				D6811E771E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataClass.m in Sources */,
 				D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */,
 				EC45C4441E5B0D91005D9B1E /* EMSelectFriendsViewController.m in Sources */,

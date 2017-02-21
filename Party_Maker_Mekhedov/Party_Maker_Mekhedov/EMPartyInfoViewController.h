@@ -14,4 +14,7 @@
 @property(strong, nonatomic) NSString* creatorID;
 @property(strong, nonatomic) PMRParty* currentParty;
 
+//From annotation
+@property(assign, nonatomic) BOOL showOnlyInfo;
+
 @end

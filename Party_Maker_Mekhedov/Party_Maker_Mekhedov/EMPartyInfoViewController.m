@@ -25,6 +25,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *partyStartLabel;
 @property (strong, nonatomic) IBOutlet UILabel *partyEndLabel;
 @property (strong, nonatomic) IBOutlet UIView *imageSuperView;
+@property (strong, nonatomic) IBOutlet UIButton *locationButton;
+@property (strong, nonatomic) IBOutlet UIButton *editButton;
+@property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 
 
 @end
@@ -34,15 +37,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.creatorID = [[NSUserDefaults standardUserDefaults] objectForKey:@"creatorID"];
+    
     self.imageSuperView.layer.borderWidth = 3.f;
     self.imageSuperView.layer.borderColor = [UIColor blackColor].CGColor;
-    
-    
     
     self.partyLogo.image = [UIImage imageNamed:self.currentParty.logoImageName];
     self.partyLogo.transform = CGAffineTransformMakeScale(0.7, 0.7);
     
     self.partyName.text = self.currentParty.name;
+
     self.partyDescription.text = self.currentParty.descriptionText;
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
@@ -57,8 +61,19 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    //From annotation
+    if(!self.showOnlyInfo == NO){
+        self.locationButton.hidden = YES;
+        self.editButton.hidden = YES;
+        self.deleteButton.hidden = YES;
+    }
+}
+
 -(void)viewDidLayoutSubviews{
     self.imageSuperView.layer.cornerRadius = CGRectGetHeight(self.imageSuperView.bounds)/2;
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,7 +81,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)dealloc{
+    //self.showOnlyInfo = YES;
+}
+
 #pragma mark - Actions
+
 
 - (IBAction)actionLocationTouched:(UIButton *)sender {
     if(![self.currentParty.longtitude isEqualToString:@""] && ![self.currentParty.latitude isEqualToString:@""]){

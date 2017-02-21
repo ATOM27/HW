@@ -90,6 +90,7 @@
 - (IBAction)actionDone:(UIBarButtonItem *)sender {
     EMMapWithFriendViewController* vc = [self.navigationController.viewControllers firstObject];
     vc.checkedFriends = self.checkedFriends;
+    [vc makeAnnotations];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 

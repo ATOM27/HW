@@ -57,6 +57,8 @@ NS_ENUM(NSInteger, EMSliderType){
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.creatorID = [[NSUserDefaults standardUserDefaults] objectForKey:@"creatorID"];
+    
     self.longitude = @"";
     self.latitude = @"";
     
@@ -310,7 +312,6 @@ NS_ENUM(NSInteger, EMSliderType){
     }
     
     if(sender.tag == EMSliderTypeStart){
-        
         NSInteger difference = self.endSlider.value - sender.value;
         if(difference < 30){
             if(difference < 0){
