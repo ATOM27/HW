@@ -2,7 +2,7 @@
 //  PMRPartyManagedObject+CoreDataProperties.m
 //  Party_Maker_Mekhedov
 //
-//  Created by Eugene Mekhedov on 11.02.17.
+//  Created by Eugene Mekhedov on 22.02.17.
 //  Copyright © 2017 Eugene Mekhedov. All rights reserved.
 //
 
@@ -19,7 +19,7 @@
 @dynamic descriptionText;
 @dynamic endDate;
 @dynamic latitude;
-@dynamic logoImageName;
+@dynamic logoID;
 @dynamic longtitude;
 @dynamic modificationDate;
 @dynamic name;

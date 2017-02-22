@@ -84,7 +84,7 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
                                               if(![response valueForKey:@"error"]){
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                       
-                                                      [[NSUserDefaults standardUserDefaults] setObject:[response valueForKey:@"id"] forKey:@"creatorID"];
+                                                      [[NSUserDefaults standardUserDefaults] setObject:[[response valueForKey:@"id"] stringValue] forKey:@"creatorID"];
                                                       [[NSUserDefaults standardUserDefaults] setObject:[response valueForKey:@"accessToken"] forKey:@"accessToken"];
                                                       [self performSegueWithIdentifier:tabBarIdentifier sender:self];
                                                   });

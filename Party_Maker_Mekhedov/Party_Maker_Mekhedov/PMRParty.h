@@ -13,7 +13,7 @@
 @property (nonatomic, readonly) NSDate *startDate;
 @property (nonatomic, readonly) NSDate *endDate;
 @property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *logoImageName;
+@property (nonatomic, readonly) NSString *logoID;
 @property (nonatomic, readonly) NSString *descriptionText;
 @property (nonatomic, readonly) NSDate *creationDate;
 @property (nonatomic, readonly) NSDate *modificationDate;
@@ -25,7 +25,7 @@
                            name:(NSString*)name
                       startDate:(NSDate*)startDate
                         endDate:(NSDate*)endDate
-                  logoImageName:(NSString*)logoImageName
+                         logoID:(NSString*)logoID
                 descriptionText:(NSString*)descriptionText
                    creationDate:(NSDate*)creationDate
                modificationDate:(NSDate*)modificationDate

@@ -26,7 +26,7 @@
             partyObject.name = party.name;
             partyObject.startDate = party.startDate;
             partyObject.endDate = party.endDate;
-            partyObject.logoImageName = party.logoImageName;
+            partyObject.logoID = party.logoID;
             partyObject.descriptionText = party.descriptionText;
             partyObject.creationDate = party.creationDate;
             partyObject.modificationDate = party.modificationDate;

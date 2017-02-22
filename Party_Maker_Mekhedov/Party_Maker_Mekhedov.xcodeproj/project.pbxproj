@@ -16,6 +16,7 @@
 		D60D3E6B1E523C5C0053A7D8 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D3E6A1E523C5C0053A7D8 /* settings.png */; };
 		D60D3E771E5240230053A7D8 /* floating-balloons.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D3E761E5240230053A7D8 /* floating-balloons.png */; };
 		D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */; };
+		D61B28551E5E378900D69869 /* ImagesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D61B28541E5E378900D69869 /* ImagesManager.m */; };
 		D6418D9C1E3B4504009150C1 /* EMPageAndScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */; };
 		D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9E1E3B4DD7009150C1 /* Beer-100.png */; };
 		D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */ = {isa = PBXBuildFile; fileRef = D6418D9F1E3B4DD7009150C1 /* Birthday Cake-100.png */; };
@@ -81,6 +82,8 @@
 		D60D3E761E5240230053A7D8 /* floating-balloons.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "floating-balloons.png"; sourceTree = "<group>"; };
 		D612A2F51E4B9FB100F1818B /* EMHTTPManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMHTTPManager.h; sourceTree = "<group>"; };
 		D612A2F61E4B9FB100F1818B /* EMHTTPManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMHTTPManager.m; sourceTree = "<group>"; };
+		D61B28531E5E378900D69869 /* ImagesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImagesManager.h; path = Party_Maker_Mekhedov/ImagesManager.h; sourceTree = SOURCE_ROOT; };
+		D61B28541E5E378900D69869 /* ImagesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImagesManager.m; path = Party_Maker_Mekhedov/ImagesManager.m; sourceTree = SOURCE_ROOT; };
 		D6418D9A1E3B4504009150C1 /* EMPageAndScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPageAndScrollView.h; sourceTree = "<group>"; };
 		D6418D9B1E3B4504009150C1 /* EMPageAndScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPageAndScrollView.m; sourceTree = "<group>"; };
 		D6418D9E1E3B4DD7009150C1 /* Beer-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Beer-100.png"; sourceTree = "<group>"; };
@@ -240,6 +243,7 @@
 			children = (
 				D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */,
 				D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */,
+				D6064A271E462E0700DBE2E8 /* Cell */,
 			);
 			name = "Party list";
 			sourceTree = "<group>";
@@ -269,6 +273,8 @@
 				ECDAC2E71E5315FE0005E1AE /* launchscreen */,
 				ECDAC2E61E5315DC0005E1AE /* Tab bar */,
 				ECDAC2E81E5320B50005E1AE /* Party logo */,
+				D61B28531E5E378900D69869 /* ImagesManager.h */,
+				D61B28541E5E378900D69869 /* ImagesManager.m */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -331,7 +337,6 @@
 				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
 				D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */,
 				D64E4B591E39312F00E4E9D4 /* Info.plist */,
-				D6064A271E462E0700DBE2E8 /* Cell */,
 				ECA1A3901E53411D00687D63 /* Alert */,
 				D6064A221E462D9E00DBE2E8 /* OLD */,
 				D64E4B481E39312F00E4E9D4 /* Supporting Files */,
@@ -597,6 +602,7 @@
 				D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */,
 				D6050A441E3A4CAF0085C7ED /* EMChooseDateButton.m in Sources */,
 				D6050A471E3A65210085C7ED /* EMPartyNameTextField.m in Sources */,
+				D61B28551E5E378900D69869 /* ImagesManager.m in Sources */,
 				D645B0211E59BE71005824CC /* EMPartyInfoViewController.m in Sources */,
 				D6C9463D1E4CF7EF00FF1606 /* PMRPersistanceStore.m in Sources */,
 				D6C946381E4CF7EF00FF1606 /* PMRCoreDataManager+Party.m in Sources */,

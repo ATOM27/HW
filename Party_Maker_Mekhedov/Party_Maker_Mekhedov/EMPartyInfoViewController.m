@@ -14,6 +14,7 @@
 #import "PMRCoreDataManager+Party.h"
 #import "EMPartyListViewController.h"
 #import "UIViewController+Alert.h"
+#import "ImagesManager.h"
 
 
 @interface EMPartyInfoViewController ()
@@ -42,7 +43,7 @@
     self.imageSuperView.layer.borderWidth = 3.f;
     self.imageSuperView.layer.borderColor = [UIColor blackColor].CGColor;
     
-    self.partyLogo.image = [UIImage imageNamed:self.currentParty.logoImageName];
+    self.partyLogo.image = [UIImage imageNamed:[[ImagesManager sharedManager].arrayWithImages objectAtIndex:self.currentParty.logoID.integerValue]];
     self.partyLogo.transform = CGAffineTransformMakeScale(0.7, 0.7);
     
     self.partyName.text = self.currentParty.name;
@@ -101,13 +102,13 @@
 }
 
 - (IBAction)actionDeleteTouched:(UIButton *)sender {
+    
     [[EMHTTPManager sharedManager] deletePartyWithID:self.currentParty.partyID
-                                           creatorID:self.creatorID
                                           completion:^(NSDictionary *response, NSError *error) {
                                               if(error){
                                                   NSLog(@"%@", [error localizedDescription]);
                                               }else{
-                                                  if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
+                                                  if(![response valueForKey:@"error"]){
                                                       [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
                                                           
                                                           [[(EMPartyListViewController*)[self.navigationController.viewControllers firstObject] tableView] reloadData];

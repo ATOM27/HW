@@ -7,12 +7,16 @@
 //
 
 #import "EMPartyListCell.h"
+#import "ImagesManager.h"
 
 @implementation EMPartyListCell
 
--(void)configureWithImageName:(NSString*)imageName partyName:(NSString*)partyName partyDate:(NSDate*)partyDate{
+-(void)configureWithImageID:(NSString*)imageID partyName:(NSString*)partyName partyDate:(NSDate*)partyDate{
     
-    self.imageV.image = [UIImage imageNamed:imageName];
+    NSArray* arrayWithImages  = [[ImagesManager sharedManager] arrayWithImages];
+
+    
+    self.imageV.image = [UIImage imageNamed:[arrayWithImages objectAtIndex:imageID.integerValue]];
     self.imageV.transform = CGAffineTransformMakeScale(0.7, 0.78);
     self.partyNameLabel.text = partyName;
     

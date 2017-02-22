@@ -41,15 +41,7 @@ NS_ENUM(NSInteger, EMTextFieldType){
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 #pragma mark - Help methods
 
 -(void)settingsForTextFields{
@@ -98,24 +90,28 @@ NS_ENUM(NSInteger, EMTextFieldType){
 #pragma mark - Actions
 
 - (IBAction)actionRegisterTouched:(UIButton *)sender {
-    [[EMHTTPManager sharedManager] registerWithEmail:self.emailTextField.text
-                                            password:self.passwordTextField.text
-                                                name:self.nameTextField.text
-                                          completion:^(NSDictionary *response, NSError *error) {
-                                              if(error){
-                                                          NSLog(@"%@",[error localizedDescription]);
-                                                       }else{
-                                                          if(![response valueForKey:@"error"]){
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  [self dismissViewControllerAnimated:YES completion:nil];
-                                                              });
-                                                          }else{
-                                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                                  [self alertWithTitle:@"Ops!" message:@"Try another data."];
-                                                              });
-                                                          }
-                                                       }
-                                          }];
+    if(self.passwordTextField.text.length < 6){
+        [self alertWithTitle:@"Try another password!" message:@"Your password must be at least 6 characters."];
+    }else{
+        [[EMHTTPManager sharedManager] registerWithEmail:self.emailTextField.text
+                                                password:self.passwordTextField.text
+                                                    name:self.nameTextField.text
+                                              completion:^(NSDictionary *response, NSError *error) {
+                                                  if(error){
+                                                      NSLog(@"%@",[error localizedDescription]);
+                                                  }else{
+                                                      if(![response valueForKey:@"error"]){
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              [self dismissViewControllerAnimated:YES completion:nil];
+                                                          });
+                                                      }else{
+                                                          dispatch_async(dispatch_get_main_queue(), ^{
+                                                              [self alertWithTitle:@"Ops!" message:@"Try another data."];
+                                                          });
+                                                      }
+                                                  }
+                                              }];
+    }
 }
 
 @end

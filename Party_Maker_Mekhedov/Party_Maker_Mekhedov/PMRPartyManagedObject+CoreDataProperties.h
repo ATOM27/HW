@@ -2,7 +2,7 @@
 //  PMRPartyManagedObject+CoreDataProperties.h
 //  Party_Maker_Mekhedov
 //
-//  Created by Eugene Mekhedov on 11.02.17.
+//  Created by Eugene Mekhedov on 22.02.17.
 //  Copyright © 2017 Eugene Mekhedov. All rights reserved.
 //
 
@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSString *descriptionText;
 @property (nullable, nonatomic, copy) NSDate *endDate;
 @property (nullable, nonatomic, copy) NSString *latitude;
-@property (nullable, nonatomic, copy) NSString *logoImageName;
+@property (nullable, nonatomic, copy) NSString *logoID;
 @property (nullable, nonatomic, copy) NSString *longtitude;
 @property (nullable, nonatomic, copy) NSDate *modificationDate;
 @property (nullable, nonatomic, copy) NSString *name;

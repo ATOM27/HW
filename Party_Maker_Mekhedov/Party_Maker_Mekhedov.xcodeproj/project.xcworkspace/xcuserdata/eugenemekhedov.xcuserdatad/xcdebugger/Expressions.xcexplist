@@ -3,7 +3,30 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "-[EMMapViewController actionAddLocation:]:EMMapViewController.m">
+         contextName = "__53-[EMAddPartyViewController saveChangesToCurrentParty]_block_invoke:EMAddPartyViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMMapWithFriendViewController makeAnnotations]:EMMapWithFriendViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[partyDict objectForKey:@&quot;creator_id&quot;] == [currentFriend objectForKey:@&quot;id&quot;]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__49-[EMPartyInfoViewController actionDeleteTouched:]_block_invoke:EMPartyInfoViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__47-[EMMapWithFriendViewController viewDidAppear:]_block_invoke:EMMapWithFriendViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__44-[EMAddPartyViewController actionSaveParty:]_block_invoke:EMAddPartyViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMPartyListViewController prepareForSegue:sender:]:EMPartyListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMHTTPManager getAllUsersWithCompletion:]:EMHTTPManager.m">
       </ContextState>
       <ContextState
          contextName = "-[EMMapViewController locationAuthorization]:EMMapViewController.m">
@@ -14,21 +37,30 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "-[EMMapWithFriendViewController actionReset:]:EMMapWithFriendViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__33-[EMMapViewController handleTap:]_block_invoke:EMMapViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "__46-[EMHTTPManager deletePartyWithID:completion:]_block_invoke:EMHTTPManager.m">
+      </ContextState>
+      <ContextState
+         contextName = "__44-[EMSelectFriendsViewController viewDidLoad]_block_invoke:EMSelectFriendsViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMPartyListViewController loadView]:EMPartyListViewController.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[EMMapViewController actionAddLocation:]:EMMapViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[EMAddPartyViewController viewDidLoad]:EMAddPartyViewController.m">
          <PersistentStrings>
             <PersistentString
                value = "location.coordinate">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "__33-[EMMapViewController handleTap:]_block_invoke:EMMapViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "-[EMPartyListViewController prepareForSegue:sender:]:EMPartyListViewController.m">
-      </ContextState>
-      <ContextState
-         contextName = "__53-[EMAddPartyViewController saveChangesToCurrentParty]_block_invoke:EMAddPartyViewController.m">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -60,7 +60,7 @@ NSString* APIURLLink;
     
     NSDictionary* headers = @{@"Content-Type": @"application/json"};
     
-    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:nil method:@"user/signup" params:params];
+    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:headers method:@"user/signup" params:params];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -71,10 +71,11 @@ NSString* APIURLLink;
     }] resume];
 }
 
--(void)partyWithCreatorID:(NSString*)creatorID completion:(void(^)(NSDictionary* response, NSError* error))completion{
+-(void)getPartiesWithCompletion:(void(^)(NSDictionary* response, NSError* error))completion{
     
-    NSDictionary* params = @{@"creator_id":creatorID};
-    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:nil method:@"party" params:params];
+    NSDictionary* headers = @{@"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"]};
+    
+    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:headers method:@"party" params:nil];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -85,18 +86,20 @@ NSString* APIURLLink;
     }] resume];
 }
 
--(void)addPartyWithID:(NSString*)partyID name:(NSString*)name startTime:(NSString*)startTime endTime:(NSString*)endTime logoID:(NSString*)logoID comment:(NSString*)comment creatorID:(NSString*)creatorID latitude:(NSString*)latitude longitude:(NSString*)longitude completion:(void(^)(NSDictionary* response, NSError* error))completion{
+-(void)addPartyWithName:(NSString*)name startTime:(NSString*)startTime endTime:(NSString*)endTime logoID:(NSString*)logoID comment:(NSString*)comment latitude:(NSString*)latitude longitude:(NSString*)longitude completion:(void(^)(NSDictionary* response, NSError* error))completion{
     
-    NSDictionary* params = @{@"party_id": partyID,
-                             @"name": name,
-                             @"start_time": startTime,
-                             @"end_time": endTime,
-                             @"logo_id": logoID,
+    NSDictionary* params = @{@"name": name,
+                             @"start_time":[NSNumber numberWithDouble:startTime.doubleValue],
+                             @"end_time": [NSNumber numberWithDouble:endTime.doubleValue],
+                             @"logo_id": [NSNumber numberWithInteger:logoID.integerValue],
                              @"comment": comment,
-                             @"creator_id":creatorID,
-                             @"latitude": latitude,
-                             @"longitude": longitude};
-    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:nil method:@"addParty" params:params];
+                             @"latitude": [NSNumber numberWithDouble:latitude.doubleValue],
+                             @"longitude": [NSNumber numberWithDouble:longitude.doubleValue]};
+    
+    NSDictionary* headers = @{@"Content-Type": @"application/json",
+                              @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
+    
+    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:headers method:@"party" params:params];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -107,12 +110,39 @@ NSString* APIURLLink;
     }] resume];
 }
 
--(void)deletePartyWithID:(NSString*)partyID creatorID:(NSString*)creatorID completion:(void(^)(NSDictionary* response, NSError* error))completion{
+-(void)editPartyWithID:(NSString*)partyID name:(NSString*)name startTime:(NSString*)startTime endTime:(NSString*)endTime logoID:(NSString*)logoID comment:(NSString*)comment latitude:(NSString*)latitude longitude:(NSString*)longitude completion:(void(^)(NSDictionary* response, NSError* error))completion{
     
-    NSDictionary* params = @{@"party_id": partyID,
-                             @"creator_id": creatorID};
+    NSDictionary* params = @{@"name": name,
+                             @"start_time":[NSNumber numberWithDouble:startTime.doubleValue],
+                             @"end_time": [NSNumber numberWithDouble:endTime.doubleValue],
+                             @"logo_id": [NSNumber numberWithInteger:logoID.integerValue],
+                             @"comment": comment,
+                             @"latitude": [NSNumber numberWithDouble:latitude.doubleValue],
+                             @"longitude": [NSNumber numberWithDouble:longitude.doubleValue]};
     
-    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:nil method:@"deleteParty" params:params];
+    NSDictionary* headers = @{@"Content-Type": @"application/json",
+                              @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
+    NSString* method = [NSString stringWithFormat:@"party/%@",partyID];
+    NSMutableURLRequest* request = [self getRequestWithType:@"PATCH" headers:headers method:method params:params];
+    [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            NSLog(@"%@", [error localizedDescription]);
+            completion(nil, error);
+        }else{
+            completion([self getDictionaryFromData:data], nil);
+        }
+    }] resume];
+}
+
+
+-(void)deletePartyWithID:(NSString*)partyID completion:(void(^)(NSDictionary* response, NSError* error))completion{
+    
+    NSDictionary* params = @{@"party_id": partyID};
+    
+    NSDictionary* headers = @{@"Content-Type": @"application/json",
+                              @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
+
+    NSMutableURLRequest* request = [self getRequestWithType:@"DELETE" headers:headers method:@"party" params:params];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -126,7 +156,10 @@ NSString* APIURLLink;
 
 -(void)getAllUsersWithCompletion:(void(^)(NSDictionary* response, NSError* error))completion{
     
-    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:nil method:@"allUsers" params:nil];
+    NSDictionary* headers = @{@"Content-Type": @"application/json",
+                              @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
+    
+    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:headers method:@"user" params:nil];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -177,10 +210,20 @@ NSString* APIURLLink;
 //        NSError *error;
 //        [req setHTTPBody:(error)?nil:reqData];
         req.HTTPBody = [NSJSONSerialization dataWithJSONObject:_params options:0 error:nil];
-    } else if (_params) {
+    } else if ([_type isEqualToString:@"GET"]) {
         NSMutableString *str = [NSMutableString stringWithFormat:@"%@?", _method];
         for (NSString *key in [_params allKeys]) {
             [str appendString:[NSString stringWithFormat:@"%@=%@&", key, [_params valueForKey:key]]];
+        }
+        req.URL = [NSURL URLWithString:[self GetBaseEncodedUrlWithPath:str]];
+    }else if (_params && [_type isEqualToString:@"PATCH"]){
+        req.HTTPBody = [NSJSONSerialization dataWithJSONObject:_params options:0 error:nil];
+        NSMutableString *str = [NSMutableString stringWithFormat:@"%@?", _method];
+         req.URL = [NSURL URLWithString:[self GetBaseEncodedUrlWithPath:str]];
+    }else if ([_type isEqualToString:@"DELETE"]){
+        NSMutableString *str = [NSMutableString stringWithFormat:@"%@", _method];
+        for (NSString *key in [_params allKeys]) {
+            str = [str stringByAppendingPathComponent:[_params valueForKey: key]];
         }
         req.URL = [NSURL URLWithString:[self GetBaseEncodedUrlWithPath:str]];
     }

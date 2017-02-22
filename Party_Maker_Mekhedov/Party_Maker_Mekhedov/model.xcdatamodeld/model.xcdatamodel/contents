@@ -6,7 +6,7 @@
         <attribute name="descriptionText" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="logoImageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="logoID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="longtitude" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modificationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

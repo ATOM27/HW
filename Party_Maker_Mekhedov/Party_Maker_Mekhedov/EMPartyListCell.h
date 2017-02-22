@@ -14,7 +14,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
--(void)configureWithImageName:(NSString*)imageName partyName:(NSString*)partyName partyDate:(NSDate*)partyDate;
+-(void)configureWithImageID:(NSString*)imageID partyName:(NSString*)partyName partyDate:(NSDate*)partyDate;
 -(void)prepareForReuse;
 
 +(NSString*)reuseIdentifier;

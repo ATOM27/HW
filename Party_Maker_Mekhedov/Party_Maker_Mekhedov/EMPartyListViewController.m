@@ -37,16 +37,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     //[self resetDefaults];
-    [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID
-                                           completion:^(NSDictionary *response, NSError *error) {
+    [[EMHTTPManager sharedManager] getPartiesWithCompletion:^(NSDictionary *response, NSError *error) {
                                                NSArray* parties = [response objectForKey:@"response"];
                                                
                                                if(parties){
                                                    for (NSDictionary* partyDict in parties){
                                                        PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
-                                                       [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-                                                           [self.tableView reloadData];
-                                                       }];
+                                                       if([party.creatorID isEqualToString:self.creatorID]){
+                                                           [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                               [self.tableView reloadData];
+                                                           }];
+                                                       }
                                                    }
                                                }
                                            }];
@@ -85,7 +86,7 @@
     EMPartyListCell* cell = [self.tableView dequeueReusableCellWithIdentifier:[EMPartyListCell reuseIdentifier]];
     //EMParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
     PMRParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
-    [cell configureWithImageName:party.logoImageName partyName:party.name partyDate:party.startDate];
+    [cell configureWithImageID:party.logoID partyName:party.name partyDate:party.startDate];
     //[cell configureWithImage:party.logoImage partyName:party.name partyDate:party.date partyStartTime:party.startParty];
     
     return cell;

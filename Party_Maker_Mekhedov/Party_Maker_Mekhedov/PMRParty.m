@@ -14,7 +14,7 @@
 @property (nonatomic, readwrite) NSDate *startDate;
 @property (nonatomic, readwrite) NSDate *endDate;
 @property (nonatomic, readwrite) NSString *name;
-@property (nonatomic, readwrite) NSString *logoImageName;
+@property (nonatomic, readwrite) NSString *logoID;
 @property (nonatomic, readwrite) NSString *descriptionText;
 @property (nonatomic, readwrite) NSDate *creationDate;
 @property (nonatomic, readwrite) NSDate *modificationDate;
@@ -30,7 +30,7 @@
                            name:(NSString*)name
                       startDate:(NSDate*)startDate
                         endDate:(NSDate*)endDate
-                  logoImageName:(NSString*)logoImageName
+                  logoID:(NSString*)logoID
                 descriptionText:(NSString*)descriptionText
                    creationDate:(NSDate*)creationDate
                modificationDate:(NSDate*)modificationDate
@@ -44,7 +44,7 @@
         _name = [name copy];
         _startDate = [startDate copy];
         _endDate = [endDate copy];
-        _logoImageName = [logoImageName copy];
+        _logoID = [logoID copy];
         _descriptionText = [descriptionText copy];
         _creationDate = [creationDate copy];
         _modificationDate = [modificationDate copy];
@@ -63,7 +63,7 @@
         _name = [aDecoder decodeObjectForKey:@"name"];
         _startDate = [aDecoder decodeObjectForKey:@"startDate"];
         _endDate = [aDecoder decodeObjectForKey:@"endDate"];
-        _logoImageName = [aDecoder decodeObjectForKey:@"logoImageName"];
+        _logoID = [aDecoder decodeObjectForKey:@"logoID"];
         _descriptionText = [aDecoder decodeObjectForKey:@"descriptionText"];
         _creationDate = [aDecoder decodeObjectForKey:@"creationDate"];
         _modificationDate = [aDecoder decodeObjectForKey:@"modificationDate"];
@@ -80,7 +80,7 @@
     [aCoder encodeObject:self.name forKey:@"name"];
     [aCoder encodeObject:self.startDate forKey:@"startDate"];
     [aCoder encodeObject:self.endDate forKey:@"endDate"];
-    [aCoder encodeObject:self.logoImageName forKey:@"logoImageName"];
+    [aCoder encodeObject:self.logoID forKey:@"logoID"];
     [aCoder encodeObject:self.descriptionText forKey:@"descriptionText"];
     [aCoder encodeObject:self.creationDate forKey:@"creationDate"];
     [aCoder encodeObject:self.modificationDate forKey:@"modificationDate"];

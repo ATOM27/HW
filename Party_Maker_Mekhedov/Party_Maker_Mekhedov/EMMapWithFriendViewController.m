@@ -20,6 +20,7 @@
 @interface EMMapWithFriendViewController ()
 
 @property(strong, nonatomic) PMRParty* partyFromAnnotation;
+@property(strong, nonatomic) NSDictionary* parties;
 
 @end
 
@@ -29,6 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.checkedFriends = [[NSArray alloc] init];
+    self.parties = [NSDictionary new];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -36,26 +38,31 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
+    [[EMHTTPManager sharedManager] getPartiesWithCompletion:^(NSDictionary *response, NSError *error) {
+        self.parties = [response objectForKey:@"response"];
+    }];
 }
 
 -(void)makeAnnotations{
     [self.mapView removeAnnotations:[self.mapView annotations]];
     for(NSDictionary* currentFriend in self.checkedFriends){
-            [[EMHTTPManager sharedManager] partyWithCreatorID:[currentFriend objectForKey:@"id"]
-                                                   completion:^(NSDictionary *response, NSError *error) {
-                                                           NSArray* parties = [response objectForKey:@"response"];
-                                                           for (NSDictionary* partyDict in parties){
-                                                               PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
-                                                               
-                                                               if([party.latitude isEqualToString:@""] || [party.longtitude isEqualToString:@""]){
-                                                                   continue;
-                                                               }
-                                                               
-                                                               CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
-                                                               [self makeAnotationWithLocation:location andParty:party];
-                                                           }
-                                                   }];
+        for(NSDictionary* partyDict in self.parties){
+            if([[partyDict objectForKey:@"creator_id"] integerValue] == [[currentFriend objectForKey:@"id"] integerValue]){
+            PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
+            CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
+            [self makeAnotationWithLocation:location andParty:party];
+            }
+        }
+//            [[EMHTTPManager sharedManager] partyWithCreatorID:[currentFriend objectForKey:@"id"]
+//                                                   completion:^(NSDictionary *response, NSError *error) {
+//                                                           NSArray* parties = [response objectForKey:@"response"];
+//                                                           for (NSDictionary* partyDict in parties){
+//                                                               PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
+//                                                               
+//                                                               CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
+//                                                               [self makeAnotationWithLocation:location andParty:party];
+//                                                           }
+//                                                   }];
     }
                        
 }

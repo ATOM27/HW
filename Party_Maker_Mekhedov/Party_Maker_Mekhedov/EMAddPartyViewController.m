@@ -15,6 +15,8 @@
 #import <CoreLocation/CoreLocation.h>
 #import "EMMapViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
+#import "PMRParty+initWithDictionary.h"
+#import "ImagesManager.h"
 
 
 @interface EMAddPartyViewController ()
@@ -90,7 +92,7 @@ NS_ENUM(NSInteger, EMSliderType){
     [super viewDidAppear:animated];
     [self createImagesInScrollView:self.scrollView];
     if(self.currentParty){
-        self.pageControll.currentPage = [self.arrayWithImageNames indexOfObject:self.currentParty.logoImageName];
+        self.pageControll.currentPage = self.currentParty.logoID.integerValue;
         CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
         [self.scrollView setContentOffset:contentOffset
                                  animated:YES];
@@ -359,20 +361,19 @@ NS_ENUM(NSInteger, EMSliderType){
 
 -(void) createImagesInScrollView:(UIScrollView*) scrollView{
     
-    UIImageView* imageView1 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"No Alcohol-100.png"]];
-    UIImageView* imageView2 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Coconut Cocktail-100.png"]];
-    UIImageView* imageView3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Christmas Tree-100.png"]];
-    UIImageView* imageView4 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Champagne-100.png"]];
-    UIImageView* imageView5 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Birthday Cake-100.png"]];
-    UIImageView* imageView6 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Beer-100.png"]];
+
+    NSMutableArray* arrayWithImageView = [NSMutableArray new];
     
-    NSArray* arrayWithImageView = @[imageView1, imageView2, imageView3, imageView4, imageView5, imageView6];
-    self.arrayWithImageNames = @[@"No Alcohol-100.png", @"Coconut Cocktail-100.png", @"Christmas Tree-100.png", @"Champagne-100.png", @"Birthday Cake-100.png", @"Beer-100.png"];
+    for(NSString* imageName in [ImagesManager sharedManager].arrayWithImages){
+        UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
+        [arrayWithImageView addObject:imageView];
+    }
+
     self.scrollView.contentMode = UIViewContentModeCenter;
     int counter = 1;
     for (UIImageView* currentImageView in arrayWithImageView){
         
-        currentImageView.transform = CGAffineTransformScale(imageView1.transform, 0.7, 0.7);
+        currentImageView.transform = CGAffineTransformMakeScale(0.7, 0.7);
         currentImageView.center = CGPointMake(scrollView.center.x * counter, scrollView.center.y - 10);
         [scrollView addSubview:currentImageView];
             counter+=2;
@@ -503,71 +504,73 @@ NS_ENUM(NSInteger, EMSliderType){
     //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
     
     
-    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
-                                                   name:self.paratyNameTextField.text
-                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
-                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
-                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-                                        descriptionText:self.textView.text
-                                           creationDate:[NSDate date]
-                                       modificationDate:[NSDate date]
-                                              creatorID:self.creatorID
-                                               latitude:self.latitude
-                                             longtitude:self.longitude];
-
-    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
-                                             name:party.name
-                                        startTime:[NSString stringWithFormat:@"%f",[party.startDate timeIntervalSince1970]]
-                                          endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
-                                           logoID:party.logoImageName
-                                          comment:party.description
-                                        creatorID:self.creatorID
-                                         latitude:self.latitude
-                                        longitude:self.longitude
-                                       completion:^(NSDictionary *response, NSError *error) {
-                                           if(error){
-                                               NSLog(@"%@", [error localizedDescription]);
-                                           }
-                                           if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
-                                               //Need for partyID
-                                               [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID completion:^(NSDictionary *response, NSError *error) {
-                                                   NSArray* parties = [response objectForKey:@"response"];
-                                                   //Get partyID
-                                                   NSString* partyID = [[parties lastObject] objectForKey:@"id"];
-                                                   [party setValue:partyID forKey:@"partyID"];
-                                                   //Save party to core data
-                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-                                                       if(success){
-                                                           [self makeNotificationToPaty:party];
-                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-                                                       }
-                                                   }];
- 
-                                               }];
-                                           }
-                                       }];
+//    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
+//                                                   name:self.paratyNameTextField.text
+//                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
+//                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
+//                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+//                                        descriptionText:self.textView.text
+//                                           creationDate:[NSDate date]
+//                                       modificationDate:[NSDate date]
+//                                              creatorID:self.creatorID
+//                                               latitude:self.latitude
+//                                             longtitude:self.longitude];
     
-    //    [[EMParty alloc] initWithDate:date
-    //                                              name:self.paratyNameTextField.text
-    //                                    startPartyTime:self.startSlider.value
-    //                                      endPartyTime:self.endSlider.value
-    //                                          logoPage:self.pageControll.currentPage
-    //                                         logoImage:imageView.image
-    //                                   descriptionText:self.textView.text];
+    NSString* startTime = [NSString stringWithFormat:@"%f", [[self getDateWithSliderValue:self.startSlider.value] timeIntervalSince1970]];
+    NSString* endTime = [NSString stringWithFormat:@"%f",  [[self getDateWithSliderValue:self.endSlider.value] timeIntervalSince1970]];
     
-    //    NSMutableArray* arrayWithParties = [[NSMutableArray alloc] init];
-    //
-    //    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    //    if(dataParties){
-    //        arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-    //    }
-    //
-    //    [arrayWithParties addObject:party];
-    //
-    //    dataParties = nil;
-    //    dataParties = [NSKeyedArchiver archivedDataWithRootObject:arrayWithParties];
-    //    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-    //    [[NSUserDefaults standardUserDefaults] synchronize];
+    [[EMHTTPManager sharedManager] addPartyWithName:self.paratyNameTextField.text
+                                          startTime:startTime
+                                            endTime:endTime
+                                             logoID:[NSString stringWithFormat:@"%ld", (long)self.pageControll.currentPage]
+                                            comment:self.textView.text
+                                           latitude:self.latitude
+                                          longitude:self.longitude
+                                         completion:^(NSDictionary *response, NSError *error) {
+                                             if(error){
+                                                 NSLog(@"%@",[error localizedDescription]);
+                                             }
+                                             if(![response valueForKey:@"error"]){
+                                                 PMRParty* party = [[PMRParty alloc] initWithDictionary:response];
+                                                 [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                     if(success){
+                                                        [self makeNotificationToPaty:party];
+                                                        [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                    }
+                                                 }];
+                                             }
+                                         }];
+//    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+//                                             name:party.name
+//                                        startTime:[NSString stringWithFormat:@"%f",[party.startDate timeIntervalSince1970]]
+//                                          endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
+//                                           logoID:party.logoImageName
+//                                          comment:party.description
+//                                        creatorID:self.creatorID
+//                                         latitude:self.latitude
+//                                        longitude:self.longitude
+//                                       completion:^(NSDictionary *response, NSError *error) {
+//                                           if(error){
+//                                               NSLog(@"%@", [error localizedDescription]);
+//                                           }
+//                                           if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
+//                                               //Need for partyID
+//                                               [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID completion:^(NSDictionary *response, NSError *error) {
+//                                                   NSArray* parties = [response objectForKey:@"response"];
+//                                                   //Get partyID
+//                                                   NSString* partyID = [[parties lastObject] objectForKey:@"id"];
+//                                                   [party setValue:partyID forKey:@"partyID"];
+//                                                   //Save party to core data
+//                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+//                                                       if(success){
+//                                                           [self makeNotificationToPaty:party];
+//                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+//                                                       }
+//                                                   }];
+// 
+//                                               }];
+//                                           }
+  //                                     }];
     
 }
 
@@ -588,45 +591,75 @@ NS_ENUM(NSInteger, EMSliderType){
     [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-        
-        PMRParty* party = [[PMRParty alloc] initWithPartyID:partyID
-                                                       name:self.paratyNameTextField.text
-                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
-                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
-                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-                                            descriptionText:self.textView.text
-                                               creationDate:self.currentParty.creationDate
-                                           modificationDate:nil
-                                                  creatorID:self.creatorID
-                                                   latitude:latitude
-                                                 longtitude:longtitude];
-        
+
+        NSString* startTime = [NSString stringWithFormat:@"%f", [[self getDateWithSliderValue:self.startSlider.value] timeIntervalSince1970]];
+        NSString* endTime = [NSString stringWithFormat:@"%f",  [[self getDateWithSliderValue:self.endSlider.value] timeIntervalSince1970]];
 
         
-        [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
-                                                 name:party.name
-                                            startTime:[NSString stringWithFormat:@"%f", [party.startDate timeIntervalSince1970]]
-                                              endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
-                                               logoID:party.logoImageName
-                                              comment:party.descriptionText
-                                            creatorID:party.creatorID
-                                             latitude:party.latitude
-                                            longitude:party.longtitude
-                                           completion:^(NSDictionary *response, NSError *error) {
-                                               if(error){
-                                                   NSLog(@"%@", [error localizedDescription]);
-                                               }
-                                               if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
-                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-                                                       if(success){
-                                                           self.currentParty = party;// for partyCreatedController label text
-                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-                                                       }
-                                                   }];
-                                                   
-                                               }
-                                           }];
+        [[EMHTTPManager sharedManager] editPartyWithID:partyID
+                                                  name:self.paratyNameTextField.text
+                                             startTime:startTime
+                                               endTime:endTime
+                                                logoID:[NSString stringWithFormat:@"%ld", (long)self.pageControll.currentPage]
+                                               comment:self.textView.text
+                                              latitude:self.latitude
+                                             longitude:self.longitude
+                                            completion:^(NSDictionary *response, NSError *error) {
+                                                if(error){
+                                                    NSLog(@"%@",[error localizedDescription]);
+                                                }
+                                                if(![response valueForKey:@"error"]){
+                                                    PMRParty* party = [[PMRParty alloc] initWithDictionary:response];
+                                                    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                        if(success){
+                                                            self.currentParty = party;// for partyCreatedController label text
+                                                            [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                        }
+                                                    }];
+                                                }
+                                            }];
+        
+//        PMRParty* party = [[PMRParty alloc] initWithPartyID:partyID
+//                                                       name:self.paratyNameTextField.text
+//                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
+//                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
+//                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
+//                                            descriptionText:self.textView.text
+//                                               creationDate:self.currentParty.creationDate
+//                                           modificationDate:nil
+//                                                  creatorID:self.creatorID
+//                                                   latitude:latitude
+//                                                 longtitude:longtitude];
+//        
+//
+//        
+//        [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
+//                                                 name:party.name
+//                                            startTime:[NSString stringWithFormat:@"%f", [party.startDate timeIntervalSince1970]]
+//                                              endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
+//                                               logoID:party.logoID
+//                                              comment:party.descriptionText
+//                                            creatorID:party.creatorID
+//                                             latitude:party.latitude
+//                                            longitude:party.longtitude
+//                                           completion:^(NSDictionary *response, NSError *error) {
+//                                               if(error){
+//                                                   NSLog(@"%@", [error localizedDescription]);
+//                                               }
+//                                               if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
+//                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+//                                                       if(success){
+//                                                           self.currentParty = party;// for partyCreatedController label text
+//                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+//                                                       }
+//                                                   }];
+//                                                   
+//                                               }
+//                                           }];
     }];
+    
+    
+    
     //NSArray* parties = [[NSArray alloc] init];
     //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
     //parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];

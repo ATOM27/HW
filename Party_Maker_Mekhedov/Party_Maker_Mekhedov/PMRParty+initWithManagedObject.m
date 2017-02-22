@@ -16,7 +16,7 @@
                             name:managedObject.name
                        startDate:managedObject.startDate
                          endDate:managedObject.endDate
-                   logoImageName:managedObject.logoImageName
+                          logoID:managedObject.logoID
                  descriptionText:managedObject.descriptionText
                     creationDate:managedObject.creationDate
                 modificationDate:managedObject.modificationDate
