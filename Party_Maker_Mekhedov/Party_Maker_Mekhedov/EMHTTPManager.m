@@ -25,7 +25,7 @@ NSString* APIURLLink;
     dispatch_once(&onceToken, ^{
         manager = [[EMHTTPManager alloc] init];
         if (manager) {
-            APIURLLink = @"http://itworks.in.ua/party";
+            APIURLLink = @"https://partymaker-softheme.herokuapp.com";//@"http://itworks.in.ua/party";
             manager.session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
         }
     });
@@ -34,12 +34,14 @@ NSString* APIURLLink;
 
 #pragma mark - API
 
--(void)loginWithName:(NSString*)name password:(NSString*)password completion:(void(^)(NSDictionary* response, NSError* error))completion{
+-(void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(void(^)(NSDictionary* response, NSError* error))completion{
     
-    NSDictionary* params = @{@"name":name,
+    NSDictionary* params = @{@"email":email,
                              @"password":password};
     
-    NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:nil method:@"login" params:params];
+    NSDictionary* headers = @{@"Content-Type": @"application/json"};
+    
+    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:headers method:@"user/login" params:params];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -56,7 +58,9 @@ NSString* APIURLLink;
                              @"password": password,
                              @"name": name};
     
-    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:nil method:@"register" params:params];
+    NSDictionary* headers = @{@"Content-Type": @"application/json"};
+    
+    NSMutableURLRequest* request = [self getRequestWithType:@"POST" headers:nil method:@"user/signup" params:params];
     [[self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if(error){
             NSLog(@"%@", [error localizedDescription]);
@@ -156,18 +160,23 @@ NSString* APIURLLink;
 }
 
 
-- (NSMutableURLRequest *) getRequestWithType:(NSString *) _type headers:(NSArray *) headers method:(NSString *) _method params:(NSDictionary *) _params {
+- (NSMutableURLRequest *) getRequestWithType:(NSString *) _type headers:(NSDictionary *) _headers method:(NSString *) _method params:(NSDictionary *) _params {
     NSURL *url = [NSURL URLWithString:[self GetBaseEncodedUrlWithPath:_method]];
     NSMutableURLRequest *req = [[NSMutableURLRequest alloc] initWithURL:url];
     [req setHTTPMethod:_type];
+    for (NSString *key in [_headers allKeys]) {
+        [req addValue:[_headers valueForKey:key] forHTTPHeaderField:key];
+    }
+    
     if (_params && [_type isEqualToString:@"POST"]) {
-        NSMutableString *str = [NSMutableString string];
-        for (NSString *key in [_params allKeys]) {
-            [str appendString:[NSString stringWithFormat:@"%@=%@&", key, [_params valueForKey:key]]];
-        }
-        NSData *reqData = [str dataUsingEncoding:NSUTF8StringEncoding];
-        NSError *error;
-        [req setHTTPBody:(error)?nil:reqData];
+//        for (NSString *key in [_params allKeys]) {
+//            [str appendString:[NSString stringWithFormat:@"%@=%@&", key, [_params valueForKey:key]]];
+//        }
+//        NSData *reqData = [str dataUsingEncoding:NSUTF8StringEncoding];
+        
+//        NSError *error;
+//        [req setHTTPBody:(error)?nil:reqData];
+        req.HTTPBody = [NSJSONSerialization dataWithJSONObject:_params options:0 error:nil];
     } else if (_params) {
         NSMutableString *str = [NSMutableString stringWithFormat:@"%@?", _method];
         for (NSString *key in [_params allKeys]) {

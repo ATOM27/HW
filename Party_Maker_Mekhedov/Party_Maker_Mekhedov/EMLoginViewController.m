@@ -35,15 +35,15 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
     
     
     UIView* paddingLogginView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
-    self.nameTextField.leftView = paddingLogginView;
-    self.nameTextField.leftViewMode = UITextFieldViewModeAlways;
+    self.emailTextField.leftView = paddingLogginView;
+    self.emailTextField.leftViewMode = UITextFieldViewModeAlways;
     
     UIView* paddingPasswordView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 0)];
 
     self.passwordTextField.leftView = paddingPasswordView;
     self.passwordTextField.leftViewMode = UITextFieldViewModeAlways;
     
-    self.nameTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Name"
+    self.emailTextField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Email"
                                                                                      attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:76.f/255.f green:82.f/255.f blue:92.f/255.f alpha:1.f],
                                                                                                   }
                                                       ];
@@ -75,17 +75,17 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
 
 - (IBAction)actionSignInTouched:(UIButton *)sender {
     sender.userInteractionEnabled = NO;
-    [[EMHTTPManager sharedManager] loginWithName:self.nameTextField.text
+    [[EMHTTPManager sharedManager] loginWithEmail:self.emailTextField.text
                                         password:self.passwordTextField.text
                                       completion:^(NSDictionary *response, NSError *error) {
                                           if(error){
                                               NSLog(@"%@", [error localizedDescription]);
                                           }else{
-                                              if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
+                                              if(![response valueForKey:@"error"]){
                                                   dispatch_async(dispatch_get_main_queue(), ^{
                                                       
                                                       [[NSUserDefaults standardUserDefaults] setObject:[response valueForKey:@"id"] forKey:@"creatorID"];
-                                                      
+                                                      [[NSUserDefaults standardUserDefaults] setObject:[response valueForKey:@"accessToken"] forKey:@"accessToken"];
                                                       [self performSegueWithIdentifier:tabBarIdentifier sender:self];
                                                   });
                                               }else{
@@ -94,8 +94,8 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
                                                   });
                                               }
                                           }
+                                          sender.userInteractionEnabled = YES;
                                       }];
-    sender.userInteractionEnabled = YES;
 }
 
 #pragma mark - Segue

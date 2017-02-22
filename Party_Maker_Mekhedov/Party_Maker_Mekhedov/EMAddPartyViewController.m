@@ -340,17 +340,17 @@ NS_ENUM(NSInteger, EMSliderType){
     
     NSString* resultString = nil;
     
-    if(hours >= 10){
-        resultString = [NSString stringWithFormat:@"%ld:", (long)hours];
-    }else{
-        resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
-    }
+   // if(hours >= 10){
+        resultString = [NSString stringWithFormat:@"%02ld:", (long)hours];
+   // }else{
+   //     resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
+   // }
     
-    if (minutse >= 10){
-        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%ld", (long)minutse]];
-    }else{
-        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
-    }
+   // if (minutse >= 10){
+        resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%02ld", (long)minutse]];
+    //}else{
+    //    resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
+   // }
     
     return resultString;
 }

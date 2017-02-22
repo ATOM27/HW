@@ -105,7 +105,7 @@ NS_ENUM(NSInteger, EMTextFieldType){
                                               if(error){
                                                           NSLog(@"%@",[error localizedDescription]);
                                                        }else{
-                                                          if(![[response valueForKey:@"status"] isEqualToString:@"Failed"]){
+                                                          if(![response valueForKey:@"error"]){
                                                               dispatch_async(dispatch_get_main_queue(), ^{
                                                                   [self dismissViewControllerAnimated:YES completion:nil];
                                                               });

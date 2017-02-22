@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
-            timestampString = "508777852.670554"
+            timestampString = "509463501.951749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
             landmarkName = "-partyWithCreatorID:completion:"
             landmarkType = "7">
             <Locations>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
-            timestampString = "508777886.446676"
+            timestampString = "509463501.951749"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
             landmarkName = "-partyWithCreatorID:completion:"
             landmarkType = "7">
          </BreakpointContent>
@@ -123,6 +123,38 @@
             endingLineNumber = "527"
             landmarkName = "-actionSaveParty:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[EMAddPartyViewController actionSaveParty:]"
+                  moduleName = "Party_Maker_Mekhedov"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMAddPartyViewController.m"
+                  timestampString = "509463502.003624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "527"
+                  endingLineNumber = "527"
+                  offsetFromSymbolStart = "1797">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__44-[EMAddPartyViewController actionSaveParty:]_block_invoke"
+                  moduleName = "Party_Maker_Mekhedov"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMAddPartyViewController.m"
+                  timestampString = "509463502.005554"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "528"
+                  endingLineNumber = "528"
+                  offsetFromSymbolStart = "78">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -138,6 +170,70 @@
             startingLineNumber = "591"
             endingLineNumber = "591"
             landmarkName = "-saveChangesToCurrentParty"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Party_Maker_Mekhedov/EMLoginViewController.m"
+            timestampString = "509460573.325376"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-actionSignInTouched:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Party_Maker_Mekhedov/EMRegisterViewController.m"
+            timestampString = "509462621.218759"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "-actionRegisterTouched:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
+            timestampString = "509463501.951749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-getRequestWithType:headers:method:params:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
+            timestampString = "509463501.951749"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "-registerWithEmail:password:name:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

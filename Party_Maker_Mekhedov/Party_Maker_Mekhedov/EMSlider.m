@@ -51,7 +51,7 @@
     NSString* resultString = nil;
     
     if(hours >= 10){
-        resultString = [NSString stringWithFormat:@"%ld:", (long)hours];
+        resultString = [NSString stringWithFormat:@"%02ld:", (long)hours];
     }else{
         resultString = [NSString stringWithFormat:@"%02ld:", (long)hours];
     }

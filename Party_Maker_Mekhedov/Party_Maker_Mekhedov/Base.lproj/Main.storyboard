@@ -36,7 +36,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Eugene" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="a+2@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
                                         <rect key="frame" x="8" y="101" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -44,7 +44,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" returnKeyType="continue"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="continue"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5.f"/>
                                         </userDefinedRuntimeAttributes>
@@ -52,7 +52,7 @@
                                             <outlet property="delegate" destination="Pwu-7z-Pnu" id="bHH-CC-f2Q"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
                                         <rect key="frame" x="8" y="163" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -140,8 +140,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailTextField" destination="jn1-9Q-XvW" id="V0g-ZM-coC"/>
                         <outlet property="loginView" destination="Ace-cL-9gF" id="ZDa-je-BVV"/>
-                        <outlet property="nameTextField" destination="jn1-9Q-XvW" id="rEI-g3-ein"/>
                         <outlet property="passwordTextField" destination="iZV-1Y-T3a" id="fEG-d3-9qn"/>
                         <segue destination="iRD-OR-Rjz" kind="presentation" identifier="TabBarIdentifier" id="zdF-8u-JZm"/>
                     </connections>
@@ -859,7 +859,7 @@
                                 <rect key="frame" x="16" y="339" width="343" height="64"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jcf-nf-x5C">
-                                        <rect key="frame" x="0.0" y="-2" width="114.5" height="4"/>
+                                        <rect key="frame" x="0.0" y="-2" width="115" height="4"/>
                                         <color key="backgroundColor" red="0.13309195637702942" green="0.51897799968719482" blue="0.68564885854721069" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DATE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="XOZ-IY-9ml">
@@ -869,13 +869,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="21.08.2015" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vTm-2L-sbx">
-                                        <rect key="frame" x="0.0" y="29" width="114.5" height="18"/>
+                                        <rect key="frame" x="0.0" y="29" width="115" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYB-To-FNb">
-                                        <rect key="frame" x="114.5" y="-2" width="114" height="4"/>
+                                        <rect key="frame" x="115" y="-2" width="114" height="4"/>
                                         <color key="backgroundColor" red="0.43476781249046326" green="0.61336439847946167" blue="0.0070460052229464054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="START" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ck1-Dg-L8V">
@@ -885,7 +885,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ny3-FK-y1C">
-                                        <rect key="frame" x="228.5" y="-2" width="114.5" height="4"/>
+                                        <rect key="frame" x="229" y="-2" width="114" height="4"/>
                                         <color key="backgroundColor" red="0.72137373685836792" green="0.23250961303710938" blue="0.042301192879676819" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="END" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="V0F-uV-wRF">
@@ -895,13 +895,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxR-Jd-IBY">
-                                        <rect key="frame" x="228.5" y="29" width="114.5" height="18"/>
+                                        <rect key="frame" x="229" y="29" width="114" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="19:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oJo-Bz-dhv">
-                                        <rect key="frame" x="114.5" y="29" width="114" height="18"/>
+                                        <rect key="frame" x="115" y="29" width="114" height="18"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
