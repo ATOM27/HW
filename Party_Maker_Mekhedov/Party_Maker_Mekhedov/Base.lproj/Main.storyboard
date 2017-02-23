@@ -1402,7 +1402,7 @@ Softheme iOS Internship
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dhg-Qb-mUS">
-                                <rect key="frame" x="22" y="152.5" width="331" height="362"/>
+                                <rect key="frame" x="22" y="126.5" width="331" height="414"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REGISTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" translatesAutoresizingMaskIntoConstraints="NO" id="3r2-Uw-5Dd">
                                         <rect key="frame" x="88.5" y="38" width="154" height="47"/>
@@ -1476,25 +1476,46 @@ Softheme iOS Internship
                                             <action selector="actionRegisterTouched:" destination="ngb-6k-82X" eventType="touchUpInside" id="EwE-ag-bpR"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jqv-6Y-5X4">
+                                        <rect key="frame" x="59" y="348" width="213" height="46"/>
+                                        <color key="backgroundColor" red="0.93527823686599731" green="0.30607238411903381" blue="0.063977353274822235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="46" id="z7a-6J-dZQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <state key="normal" title="BACK">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="5.f"/>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1.f"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="actionBack:" destination="ngb-6k-82X" eventType="touchUpInside" id="3t0-lP-vh0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="lyZ-jf-2bK" firstAttribute="top" secondItem="0D0-TF-ESy" secondAttribute="bottom" constant="23" id="0Fh-e9-EuN"/>
+                                    <constraint firstAttribute="trailing" secondItem="jqv-6Y-5X4" secondAttribute="trailing" constant="59" id="F3g-2O-Lms"/>
                                     <constraint firstItem="DLn-YX-bf1" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="8" id="MJP-yr-vCS"/>
                                     <constraint firstAttribute="trailing" secondItem="0D0-TF-ESy" secondAttribute="trailing" constant="8" id="MU0-u7-PBO"/>
                                     <constraint firstItem="RVo-yt-lw2" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="8" id="N0V-6g-3FA"/>
+                                    <constraint firstAttribute="bottom" secondItem="jqv-6Y-5X4" secondAttribute="bottom" constant="20" id="N9J-oD-B1W"/>
                                     <constraint firstItem="0D0-TF-ESy" firstAttribute="top" secondItem="RVo-yt-lw2" secondAttribute="bottom" constant="22" id="OD9-zI-VvJ"/>
                                     <constraint firstAttribute="trailing" secondItem="RVo-yt-lw2" secondAttribute="trailing" constant="8" id="ONa-ZL-PBr"/>
                                     <constraint firstAttribute="trailing" secondItem="DLn-YX-bf1" secondAttribute="trailing" constant="8" id="Qga-L3-6Uf"/>
                                     <constraint firstItem="DLn-YX-bf1" firstAttribute="top" secondItem="3r2-Uw-5Dd" secondAttribute="bottom" constant="16" id="QyC-nP-2KX"/>
                                     <constraint firstItem="lyZ-jf-2bK" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="59" id="RN0-kL-uCk"/>
                                     <constraint firstItem="RVo-yt-lw2" firstAttribute="top" secondItem="DLn-YX-bf1" secondAttribute="bottom" constant="22" id="Y8O-we-8yK"/>
-                                    <constraint firstAttribute="bottom" secondItem="lyZ-jf-2bK" secondAttribute="bottom" constant="28" id="gWp-6w-Uzw"/>
                                     <constraint firstItem="3r2-Uw-5Dd" firstAttribute="top" secondItem="Dhg-Qb-mUS" secondAttribute="top" constant="38" id="iYK-53-2oA"/>
                                     <constraint firstItem="0D0-TF-ESy" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="8" id="ljY-Fe-7Cy"/>
                                     <constraint firstAttribute="trailing" secondItem="3r2-Uw-5Dd" secondAttribute="trailing" constant="88.329999999999998" id="myk-Rj-Hqv"/>
+                                    <constraint firstItem="jqv-6Y-5X4" firstAttribute="top" secondItem="lyZ-jf-2bK" secondAttribute="bottom" constant="14" id="p0c-aK-XNK"/>
                                     <constraint firstItem="3r2-Uw-5Dd" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="88.670000000000002" id="t81-gf-mI7"/>
                                     <constraint firstAttribute="trailing" secondItem="lyZ-jf-2bK" secondAttribute="trailing" constant="59" id="tXs-v6-kp5"/>
+                                    <constraint firstItem="jqv-6Y-5X4" firstAttribute="leading" secondItem="Dhg-Qb-mUS" secondAttribute="leading" constant="59" id="wrD-fA-XPv"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="layer.borderWidth" value="1.f"/>
@@ -1525,7 +1546,7 @@ Softheme iOS Internship
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lhg-kj-K6e" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26" y="-489"/>
+            <point key="canvasLocation" x="-26.399999999999999" y="-489.80509745127438"/>
         </scene>
     </scenes>
     <resources>

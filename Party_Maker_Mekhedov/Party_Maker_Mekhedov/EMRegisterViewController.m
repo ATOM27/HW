@@ -90,7 +90,9 @@ NS_ENUM(NSInteger, EMTextFieldType){
 #pragma mark - Actions
 
 - (IBAction)actionRegisterTouched:(UIButton *)sender {
-    if(self.passwordTextField.text.length < 6){
+    if(([self.nameTextField.text isEqualToString:@""]) || ([self.emailTextField.text isEqualToString:@""])){
+        [self alertWithTitle:@"All fields are required!" message:@""];
+    }else if(self.passwordTextField.text.length < 6){
         [self alertWithTitle:@"Try another password!" message:@"Your password must be at least 6 characters."];
     }else{
         [[EMHTTPManager sharedManager] registerWithEmail:self.emailTextField.text
@@ -113,5 +115,10 @@ NS_ENUM(NSInteger, EMTextFieldType){
                                               }];
     }
 }
+
+- (IBAction)actionBack:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 @end
