@@ -47,6 +47,7 @@
 		D6CF248D1E3B83D200463849 /* EMButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248C1E3B83D200463849 /* EMButton.m */; };
 		D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */; };
 		D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D6CF24921E3BE86200463849 /* EMSelectedObject.m */; };
+		D6DC3C791E5F6F6900621B7C /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = D6DC3C781E5F6F6900621B7C /* TableViewDataSource.m */; };
 		D6EC04121E42517A006C641D /* EMAddPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04111E42517A006C641D /* EMAddPartyViewController.m */; };
 		D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EC04141E428494006C641D /* EMPartyCreatedViewController.m */; };
 		D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F68E2C1E3FC1180067CCAD /* EMXibPartyViewController.m */; };
@@ -55,7 +56,6 @@
 		EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3440141E55CB8A00950CA1 /* EMMapViewController.m */; };
 		EC3440191E55CC2C00950CA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3440181E55CC2C00950CA1 /* MapKit.framework */; };
 		EC3A59A51E5F06BB00451338 /* NSObject+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59A41E5F06BB00451338 /* NSObject+ActivityIndicator.m */; };
-		EC3A59A81E5F224100451338 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59A71E5F224100451338 /* TableViewDataSource.m */; };
 		EC3A59AB1E5F22F400451338 /* EMPartyTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59AA1E5F22F400451338 /* EMPartyTableViewDataSource.m */; };
 		EC45C43D1E5B050D005D9B1E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = EC45C43C1E5B050D005D9B1E /* map.png */; };
 		EC45C4401E5B0758005D9B1E /* EMMapWithFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC45C43F1E5B0758005D9B1E /* EMMapWithFriendViewController.m */; };
@@ -138,6 +138,8 @@
 		D6CF248F1E3BE4C000463849 /* UIView+CircleProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CircleProperty.m"; sourceTree = "<group>"; };
 		D6CF24911E3BE86200463849 /* EMSelectedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMSelectedObject.h; sourceTree = "<group>"; };
 		D6CF24921E3BE86200463849 /* EMSelectedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMSelectedObject.m; sourceTree = "<group>"; };
+		D6DC3C771E5F6F6900621B7C /* TableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
+		D6DC3C781E5F6F6900621B7C /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
 		D6EC04101E42517A006C641D /* EMAddPartyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMAddPartyViewController.h; sourceTree = "<group>"; };
 		D6EC04111E42517A006C641D /* EMAddPartyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMAddPartyViewController.m; sourceTree = "<group>"; };
 		D6EC04131E428494006C641D /* EMPartyCreatedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyCreatedViewController.h; sourceTree = "<group>"; };
@@ -152,8 +154,6 @@
 		EC3440181E55CC2C00950CA1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EC3A59A31E5F06BB00451338 /* NSObject+ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ActivityIndicator.h"; sourceTree = "<group>"; };
 		EC3A59A41E5F06BB00451338 /* NSObject+ActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ActivityIndicator.m"; sourceTree = "<group>"; };
-		EC3A59A61E5F224100451338 /* TableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
-		EC3A59A71E5F224100451338 /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
 		EC3A59A91E5F22F400451338 /* EMPartyTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyTableViewDataSource.h; sourceTree = "<group>"; };
 		EC3A59AA1E5F22F400451338 /* EMPartyTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyTableViewDataSource.m; sourceTree = "<group>"; };
 		EC45C43C1E5B050D005D9B1E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
@@ -376,8 +376,8 @@
 				D6C946481E4F6E4C00FF1606 /* PMRParty */,
 				D6C946351E4CF7EF00FF1606 /* PMRPersistanceStore.h */,
 				D6C946361E4CF7EF00FF1606 /* PMRPersistanceStore.m */,
-				EC3A59A61E5F224100451338 /* TableViewDataSource.h */,
-				EC3A59A71E5F224100451338 /* TableViewDataSource.m */,
+				D6DC3C771E5F6F6900621B7C /* TableViewDataSource.h */,
+				D6DC3C781E5F6F6900621B7C /* TableViewDataSource.m */,
 			);
 			name = "Core data";
 			sourceTree = "<group>";
@@ -650,6 +650,7 @@
 				D6811E781E4F835C00ED2FFB /* PMRPartyManagedObject+CoreDataProperties.m in Sources */,
 				D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */,
 				D64E4B4D1E39312F00E4E9D4 /* AppDelegate.m in Sources */,
+				D6DC3C791E5F6F6900621B7C /* TableViewDataSource.m in Sources */,
 				D6CF24931E3BE86200463849 /* EMSelectedObject.m in Sources */,
 				D6CF248A1E3B636900463849 /* EMTextView.m in Sources */,
 				D6F68E2E1E3FC1180067CCAD /* EMXibPartyViewController.m in Sources */,
@@ -659,7 +660,6 @@
 				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
 				D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */,
 				D6C946391E4CF7EF00FF1606 /* PMRParty.m in Sources */,
-				EC3A59A81E5F224100451338 /* TableViewDataSource.m in Sources */,
 				D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */,
 				D6C9463B1E4CF7EF00FF1606 /* PMRParty+initWithManagedObject.m in Sources */,
 				D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */,

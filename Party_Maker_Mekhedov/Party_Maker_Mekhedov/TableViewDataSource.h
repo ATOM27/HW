@@ -7,19 +7,19 @@
 @import UIKit;
 @import CoreData;
 
+@class Thing;
+
+typedef void (^TableViewCellConfigureBlock)(UITableViewCell *cell, NSManagedObject *item);
+
 @interface TableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
 @property (nonatomic, getter=isPaused) BOOL paused;
-@property (nonatomic, strong) NSFetchedResultsController *frc;
-@property (nonatomic, weak) UITableView *tableView;
-
 
 - (instancetype)initWithTableView:(UITableView*)tableView
-                          context:(NSManagedObjectContext*)context;
+                          context:(NSManagedObjectContext*)context
+                  reuseIdentifier:(NSString*)reuseIdentifier
+           cellConfigurationBlock:(TableViewCellConfigureBlock)cellConfigurationBlock;
 
 - (NSManagedObject*)objectAtIndex:(NSIndexPath*)indexPath;
-- (NSFetchRequest*)fetchRequest;
-
-- (void)configureCell:(id)cell  withObject:(NSManagedObject*)object;
 
 @end

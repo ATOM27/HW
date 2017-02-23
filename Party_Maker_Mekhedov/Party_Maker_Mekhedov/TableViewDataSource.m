@@ -7,19 +7,29 @@
 
 @interface TableViewDataSource ()
 
+@property (nonatomic, weak) UITableView *tableView;
+
 @property (nonatomic, weak) NSManagedObjectContext *context;
+@property (nonatomic, strong) NSFetchedResultsController *frc;
+
+@property (nonatomic, strong) NSString *reuseIdentifier;
+@property (nonatomic, strong) TableViewCellConfigureBlock cellConfigurationBlock;
 
 @end
 
 @implementation TableViewDataSource
 
 - (instancetype)initWithTableView:(UITableView*)tableView 
-                          context:(NSManagedObjectContext*)context{
+                          context:(NSManagedObjectContext*)context
+                  reuseIdentifier:(NSString*)reuseIdentifier
+           cellConfigurationBlock:(TableViewCellConfigureBlock)cellConfigurationBlock {
     
     self = [super init];
     if (self) {
         self.tableView = tableView;
         self.context = context;
+        self.cellConfigurationBlock = cellConfigurationBlock;
+        self.reuseIdentifier = reuseIdentifier;
         
         self.tableView.dataSource = self;
     }
@@ -81,10 +91,10 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:self.reuseIdentifier];
     NSManagedObject *object = [self.frc objectAtIndexPath:indexPath];
     
-    [self configureCell:cell withObject:object];
+    self.cellConfigurationBlock(cell, object);
     
     return cell;
 }
@@ -103,11 +113,11 @@
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath {
     switch (type) {
         case NSFetchedResultsChangeInsert: {
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
         case NSFetchedResultsChangeDelete: {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
         case NSFetchedResultsChangeUpdate: {
@@ -115,13 +125,13 @@
             if([[self.tableView indexPathsForVisibleRows] containsObject:indexPath]){
                 NSManagedObject *object = [self.frc objectAtIndexPath:indexPath];
                 UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-                [self configureCell:cell withObject:object];
+                self.cellConfigurationBlock(cell, object);
             }
             break;
         }
         case NSFetchedResultsChangeMove: {
-            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [self.tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
             break;
         }
     }

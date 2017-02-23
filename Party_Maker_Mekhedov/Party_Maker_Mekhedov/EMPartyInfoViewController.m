@@ -110,7 +110,7 @@
                                                   if(![response valueForKey:@"error"]){
                                                       [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
                                                           
-                                                          [(EMPartyListViewController*)[self.navigationController.viewControllers firstObject] updateTableViewWithParties];
+                                                        //  [(EMPartyListViewController*)[self.navigationController.viewControllers firstObject] updateTableViewWithParties];
                                                           [self.navigationController popToRootViewControllerAnimated:YES];
                                                       }];
                                                   }else{

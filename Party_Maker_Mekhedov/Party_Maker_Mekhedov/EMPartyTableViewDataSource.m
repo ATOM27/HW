@@ -18,16 +18,4 @@
     return fetchRequest;
 }
 
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    EMPartyListCell* cell = [self.tableView dequeueReusableCellWithIdentifier:[EMPartyListCell reuseIdentifier]];
-    PMRPartyManagedObject *object = [self.frc objectAtIndexPath:indexPath];
-    PMRParty* party = [[PMRParty alloc] initWithManagedObject:object];
-    
-    [cell configureWithImageID:party.logoID partyName:party.name partyDate:party.startDate];
-    
-    return cell;
-}
-
-
 @end
