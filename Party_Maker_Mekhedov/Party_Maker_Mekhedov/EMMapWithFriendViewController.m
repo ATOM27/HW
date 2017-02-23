@@ -16,6 +16,7 @@
 #import "UIView+superAnnotationView.h"
 #import "EMPartyInfoViewController.h"
 #import "PMRParty.h"
+#import "NSObject+ActivityIndicator.h"
 
 @interface EMMapWithFriendViewController ()
 
@@ -53,16 +54,6 @@
             [self makeAnotationWithLocation:location andParty:party];
             }
         }
-//            [[EMHTTPManager sharedManager] partyWithCreatorID:[currentFriend objectForKey:@"id"]
-//                                                   completion:^(NSDictionary *response, NSError *error) {
-//                                                           NSArray* parties = [response objectForKey:@"response"];
-//                                                           for (NSDictionary* partyDict in parties){
-//                                                               PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
-//                                                               
-//                                                               CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
-//                                                               [self makeAnotationWithLocation:location andParty:party];
-//                                                           }
-//                                                   }];
     }
                        
 }
@@ -183,6 +174,13 @@
     }
     
     return pin;
+}
+
+- (void)mapViewWillStartRenderingMap:(MKMapView *)mapView{
+    [self activityIndicatorIsVisible:YES];
+}
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered{
+    [self activityIndicatorIsVisible:NO];
 }
 
 #pragma mark - Segue

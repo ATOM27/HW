@@ -18,7 +18,6 @@
 
 @interface EMPartyListViewController ()
 
-@property(strong, nonatomic) NSArray* arrayWithParties;
 @end
 
 @implementation EMPartyListViewController
@@ -36,25 +35,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    //[self resetDefaults];
     [[EMHTTPManager sharedManager] getPartiesWithCompletion:^(NSDictionary *response, NSError *error) {
                                                NSArray* parties = [response objectForKey:@"response"];
-                                               
                                                if(parties){
                                                    for (NSDictionary* partyDict in parties){
                                                        PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
                                                        if([party.creatorID isEqualToString:self.creatorID]){
                                                            [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-                                                               [self.tableView reloadData];
+                                                               [self updateTableViewWithParties];
                                                            }];
                                                        }
                                                    }
                                                }
                                            }];
-//    NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-//    if(dataParties){
-//        self.arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-//    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,35 +65,16 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
-//    if(dataParties){
-//        self.arrayWithParties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-//    }
-    
     return [self.arrayWithParties count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     EMPartyListCell* cell = [self.tableView dequeueReusableCellWithIdentifier:[EMPartyListCell reuseIdentifier]];
-    //EMParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
     PMRParty* party = [self.arrayWithParties objectAtIndex:indexPath.row];
     [cell configureWithImageID:party.logoID partyName:party.name partyDate:party.startDate];
-    //[cell configureWithImage:party.logoImage partyName:party.name partyDate:party.date partyStartTime:party.startParty];
     
     return cell;
-}
-
-
-
-- (void)resetDefaults {
-    NSUserDefaults * defs = [NSUserDefaults standardUserDefaults];
-    NSDictionary * dict = [defs dictionaryRepresentation];
-    for (id key in dict) {
-        [defs removeObjectForKey:key];
-    }
-    [defs synchronize];
 }
 
 #pragma mark - Tab bar actions
@@ -123,5 +97,10 @@
         EMAddPartyViewController* addPartyvc = segue.destinationViewController;
         addPartyvc.creatorID = self.creatorID;
     }
+}
+
+-(void)updateTableViewWithParties{
+    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
+    [self.tableView reloadData];
 }
 @end

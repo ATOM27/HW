@@ -101,20 +101,7 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
 #pragma mark - Segue
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-//    if([segue.identifier isEqualToString:tabBarIdentifier]){
-//        UITabBarController* tabBarVC = segue.destinationViewController;
-//        EMPartyListViewController* vc;
-//        EMMapWithFriendViewController* vcMap;
-//        for(UINavigationController* neededVC in tabBarVC.viewControllers){
-//            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMPartyListViewController class]]){
-//                vc = [neededVC.viewControllers firstObject];
-//            }
-//            if([[neededVC.viewControllers firstObject] isKindOfClass:[EMMapWithFriendViewController class]]){
-//                vc = [neededVC.viewControllers firstObject]
-//            }
-//        }
-//        vc.creatorID = self.creatorID;
-//    }
+
 }
 
 

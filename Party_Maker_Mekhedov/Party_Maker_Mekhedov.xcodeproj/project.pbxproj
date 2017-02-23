@@ -54,6 +54,9 @@
 		EC3440111E55BADD00950CA1 /* EMSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3440101E55BADD00950CA1 /* EMSettingsViewController.m */; };
 		EC3440151E55CB8A00950CA1 /* EMMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3440141E55CB8A00950CA1 /* EMMapViewController.m */; };
 		EC3440191E55CC2C00950CA1 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC3440181E55CC2C00950CA1 /* MapKit.framework */; };
+		EC3A59A51E5F06BB00451338 /* NSObject+ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59A41E5F06BB00451338 /* NSObject+ActivityIndicator.m */; };
+		EC3A59A81E5F224100451338 /* TableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59A71E5F224100451338 /* TableViewDataSource.m */; };
+		EC3A59AB1E5F22F400451338 /* EMPartyTableViewDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = EC3A59AA1E5F22F400451338 /* EMPartyTableViewDataSource.m */; };
 		EC45C43D1E5B050D005D9B1E /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = EC45C43C1E5B050D005D9B1E /* map.png */; };
 		EC45C4401E5B0758005D9B1E /* EMMapWithFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC45C43F1E5B0758005D9B1E /* EMMapWithFriendViewController.m */; };
 		EC45C4441E5B0D91005D9B1E /* EMSelectFriendsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC45C4431E5B0D91005D9B1E /* EMSelectFriendsViewController.m */; };
@@ -147,6 +150,12 @@
 		EC3440131E55CB8A00950CA1 /* EMMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMapViewController.h; sourceTree = "<group>"; };
 		EC3440141E55CB8A00950CA1 /* EMMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMapViewController.m; sourceTree = "<group>"; };
 		EC3440181E55CC2C00950CA1 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		EC3A59A31E5F06BB00451338 /* NSObject+ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ActivityIndicator.h"; sourceTree = "<group>"; };
+		EC3A59A41E5F06BB00451338 /* NSObject+ActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ActivityIndicator.m"; sourceTree = "<group>"; };
+		EC3A59A61E5F224100451338 /* TableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewDataSource.h; sourceTree = "<group>"; };
+		EC3A59A71E5F224100451338 /* TableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewDataSource.m; sourceTree = "<group>"; };
+		EC3A59A91E5F22F400451338 /* EMPartyTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyTableViewDataSource.h; sourceTree = "<group>"; };
+		EC3A59AA1E5F22F400451338 /* EMPartyTableViewDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyTableViewDataSource.m; sourceTree = "<group>"; };
 		EC45C43C1E5B050D005D9B1E /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		EC45C43E1E5B0758005D9B1E /* EMMapWithFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMMapWithFriendViewController.h; sourceTree = "<group>"; };
 		EC45C43F1E5B0758005D9B1E /* EMMapWithFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMMapWithFriendViewController.m; sourceTree = "<group>"; };
@@ -241,6 +250,8 @@
 		D612A2FA1E4B9FCF00F1818B /* Party list */ = {
 			isa = PBXGroup;
 			children = (
+				EC3A59A91E5F22F400451338 /* EMPartyTableViewDataSource.h */,
+				EC3A59AA1E5F22F400451338 /* EMPartyTableViewDataSource.m */,
 				D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */,
 				D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */,
 				D6064A271E462E0700DBE2E8 /* Cell */,
@@ -248,14 +259,14 @@
 			name = "Party list";
 			sourceTree = "<group>";
 		};
-		D612A2FB1E4B9FDF00F1818B /* Create party */ = {
+		D612A2FB1E4B9FDF00F1818B /* Create/Edit party */ = {
 			isa = PBXGroup;
 			children = (
 				D6EC04101E42517A006C641D /* EMAddPartyViewController.h */,
 				D6EC04111E42517A006C641D /* EMAddPartyViewController.m */,
 				EC3440161E55CB8E00950CA1 /* Map */,
 			);
-			name = "Create party";
+			name = "Create/Edit party";
 			sourceTree = "<group>";
 		};
 		D612A2FC1E4B9FFB00F1818B /* Party created */ = {
@@ -324,7 +335,7 @@
 				D612A2F91E4B9FC600F1818B /* Login */,
 				ECDAC2EC1E5323A00005E1AE /* Register */,
 				D612A2FA1E4B9FCF00F1818B /* Party list */,
-				D612A2FB1E4B9FDF00F1818B /* Create party */,
+				D612A2FB1E4B9FDF00F1818B /* Create/Edit party */,
 				D612A2FC1E4B9FFB00F1818B /* Party created */,
 				D645B0221E59BE76005824CC /* Party info */,
 				EC3440121E55BAE100950CA1 /* Settings */,
@@ -337,6 +348,7 @@
 				D64E4B541E39312F00E4E9D4 /* Assets.xcassets */,
 				D64E4B561E39312F00E4E9D4 /* LaunchScreen.storyboard */,
 				D64E4B591E39312F00E4E9D4 /* Info.plist */,
+				EC3A59A21E5EFA1700451338 /* Activity indicator */,
 				ECA1A3901E53411D00687D63 /* Alert */,
 				D6064A221E462D9E00DBE2E8 /* OLD */,
 				D64E4B481E39312F00E4E9D4 /* Supporting Files */,
@@ -364,6 +376,8 @@
 				D6C946481E4F6E4C00FF1606 /* PMRParty */,
 				D6C946351E4CF7EF00FF1606 /* PMRPersistanceStore.h */,
 				D6C946361E4CF7EF00FF1606 /* PMRPersistanceStore.m */,
+				EC3A59A61E5F224100451338 /* TableViewDataSource.h */,
+				EC3A59A71E5F224100451338 /* TableViewDataSource.m */,
 			);
 			name = "Core data";
 			sourceTree = "<group>";
@@ -427,6 +441,15 @@
 				EC3440181E55CC2C00950CA1 /* MapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EC3A59A21E5EFA1700451338 /* Activity indicator */ = {
+			isa = PBXGroup;
+			children = (
+				EC3A59A31E5F06BB00451338 /* NSObject+ActivityIndicator.h */,
+				EC3A59A41E5F06BB00451338 /* NSObject+ActivityIndicator.m */,
+			);
+			name = "Activity indicator";
 			sourceTree = "<group>";
 		};
 		EC45C4411E5B075E005D9B1E /* Map with friend */ = {
@@ -605,6 +628,7 @@
 				D61B28551E5E378900D69869 /* ImagesManager.m in Sources */,
 				D645B0211E59BE71005824CC /* EMPartyInfoViewController.m in Sources */,
 				D6C9463D1E4CF7EF00FF1606 /* PMRPersistanceStore.m in Sources */,
+				EC3A59AB1E5F22F400451338 /* EMPartyTableViewDataSource.m in Sources */,
 				D6C946381E4CF7EF00FF1606 /* PMRCoreDataManager+Party.m in Sources */,
 				D64E4B501E39312F00E4E9D4 /* ViewController.m in Sources */,
 				D6CF24901E3BE4C000463849 /* UIView+CircleProperty.m in Sources */,
@@ -612,6 +636,7 @@
 				ECA1A38F1E53411000687D63 /* UIViewController+Alert.m in Sources */,
 				D6C9468A1E4F7F7500FF1606 /* model.xcdatamodeld in Sources */,
 				D6050A4B1E3A79620085C7ED /* EMSlider.m in Sources */,
+				EC3A59A51E5F06BB00451338 /* NSObject+ActivityIndicator.m in Sources */,
 				D6EC04121E42517A006C641D /* EMAddPartyViewController.m in Sources */,
 				D6064A211E4620E700DBE2E8 /* EMParty.m in Sources */,
 				ECA1A38C1E53278900687D63 /* EMRegisterViewController.m in Sources */,
@@ -634,6 +659,7 @@
 				D6CF248D1E3B83D200463849 /* EMButton.m in Sources */,
 				D612A2F71E4B9FB100F1818B /* EMHTTPManager.m in Sources */,
 				D6C946391E4CF7EF00FF1606 /* PMRParty.m in Sources */,
+				EC3A59A81E5F224100451338 /* TableViewDataSource.m in Sources */,
 				D64E4B4A1E39312F00E4E9D4 /* main.m in Sources */,
 				D6C9463B1E4CF7EF00FF1606 /* PMRParty+initWithManagedObject.m in Sources */,
 				D6EC04151E428494006C641D /* EMPartyCreatedViewController.m in Sources */,

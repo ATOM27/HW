@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) NSString* creatorID;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(strong, nonatomic) NSArray* arrayWithParties;
 
+-(void)updateTableViewWithParties;
 @end

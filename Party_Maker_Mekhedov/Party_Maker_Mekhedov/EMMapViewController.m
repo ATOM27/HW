@@ -10,6 +10,7 @@
 #import "UIViewController+Alert.h"
 #import <AddressBookUI/AddressBookUI.h>
 #import "EMAddPartyViewController.h"
+#import "NSObject+ActivityIndicator.h"
 
 @interface EMMapViewController ()
 
@@ -33,9 +34,7 @@
     UITapGestureRecognizer* tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tapGesture];
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -105,7 +104,6 @@
                          
                          self.pin.annotation.coordinate = newCoordinate;
                          self.coordinate = newCoordinate;
-                         //[self.pin.annotation setCoordinate:newCoordinate];
                          [self getTitleAndSubtitleForAnnotation:self.pin.annotation inLocation:location];
 
                      } completion:nil];
@@ -152,6 +150,14 @@
     }
 
 }
+
+- (void)mapViewWillStartRenderingMap:(MKMapView *)mapView{
+    [self activityIndicatorIsVisible:YES];
+}
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered{
+    [self activityIndicatorIsVisible:NO];
+}
+
 
 #pragma mark - Action
 

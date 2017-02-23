@@ -71,6 +71,7 @@ NS_ENUM(NSInteger, EMSliderType){
     self.scrollView.circle = self.logoCircle;
     self.textView.circle = self.descriptionCircle;
     self.locationButton.circle = self.finalCircle;
+    [self createImagesInScrollView:self.scrollView];
 
     if(self.currentParty){
         [self settingsForCurrentParty];
@@ -88,17 +89,6 @@ NS_ENUM(NSInteger, EMSliderType){
                                                object:nil];
 }
 
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self createImagesInScrollView:self.scrollView];
-    if(self.currentParty){
-        self.pageControll.currentPage = self.currentParty.logoID.integerValue;
-        CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
-        [self.scrollView setContentOffset:contentOffset
-                                 animated:YES];
-        [self.scrollView setContentOffset:contentOffset animated:YES];
-    }
-}
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -121,10 +111,13 @@ NS_ENUM(NSInteger, EMSliderType){
     self.startSlider.value = [self valueForSliderWithDate:self.currentParty.startDate];
     self.endSlider.value = [self valueForSliderWithDate:self.currentParty.endDate];
     self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
-    //self.pageControll.currentPage = self.currentParty.logoPage;
     self.textView.text = self.currentParty.descriptionText;
+    self.pageControll.currentPage = self.currentParty.logoID.integerValue;
+    CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
+    [self.scrollView setContentOffset:contentOffset
+                             animated:YES];
+    [self.scrollView setContentOffset:contentOffset animated:YES];
     
-    if(![self.currentParty.latitude isEqualToString:@""] || ![self.currentParty.longtitude isEqualToString:@""]){
         CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
         
         CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
@@ -140,13 +133,15 @@ NS_ENUM(NSInteger, EMSliderType){
                     
                     CLPlacemark* placeMark = [placemarks firstObject];
                     address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                    if([address isEqualToString:@""]){
+                        address = placeMark.name;
+                    }
                 }
                 
                 [self.locationButton setTitle:address forState:UIControlStateNormal];
                 
             }
         }];
-    }
 }
 
 -(NSInteger)valueForSliderWithDate:(NSDate*)date{
@@ -171,16 +166,6 @@ NS_ENUM(NSInteger, EMSliderType){
 
 - (IBAction)actionChooseDate:(UIButton *)sender {
     [self showCircleInView:sender];
-    //[sender showCircle];
-//    UIView* circleSelect = [[UIView alloc] initWithFrame:CGRectMake(25,
-//                                                                    0,
-//                                                                    25,
-//                                                                    25)];
-//    circleSelect.layer.cornerRadius = CGRectGetWidth(circleSelect.frame)/2;
-//    circleSelect.backgroundColor = [UIColor colorWithRed:230.f/255.f green:224.f/255.f blue:213.f/255.f alpha:1.f];
-//    circleSelect.center = CGPointMake(circleSelect.center.x, sender.center.y);
-//    
-//    [self.view addSubview:circleSelect];
     
     UIDatePicker* datePicker = [[UIDatePicker alloc] init];
     if(self.datePicker){
@@ -261,7 +246,6 @@ NS_ENUM(NSInteger, EMSliderType){
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    //self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self.chooseDateButton setTitle:[dateFormatter stringFromDate:self.datePicker.date] forState:UIControlStateNormal];
     
     [UIView animateWithDuration:0.3f
@@ -294,7 +278,6 @@ NS_ENUM(NSInteger, EMSliderType){
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-    //[textField showCircle];
     [self showCircleInView:textField];
     return YES;
 }
@@ -302,7 +285,6 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - Action slider
 
 - (IBAction)actionChangeScrollValue:(UISlider *)sender {
-    //[sender showCircle];
     [self showCircleInView:sender];
 
     NSString* resultString = [self getStringForSliderValue:sender.value];
@@ -342,18 +324,9 @@ NS_ENUM(NSInteger, EMSliderType){
     
     NSString* resultString = nil;
     
-   // if(hours >= 10){
         resultString = [NSString stringWithFormat:@"%02ld:", (long)hours];
-   // }else{
-   //     resultString = [NSString stringWithFormat:@"0%ld:", (long)hours];
-   // }
-    
-   // if (minutse >= 10){
         resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"%02ld", (long)minutse]];
-    //}else{
-    //    resultString = [resultString stringByAppendingString:[NSString stringWithFormat:@"0%ld", (long)minutse]];
-   // }
-    
+
     return resultString;
 }
 
@@ -394,7 +367,6 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - UIScrollViewDelegate
 
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
-   // [scrollView showCircle];
     [self showCircleInView:scrollView];
     NSInteger currentPage = scrollView.contentOffset.x/CGRectGetWidth(scrollView.frame);
     self.pageControll.currentPage = currentPage;
@@ -430,7 +402,6 @@ NS_ENUM(NSInteger, EMSliderType){
     if([self.textView isFirstResponder]){
         
         float duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-        //__block __weak UIView *mainView = self.mainView;
         [UIView animateWithDuration:duration animations:^{
             CGRect viewFrame = self.view.frame;
             viewFrame.origin.y = 0;
@@ -482,7 +453,6 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - UITextViewDelegate
 
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView{
-   // [self.textView showCircle];
     [self showCircleInView:textView];
     return YES;
 }
@@ -499,22 +469,6 @@ NS_ENUM(NSInteger, EMSliderType){
         [self saveChangesToCurrentParty];
         return;
     }
-
-
-    //UIImageView* imageView = [self.scrollView.subviews objectAtIndex:self.pageControll.currentPage];
-    
-    
-//    PMRParty* party = [[PMRParty alloc] initWithPartyID:@""
-//                                                   name:self.paratyNameTextField.text
-//                                              startDate:[self getDateWithSliderValue:self.startSlider.value]
-//                                                endDate:[self getDateWithSliderValue:self.endSlider.value]
-//                                          logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-//                                        descriptionText:self.textView.text
-//                                           creationDate:[NSDate date]
-//                                       modificationDate:[NSDate date]
-//                                              creatorID:self.creatorID
-//                                               latitude:self.latitude
-//                                             longtitude:self.longitude];
     
     NSString* startTime = [NSString stringWithFormat:@"%f", [[self getDateWithSliderValue:self.startSlider.value] timeIntervalSince1970]];
     NSString* endTime = [NSString stringWithFormat:@"%f",  [[self getDateWithSliderValue:self.endSlider.value] timeIntervalSince1970]];
@@ -534,44 +488,12 @@ NS_ENUM(NSInteger, EMSliderType){
                                                  PMRParty* party = [[PMRParty alloc] initWithDictionary:response];
                                                  [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
                                                      if(success){
-                                                        [self makeNotificationToPaty:party];
-                                                        [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
+                                                         [self makeNotificationToPaty:party];
+                                                         [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
                                                     }
                                                  }];
                                              }
                                          }];
-//    [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
-//                                             name:party.name
-//                                        startTime:[NSString stringWithFormat:@"%f",[party.startDate timeIntervalSince1970]]
-//                                          endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
-//                                           logoID:party.logoImageName
-//                                          comment:party.description
-//                                        creatorID:self.creatorID
-//                                         latitude:self.latitude
-//                                        longitude:self.longitude
-//                                       completion:^(NSDictionary *response, NSError *error) {
-//                                           if(error){
-//                                               NSLog(@"%@", [error localizedDescription]);
-//                                           }
-//                                           if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
-//                                               //Need for partyID
-//                                               [[EMHTTPManager sharedManager] partyWithCreatorID:self.creatorID completion:^(NSDictionary *response, NSError *error) {
-//                                                   NSArray* parties = [response objectForKey:@"response"];
-//                                                   //Get partyID
-//                                                   NSString* partyID = [[parties lastObject] objectForKey:@"id"];
-//                                                   [party setValue:partyID forKey:@"partyID"];
-//                                                   //Save party to core data
-//                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-//                                                       if(success){
-//                                                           [self makeNotificationToPaty:party];
-//                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-//                                                       }
-//                                                   }];
-// 
-//                                               }];
-//                                           }
-  //                                     }];
-    
 }
 
 -(void)saveChangesToCurrentParty{
@@ -618,72 +540,8 @@ NS_ENUM(NSInteger, EMSliderType){
                                                     }];
                                                 }
                                             }];
-        
-//        PMRParty* party = [[PMRParty alloc] initWithPartyID:partyID
-//                                                       name:self.paratyNameTextField.text
-//                                                  startDate:[self getDateWithSliderValue:self.startSlider.value]
-//                                                    endDate:[self getDateWithSliderValue:self.endSlider.value]
-//                                              logoImageName:[self.arrayWithImageNames objectAtIndex:self.pageControll.currentPage]
-//                                            descriptionText:self.textView.text
-//                                               creationDate:self.currentParty.creationDate
-//                                           modificationDate:nil
-//                                                  creatorID:self.creatorID
-//                                                   latitude:latitude
-//                                                 longtitude:longtitude];
-//        
-//
-//        
-//        [[EMHTTPManager sharedManager] addPartyWithID:party.partyID
-//                                                 name:party.name
-//                                            startTime:[NSString stringWithFormat:@"%f", [party.startDate timeIntervalSince1970]]
-//                                              endTime:[NSString stringWithFormat:@"%f", [party.endDate timeIntervalSince1970]]
-//                                               logoID:party.logoID
-//                                              comment:party.descriptionText
-//                                            creatorID:party.creatorID
-//                                             latitude:party.latitude
-//                                            longitude:party.longtitude
-//                                           completion:^(NSDictionary *response, NSError *error) {
-//                                               if(error){
-//                                                   NSLog(@"%@", [error localizedDescription]);
-//                                               }
-//                                               if([[response valueForKey:@"status"] isEqualToString:@"Success"]){
-//                                                   [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
-//                                                       if(success){
-//                                                           self.currentParty = party;// for partyCreatedController label text
-//                                                           [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
-//                                                       }
-//                                                   }];
-//                                                   
-//                                               }
-//                                           }];
     }];
-    
-    
-    
-    //NSArray* parties = [[NSArray alloc] init];
-    //NSData* dataParties = [[NSUserDefaults standardUserDefaults] objectForKey:kParties];
-    //parties = [NSKeyedUnarchiver unarchiveObjectWithData:dataParties];
-    //    parties = [[PMRCoreDataManager sharedStore] getParties];
-    //    PMRParty* party = [parties objectAtIndex:self.indexParty];
-    //
-    //    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    //    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    
-    
-    //    party.name = self.paratyNameTextField.text;
-    //    party.date = [dateFormatter dateFromString:self.chooseDateButton.titleLabel.text];
-    //    party.startParty = self.startSlider.value;
-    //    party.endParty = self.endSlider.value;
-    //    party.logoPage = self.pageControll.currentPage;
-    //    party.logoImage = [(UIImageView*)[self.scrollView.subviews objectAtIndex:self.pageControll.currentPage] image];
-    //    party.descriptionText = self.textView.text;
-    
-    
-    //    dataParties = nil;
-    //    dataParties = [NSKeyedArchiver archivedDataWithRootObject:parties];
-    //    [[NSUserDefaults standardUserDefaults] setObject:dataParties forKey:kParties];
-    //    [[NSUserDefaults standardUserDefaults] synchronize];
-}
+ }
 
 
 #pragma mark - Check data
@@ -749,7 +607,6 @@ NS_ENUM(NSInteger, EMSliderType){
         }else{
             vc.partyStatus = @"New Party has been created!";
         }
-        //[self.navigationController popViewControllerAnimated:YES];
     }
     
     if ([segue.identifier isEqualToString:@"showMapIdentifier"]){

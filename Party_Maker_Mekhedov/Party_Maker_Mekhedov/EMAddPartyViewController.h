@@ -14,7 +14,6 @@ static NSString* kParties = @"parties";
 
 @interface EMAddPartyViewController : UIViewController
 
-//@property (strong, nonatomic) EMParty* currentParty;
 @property (strong, nonatomic) NSString* creatorID;
 @property (strong, nonatomic) PMRParty* currentParty;
 @property (assign, nonatomic) NSInteger indexParty;

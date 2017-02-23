@@ -102,7 +102,6 @@
 }
 
 - (IBAction)actionDeleteTouched:(UIButton *)sender {
-    
     [[EMHTTPManager sharedManager] deletePartyWithID:self.currentParty.partyID
                                           completion:^(NSDictionary *response, NSError *error) {
                                               if(error){
@@ -111,7 +110,7 @@
                                                   if(![response valueForKey:@"error"]){
                                                       [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
                                                           
-                                                          [[(EMPartyListViewController*)[self.navigationController.viewControllers firstObject] tableView] reloadData];
+                                                          [(EMPartyListViewController*)[self.navigationController.viewControllers firstObject] updateTableViewWithParties];
                                                           [self.navigationController popToRootViewControllerAnimated:YES];
                                                       }];
                                                   }else{

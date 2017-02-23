@@ -8,6 +8,7 @@
 
 #import "EMMapInfoViewController.h"
 #import <AddressBookUI/AddressBookUI.h>
+#import "NSObject+ActivityIndicator.h"
 
 @interface EMMapInfoViewController ()
 
@@ -92,6 +93,13 @@
     }
     
     return pin;
+}
+
+- (void)mapViewWillStartRenderingMap:(MKMapView *)mapView{
+    [self activityIndicatorIsVisible:YES];
+}
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView fullyRendered:(BOOL)fullyRendered{
+    [self activityIndicatorIsVisible:NO];
 }
 
 @end

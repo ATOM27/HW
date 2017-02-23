@@ -7,6 +7,7 @@
 //
 
 #import "EMHTTPManager.h"
+#import "NSObject+ActivityIndicator.h"
 
 NSString* APIURLLink;
 
@@ -35,7 +36,7 @@ NSString* APIURLLink;
 #pragma mark - API
 
 -(void)loginWithEmail:(NSString*)email password:(NSString*)password completion:(void(^)(NSDictionary* response, NSError* error))completion{
-    
+    [self activityIndicatorIsVisible:YES];
     NSDictionary* params = @{@"email":email,
                              @"password":password};
     
@@ -49,11 +50,12 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
 -(void)registerWithEmail:(NSString*)email password:(NSString*)password name:(NSString*)name completion:(void(^)(NSDictionary* response, NSError* error))completion{
-    
+    [self activityIndicatorIsVisible:YES];
     NSDictionary* params = @{@"email": email,
                              @"password": password,
                              @"name": name};
@@ -68,11 +70,12 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
 -(void)getPartiesWithCompletion:(void(^)(NSDictionary* response, NSError* error))completion{
-    
+    [self activityIndicatorIsVisible:YES];
     NSDictionary* headers = @{@"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"]};
     
     NSMutableURLRequest* request = [self getRequestWithType:@"GET" headers:headers method:@"party" params:nil];
@@ -83,18 +86,24 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
 -(void)addPartyWithName:(NSString*)name startTime:(NSString*)startTime endTime:(NSString*)endTime logoID:(NSString*)logoID comment:(NSString*)comment latitude:(NSString*)latitude longitude:(NSString*)longitude completion:(void(^)(NSDictionary* response, NSError* error))completion{
+    
+    [self activityIndicatorIsVisible:YES];
+    
+    NSNumber* lLatitude = [self checkLatitude:latitude];
+    NSNumber* lLongtitude = [self checkLongtitude:longitude];
     
     NSDictionary* params = @{@"name": name,
                              @"start_time":[NSNumber numberWithDouble:startTime.doubleValue],
                              @"end_time": [NSNumber numberWithDouble:endTime.doubleValue],
                              @"logo_id": [NSNumber numberWithInteger:logoID.integerValue],
                              @"comment": comment,
-                             @"latitude": [NSNumber numberWithDouble:latitude.doubleValue],
-                             @"longitude": [NSNumber numberWithDouble:longitude.doubleValue]};
+                             @"latitude": lLatitude,
+                             @"longitude": lLongtitude};
     
     NSDictionary* headers = @{@"Content-Type": @"application/json",
                               @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
@@ -107,18 +116,24 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
 -(void)editPartyWithID:(NSString*)partyID name:(NSString*)name startTime:(NSString*)startTime endTime:(NSString*)endTime logoID:(NSString*)logoID comment:(NSString*)comment latitude:(NSString*)latitude longitude:(NSString*)longitude completion:(void(^)(NSDictionary* response, NSError* error))completion{
+    
+    [self activityIndicatorIsVisible:YES];
+    
+    NSNumber* lLatitude = [self checkLatitude:latitude];
+    NSNumber* lLongtitude = [self checkLongtitude:longitude];
     
     NSDictionary* params = @{@"name": name,
                              @"start_time":[NSNumber numberWithDouble:startTime.doubleValue],
                              @"end_time": [NSNumber numberWithDouble:endTime.doubleValue],
                              @"logo_id": [NSNumber numberWithInteger:logoID.integerValue],
                              @"comment": comment,
-                             @"latitude": [NSNumber numberWithDouble:latitude.doubleValue],
-                             @"longitude": [NSNumber numberWithDouble:longitude.doubleValue]};
+                             @"latitude": lLatitude,
+                             @"longitude": lLongtitude};
     
     NSDictionary* headers = @{@"Content-Type": @"application/json",
                               @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
@@ -131,11 +146,14 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
 
 -(void)deletePartyWithID:(NSString*)partyID completion:(void(^)(NSDictionary* response, NSError* error))completion{
+    
+    [self activityIndicatorIsVisible:YES];
     
     NSDictionary* params = @{@"party_id": partyID};
     
@@ -150,11 +168,14 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 
 }
 
 -(void)getAllUsersWithCompletion:(void(^)(NSDictionary* response, NSError* error))completion{
+    
+    [self activityIndicatorIsVisible:YES];
     
     NSDictionary* headers = @{@"Content-Type": @"application/json",
                               @"accessToken":[[NSUserDefaults standardUserDefaults] objectForKey:@"accessToken"] };
@@ -167,6 +188,7 @@ NSString* APIURLLink;
         }else{
             completion([self getDictionaryFromData:data], nil);
         }
+        [self activityIndicatorIsVisible:NO];
     }] resume];
 }
 
@@ -243,6 +265,26 @@ NSString* APIURLLink;
     NSString *notEncoded = [NSString stringWithFormat:@"%@/%@", APIURLLink, path];
     notEncoded = [notEncoded stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     return [notEncoded stringByReplacingOccurrencesOfString:@"+" withString:@"%2B"];
+}
+
+-(NSNumber*)checkLatitude:(NSString*)latitude{
+    NSNumber* lLatitude;
+    if([latitude isEqualToString:@""]){
+        lLatitude = [NSNumber numberWithDouble:0.0];
+    }else{
+        lLatitude = [NSNumber numberWithDouble:latitude.doubleValue];
+    }
+    return lLatitude;
+}
+
+-(NSNumber*)checkLongtitude:(NSString*)longtitude{
+    NSNumber* lLongtitude;
+    if([longtitude isEqualToString:@""]){
+        lLongtitude = [NSNumber numberWithDouble:0.0];
+    }else{
+        lLongtitude = [NSNumber numberWithDouble:longtitude.doubleValue];
+    }
+    return lLongtitude;
 }
 
 @end

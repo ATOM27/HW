@@ -26,7 +26,7 @@
 }
 - (IBAction)actionOkTouched:(UIButton *)sender {
     [self.navCont popToRootViewControllerAnimated:NO];
-    [[(EMPartyListViewController*)[self.navCont.viewControllers firstObject] tableView] reloadData];
+    [(EMPartyListViewController*)[self.navCont.viewControllers firstObject] updateTableViewWithParties];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
