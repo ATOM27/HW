@@ -12,7 +12,7 @@
 @implementation NSObject (ActivityIndicator)
 
 -(void) activityIndicatorIsVisible:(BOOL) visability{
-    UIApplication* app = [UIApplication sharedApplication];// indicator in UIBar near wifi
+    UIApplication* app = [UIApplication sharedApplication];
     app.networkActivityIndicatorVisible = visability;
     
 }

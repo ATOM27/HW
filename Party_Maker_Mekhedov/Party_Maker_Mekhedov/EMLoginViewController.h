@@ -10,9 +10,6 @@
 
 @interface EMLoginViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIView *loginView;
-@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 
 
 @end

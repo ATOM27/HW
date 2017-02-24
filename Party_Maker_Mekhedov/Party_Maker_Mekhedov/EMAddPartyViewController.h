@@ -7,16 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "EMParty.h"
 #import "PMRParty.h"
 
 static NSString* kParties = @"parties";
 
 @interface EMAddPartyViewController : UIViewController
 
-@property (strong, nonatomic) NSString* creatorID;
 @property (strong, nonatomic) PMRParty* currentParty;
-@property (assign, nonatomic) NSInteger indexParty;
 
 // Only for map. Don't use for another controllers
 @property (strong, nonatomic) NSString* latitude;

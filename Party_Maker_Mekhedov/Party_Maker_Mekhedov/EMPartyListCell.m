@@ -9,6 +9,15 @@
 #import "EMPartyListCell.h"
 #import "ImagesManager.h"
 
+@interface EMPartyListCell()
+
+@property (strong, nonatomic) IBOutlet UIImageView *imageV;
+@property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+
+
+@end
+
 @implementation EMPartyListCell
 
 -(void)configureWithImageID:(NSString*)imageID partyName:(NSString*)partyName partyDate:(NSDate*)partyDate{

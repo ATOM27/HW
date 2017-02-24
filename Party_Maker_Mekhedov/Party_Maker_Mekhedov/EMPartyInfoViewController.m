@@ -30,6 +30,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *editButton;
 @property (strong, nonatomic) IBOutlet UIButton *deleteButton;
 
+@property(strong, nonatomic) NSString* creatorID;
 
 @end
 
@@ -93,7 +94,7 @@
     if(![self.currentParty.longtitude isEqualToString:@""] && ![self.currentParty.latitude isEqualToString:@""]){
         [self performSegueWithIdentifier:@"showPartyLocationIdentifier" sender:self];
     }else{
-        [self alertWithTitle:@"There is no location" message:@"This party have not location information"];
+        [self alertWithTitle:@"There is no location" message:@"This party have no location information"];
     }
 }
 
@@ -102,6 +103,7 @@
 }
 
 - (IBAction)actionDeleteTouched:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
     [[EMHTTPManager sharedManager] deletePartyWithID:self.currentParty.partyID
                                           completion:^(NSDictionary *response, NSError *error) {
                                               if(error){
@@ -117,6 +119,7 @@
                                                       [self alertWithTitle:@"Ops!" message:@"There is something wrong with the party's data. Try to change paramethers and save it!"];
                                                   }
                                               }
+                                              self.navigationItem.rightBarButtonItem.enabled = YES;
                                           }];
 }
 
@@ -132,7 +135,6 @@
     
     if([segue.identifier isEqualToString:@"editPartyIdentifier"]){
         EMAddPartyViewController* editVC = segue.destinationViewController;
-        editVC.creatorID = self.creatorID;
         editVC.currentParty = self.currentParty;
     }
 }

@@ -10,7 +10,18 @@
 @implementation PMRParty (initWithDictionary)
 
 - (instancetype)initWithDictionary:(NSDictionary*)dictionary {
-
+    
+    NSString* latitude = [dictionary[@"latitude"] stringValue];
+    NSString* longitude = [dictionary[@"longitude"] stringValue];
+    
+    if(([dictionary[@"latitude"] doubleValue] <= 0.00002) && ([dictionary[@"latitude"] doubleValue] > 0)){
+        latitude = @"";
+    }
+    
+    if(([dictionary[@"longitude"] doubleValue] <= 0.00002) && ([dictionary[@"longitude"] doubleValue] > 0)){
+        longitude = @"";
+    }
+    
     
     return [self initWithPartyID:[dictionary[@"id"] stringValue]
                             name:dictionary[@"name"]
@@ -21,8 +32,8 @@
                     creationDate:[NSDate date]//dictionary[@"creationDate"]
                 modificationDate:[NSDate date]//dictionary[@"modificationDate"]
                        creatorID:[dictionary[@"creator_id"] stringValue]
-                        latitude:[dictionary[@"latitude"] stringValue]
-                      longtitude:[dictionary[@"longitude"] stringValue]];
+                        latitude:latitude
+                      longtitude:longitude];
 }
 
 @end

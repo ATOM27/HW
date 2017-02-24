@@ -20,7 +20,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSArray<PMRParty *>*)fetchAllPartiesWithoutIDcompletion:(void (^)(BOOL success))completion;
 
-- (void)deletePartyWithName:(NSString*)name completion:(void (^)(BOOL success))completion;;
+- (void)deletePartyWithName:(NSString*)name completion:(void (^)(BOOL success))completion;
+
+- (void)editPartyWithParty:(PMRParty*)party completion:(void (^)(BOOL success))completion;
 
 @end
 

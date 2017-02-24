@@ -270,7 +270,7 @@ NSString* APIURLLink;
 -(NSNumber*)checkLatitude:(NSString*)latitude{
     NSNumber* lLatitude;
     if([latitude isEqualToString:@""]){
-        lLatitude = [NSNumber numberWithDouble:0.0];
+        lLatitude = [NSNumber numberWithDouble:0.00000];
     }else{
         lLatitude = [NSNumber numberWithDouble:latitude.doubleValue];
     }
@@ -280,7 +280,7 @@ NSString* APIURLLink;
 -(NSNumber*)checkLongtitude:(NSString*)longtitude{
     NSNumber* lLongtitude;
     if([longtitude isEqualToString:@""]){
-        lLongtitude = [NSNumber numberWithDouble:0.0];
+        lLongtitude = [NSNumber numberWithDouble:0.00000];
     }else{
         lLongtitude = [NSNumber numberWithDouble:longtitude.doubleValue];
     }

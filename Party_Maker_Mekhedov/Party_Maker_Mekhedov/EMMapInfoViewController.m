@@ -12,6 +12,8 @@
 
 @interface EMMapInfoViewController ()
 
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
 @end
 
 @implementation EMMapInfoViewController

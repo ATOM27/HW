@@ -22,6 +22,8 @@
 
 @property(strong, nonatomic) PMRParty* partyFromAnnotation;
 @property(strong, nonatomic) NSDictionary* parties;
+@property (strong, nonatomic) IBOutlet MKMapView *mapView;
+
 
 @end
 
@@ -50,8 +52,10 @@
         for(NSDictionary* partyDict in self.parties){
             if([[partyDict objectForKey:@"creator_id"] integerValue] == [[currentFriend objectForKey:@"id"] integerValue]){
             PMRParty* party = [[PMRParty alloc] initWithDictionary:partyDict];
-            CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
-            [self makeAnotationWithLocation:location andParty:party];
+                if(![party.latitude isEqualToString:@""] && ![party.longtitude isEqualToString:@""]){
+                    CLLocation* location = [[CLLocation alloc] initWithLatitude:[party.latitude floatValue] longitude:[party.longtitude floatValue]];
+                    [self makeAnotationWithLocation:location andParty:party];
+                }
             }
         }
     }
@@ -83,25 +87,8 @@
 }
 
 - (IBAction)actionShowAll:(UIBarButtonItem *)sender {
-    MKMapRect zoomRect = MKMapRectNull;
     
-    for (id <MKAnnotation> annotation in self.mapView.annotations){
-        
-        CLLocationCoordinate2D location = annotation.coordinate;
-        
-        MKMapPoint center = MKMapPointForCoordinate(location);
-        
-        MKMapRect rect = MKMapRectMake( center.x, center.y, 1, 1);
-        
-        zoomRect = MKMapRectUnion(zoomRect, rect);
-    }
-    
-    zoomRect = [self.mapView mapRectThatFits:zoomRect];
-    
-    [self.mapView setVisibleMapRect:zoomRect
-                        edgePadding:UIEdgeInsetsMake(50, 50, 50, 50)
-                           animated:YES];
-
+    [self.mapView showAnnotations:self.mapView.annotations animated:YES];
 }
 
 #pragma mark - Annotation
@@ -192,15 +179,12 @@
     }
     if([segue.identifier isEqualToString:@"selectFriendsIdentifier"]){
         EMSelectFriendsViewController* vc = segue.destinationViewController;
-        if(self.checkedFriends.count == 1 && [[self.checkedFriends firstObject] valueForKey:@"id"]){
+        if(self.checkedFriends.count == 1 && ![[self.checkedFriends firstObject] valueForKey:@"name"]){
             self.checkedFriends = @[];
         }
         vc.checkedFriends = [NSMutableArray arrayWithArray:self.checkedFriends];
     }
 }
-
-
-
 
 
 @end

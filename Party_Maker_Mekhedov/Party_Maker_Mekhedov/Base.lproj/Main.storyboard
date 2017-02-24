@@ -36,7 +36,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gek2395@mail.ru" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jn1-9Q-XvW">
                                         <rect key="frame" x="8" y="101" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490196078433" green="0.14509803921568626" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -52,7 +52,7 @@
                                             <outlet property="delegate" destination="Pwu-7z-Pnu" id="bHH-CC-f2Q"/>
                                         </connections>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="qwerty" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
+                                    <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iZV-1Y-T3a">
                                         <rect key="frame" x="8" y="163" width="315" height="40"/>
                                         <color key="backgroundColor" red="0.13725490200000001" green="0.1450980392" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1300,7 +1300,7 @@ Softheme iOS Internship
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="2WI-b7-6hT">
+                            <barButtonItem title="Reset" id="2WI-b7-6hT">
                                 <connections>
                                     <action selector="actionReset:" destination="OQc-OD-txF" id="z1v-k6-TLD"/>
                                 </connections>
@@ -1558,6 +1558,6 @@ Softheme iOS Internship
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OSY-gs-U75"/>
-        <segue reference="mjf-Yq-ush"/>
+        <segue reference="Lwl-59-DcD"/>
     </inferredMetricsTieBreakers>
 </document>

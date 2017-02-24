@@ -10,9 +10,13 @@
 #import "EMHTTPManager.h"
 #import "UIViewController+Alert.h"
 #import "EMPartyListViewController.h"
-#import "EMMapWithFriendViewController.h"
 
 @interface EMLoginViewController ()
+
+@property (strong, nonatomic) IBOutlet UIView *loginView;
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+
 
 @property(strong, nonatomic) NSString* creatorID;
 
@@ -96,12 +100,6 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
                                           }
                                           sender.userInteractionEnabled = YES;
                                       }];
-}
-
-#pragma mark - Segue
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-
 }
 
 

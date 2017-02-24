@@ -11,7 +11,6 @@
 
 @interface EMMapWithFriendViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) NSArray* checkedFriends;
 
 -(void)makeAnnotations;

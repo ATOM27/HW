@@ -8,10 +8,8 @@
 
 #import "EMPartyListViewController.h"
 #import "EMPartyListCell.h"
-#import "EMParty.h"
 #import "PMRCoreDataManager+Party.h"
 #import "PMRParty+initWithDictionary.h"
-#import "PMRParty.h"
 #import "EMHTTPManager.h"
 #import "EMAddPartyViewController.h"
 #import "EMPartyInfoViewController.h"
@@ -21,6 +19,9 @@
 @interface EMPartyListViewController ()
 
 @property(strong, nonatomic) EMPartyTableViewDataSource* dataSource;
+@property (strong, nonatomic) NSString* creatorID;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 
 @end
 
@@ -32,8 +33,6 @@
         
     }];
     self.creatorID = [[NSUserDefaults standardUserDefaults] objectForKey:@"creatorID"];
-    self.arrayWithParties = [[NSArray alloc] init];
-    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
 }
 
 - (void)viewDidLoad {
@@ -124,8 +123,4 @@
     }
 }
 
--(void)updateTableViewWithParties{
-    self.arrayWithParties = [[PMRCoreDataManager sharedStore] getParties];
-    [self.tableView reloadData];
-}
 @end

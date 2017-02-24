@@ -47,6 +47,9 @@
 @property (strong, nonatomic) UIView* lastSelectedObject;
 
 @property (strong, nonatomic) NSArray* arrayWithImageNames;
+
+@property (strong, nonatomic) NSString* creatorID;
+
 @end
 
 NS_ENUM(NSInteger, EMSliderType){
@@ -71,7 +74,6 @@ NS_ENUM(NSInteger, EMSliderType){
     self.scrollView.circle = self.logoCircle;
     self.textView.circle = self.descriptionCircle;
     self.locationButton.circle = self.finalCircle;
-    [self createImagesInScrollView:self.scrollView];
 
     if(self.currentParty){
         [self settingsForCurrentParty];
@@ -87,6 +89,48 @@ NS_ENUM(NSInteger, EMSliderType){
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:)
                                                  name:UIKeyboardWillHideNotification
                                                object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [self createImagesInScrollView:self.scrollView];
+    
+    if(self.currentParty){
+        self.pageControll.currentPage = self.currentParty.logoID.integerValue;
+        CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
+        [self.scrollView setContentOffset:contentOffset
+                                 animated:YES];
+        [self.scrollView setContentOffset:contentOffset animated:YES];
+        
+        if(![self.currentParty.latitude isEqualToString:@""] && ![self.currentParty.longtitude isEqualToString:@""]){
+            CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
+            
+            CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
+            [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+                
+                NSString* address = nil;
+                
+                if (error){
+                    NSLog(@"%@", [error localizedDescription]);
+                }else{
+                    
+                    if ([placemarks count] > 0){
+                        
+                        CLPlacemark* placeMark = [placemarks firstObject];
+                        address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
+                        if([address isEqualToString:@""]){
+                            address = placeMark.name;
+                        }
+                    }
+                    
+                    [self.locationButton setTitle:address forState:UIControlStateNormal];
+                    
+                }
+            }];
+        }
+    }
+
 }
 
 - (void)dealloc
@@ -112,36 +156,6 @@ NS_ENUM(NSInteger, EMSliderType){
     self.endSlider.value = [self valueForSliderWithDate:self.currentParty.endDate];
     self.endLabel.text = [dateFormatter stringFromDate:self.currentParty.endDate];
     self.textView.text = self.currentParty.descriptionText;
-    self.pageControll.currentPage = self.currentParty.logoID.integerValue;
-    CGPoint contentOffset = CGPointMake(self.pageControll.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
-    [self.scrollView setContentOffset:contentOffset
-                             animated:YES];
-    [self.scrollView setContentOffset:contentOffset animated:YES];
-    
-        CLLocation* location = [[CLLocation alloc] initWithLatitude:[self.currentParty.latitude floatValue] longitude:[self.currentParty.longtitude floatValue]];
-        
-        CLGeocoder* geoCoder = [[CLGeocoder alloc] init];
-        [geoCoder reverseGeocodeLocation:location completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
-            
-            NSString* address = nil;
-            
-            if (error){
-                NSLog(@"%@", [error localizedDescription]);
-            }else{
-                
-                if ([placemarks count] > 0){
-                    
-                    CLPlacemark* placeMark = [placemarks firstObject];
-                    address = ABCreateStringWithAddressDictionary(placeMark.addressDictionary, NO);
-                    if([address isEqualToString:@""]){
-                        address = placeMark.name;
-                    }
-                }
-                
-                [self.locationButton setTitle:address forState:UIControlStateNormal];
-                
-            }
-        }];
 }
 
 -(NSInteger)valueForSliderWithDate:(NSDate*)date{
@@ -341,12 +355,13 @@ NS_ENUM(NSInteger, EMSliderType){
         UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]];
         [arrayWithImageView addObject:imageView];
     }
-
+    UIImageView* imageView1 = [arrayWithImageView firstObject];
+    
     self.scrollView.contentMode = UIViewContentModeCenter;
     int counter = 1;
     for (UIImageView* currentImageView in arrayWithImageView){
         
-        currentImageView.transform = CGAffineTransformMakeScale(0.7, 0.7);
+        currentImageView.transform = CGAffineTransformScale(imageView1.transform, 0.7, 0.7);
         currentImageView.center = CGPointMake(scrollView.center.x * counter, scrollView.center.y - 10);
         [scrollView addSubview:currentImageView];
             counter+=2;
@@ -358,6 +373,7 @@ NS_ENUM(NSInteger, EMSliderType){
 }
 
 - (IBAction)actionPageChanged:(UIPageControl *)sender {
+    [self showCircleInView:self.scrollView];
     CGPoint contentOffset = CGPointMake(sender.currentPage * CGRectGetWidth(self.scrollView.frame), 0);
     [self.scrollView setContentOffset:contentOffset
                              animated:YES];
@@ -460,8 +476,9 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - Save bar button
 
 - (IBAction)actionSaveParty:(UIBarButtonItem *)sender {
-    
+    self.navigationItem.rightBarButtonItem.enabled = NO;
     if (![self isDataPartyOK]){
+        self.navigationItem.rightBarButtonItem.enabled = YES;
         return;
     }
     
@@ -493,6 +510,7 @@ NS_ENUM(NSInteger, EMSliderType){
                                                     }
                                                  }];
                                              }
+                                             self.navigationItem.rightBarButtonItem.enabled = YES;
                                          }];
 }
 
@@ -510,7 +528,6 @@ NS_ENUM(NSInteger, EMSliderType){
     
     NSString* partyID = self.currentParty.partyID;
     
-    [[PMRCoreDataManager sharedStore] deletePartyWithName:self.currentParty.name completion:^(BOOL success) {
         NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"dd.MM.yyyy"];
 
@@ -524,23 +541,24 @@ NS_ENUM(NSInteger, EMSliderType){
                                                endTime:endTime
                                                 logoID:[NSString stringWithFormat:@"%ld", (long)self.pageControll.currentPage]
                                                comment:self.textView.text
-                                              latitude:self.latitude
-                                             longitude:self.longitude
+                                              latitude:latitude
+                                             longitude:longtitude
                                             completion:^(NSDictionary *response, NSError *error) {
                                                 if(error){
                                                     NSLog(@"%@",[error localizedDescription]);
                                                 }
                                                 if(![response valueForKey:@"error"]){
                                                     PMRParty* party = [[PMRParty alloc] initWithDictionary:response];
-                                                    [[PMRCoreDataManager sharedStore] addNewParty:party completion:^(BOOL success) {
+                                                    [[PMRCoreDataManager sharedStore] editPartyWithParty:party completion:^(BOOL success) {
                                                         if(success){
                                                             self.currentParty = party;// for partyCreatedController label text
                                                             [self performSegueWithIdentifier:@"PartyCreatedIdentifier" sender:self];
                                                         }
+
                                                     }];
                                                 }
+                                                self.navigationItem.rightBarButtonItem.enabled = YES;
                                             }];
-    }];
  }
 
 

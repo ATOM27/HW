@@ -11,8 +11,6 @@
 
 @interface EMMapInfoViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet MKMapView *mapView;
-
 @property (assign, nonatomic) CGFloat existingLatitude;
 @property (assign, nonatomic) CGFloat existingLongitude;
 

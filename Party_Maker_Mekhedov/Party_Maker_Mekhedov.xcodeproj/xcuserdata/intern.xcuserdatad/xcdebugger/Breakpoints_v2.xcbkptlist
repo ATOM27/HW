@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMAddPartyViewController.m"
-            timestampString = "509544353.950282"
+            timestampString = "509638662.459657"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "498"
+            endingLineNumber = "498"
             landmarkName = "-actionSaveParty:"
             landmarkType = "7">
          </BreakpointContent>
@@ -131,110 +131,46 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Party_Maker_Mekhedov/EMAddPartyViewController.m"
-            timestampString = "509544353.950282"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "513"
-            endingLineNumber = "513"
-            landmarkName = "-saveChangesToCurrentParty"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[EMAddPartyViewController saveChangesToCurrentParty]"
-                  moduleName = "Party_Maker_Mekhedov"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMAddPartyViewController.m"
-                  timestampString = "509540132.064302"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "519"
-                  endingLineNumber = "519"
-                  offsetFromSymbolStart = "663">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__53-[EMAddPartyViewController saveChangesToCurrentParty]_block_invoke"
-                  moduleName = "Party_Maker_Mekhedov"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMAddPartyViewController.m"
-                  timestampString = "509540132.065633"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "519"
-                  endingLineNumber = "519"
-                  offsetFromSymbolStart = "25">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMRegisterViewController.m"
-            timestampString = "509544353.950282"
+            timestampString = "509636491.571928"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "-actionRegisterTouched:"
             landmarkType = "7">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__50-[EMRegisterViewController actionRegisterTouched:]_block_invoke"
+                  symbolName = "__50-[EMRegisterViewController actionRegisterTouched:]_block_invoke_2"
                   moduleName = "Party_Maker_Mekhedov"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMRegisterViewController.m"
-                  timestampString = "509556569.811153"
+                  timestampString = "509636335.926354"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "432">
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "55">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "__50-[EMRegisterViewController actionRegisterTouched:]_block_invoke.85"
+                  symbolName = "__copy_helper_block_"
                   moduleName = "Party_Maker_Mekhedov"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMRegisterViewController.m"
-                  timestampString = "509556569.813073"
+                  timestampString = "509636335.928551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "108"
-                  endingLineNumber = "108"
-                  offsetFromSymbolStart = "26">
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "51">
                </Location>
             </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
-            timestampString = "509544353.950282"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "202"
-            endingLineNumber = "202"
-            landmarkName = "-getDictionaryFromData:"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,7 +192,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Party_Maker_Mekhedov/EMHTTPManager.m"
@@ -288,17 +224,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Party_Maker_Mekhedov/EMAddPartyViewController.m"
-            timestampString = "509544652.379601"
+            filePath = "Party_Maker_Mekhedov/EMRegisterViewController.m"
+            timestampString = "509636477.218435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
-            landmarkName = "-settingsForCurrentParty"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "-actionRegisterTouched:"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__50-[EMRegisterViewController actionRegisterTouched:]_block_invoke_2"
+                  moduleName = "Party_Maker_Mekhedov"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMRegisterViewController.m"
+                  timestampString = "509641165.182563"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "55">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_"
+                  moduleName = "Party_Maker_Mekhedov"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMRegisterViewController.m"
+                  timestampString = "509641165.183886"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "51">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_"
+                  moduleName = "Party_Maker_Mekhedov"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/intern/Documents/HW/Party_Maker_Mekhedov/Party_Maker_Mekhedov/EMRegisterViewController.m"
+                  timestampString = "509641165.185222"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "29">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

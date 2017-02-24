@@ -10,10 +10,4 @@
 
 @interface EMRegisterViewController : UIViewController
 
-@property (strong, nonatomic) IBOutlet UIView *registerView;
-@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
-@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
-@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-
-@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textFieldCollection;
 @end

@@ -11,7 +11,6 @@
 
 @interface EMPartyInfoViewController : UIViewController
 
-@property(strong, nonatomic) NSString* creatorID;
 @property(strong, nonatomic) PMRParty* currentParty;
 
 //From annotation

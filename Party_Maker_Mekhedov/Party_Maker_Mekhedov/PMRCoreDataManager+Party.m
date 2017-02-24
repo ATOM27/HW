@@ -88,6 +88,26 @@
     }];
 }
 
+- (void)editPartyWithParty:(PMRParty*)party completion:(void (^)(BOOL success))completion {
+    
+    [self performWriteOperation:^(NSManagedObjectContext *context) {
+        
+        PMRPartyManagedObject *partyObject = [PMRPartyManagedObject fetchPartyWithPartyID:party.partyID inContext:context];
+        partyObject.name = party.name;
+        partyObject.descriptionText = party.descriptionText;
+        partyObject.startDate = party.startDate;
+        partyObject.endDate = party.endDate;
+        partyObject.latitude = party.latitude;
+        partyObject.longtitude = party.longtitude;
+        partyObject.logoID = party.logoID;
+        
+        
+    }
+                     completion:^{
+                         if (completion) completion(YES);
+                     }];
+}
+
 - (NSArray<PMRParty *>*)pmr_convertManagedObjectsToDTO:(NSArray<PMRPartyManagedObject *>*)managedObjectsArray {
     
     NSMutableArray<PMRParty *>* arrayToReturn = [@[] mutableCopy];

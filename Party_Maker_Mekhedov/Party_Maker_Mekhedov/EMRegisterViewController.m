@@ -12,6 +12,12 @@
 
 @interface EMRegisterViewController ()
 
+@property (strong, nonatomic) IBOutlet UIView *registerView;
+@property (strong, nonatomic) IBOutlet UITextField *emailTextField;
+@property (strong, nonatomic) IBOutlet UITextField *nameTextField;
+@property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
+
+@property (strong, nonatomic) IBOutletCollection(UITextField) NSArray *textFieldCollection;
 
 
 @end
@@ -90,6 +96,7 @@ NS_ENUM(NSInteger, EMTextFieldType){
 #pragma mark - Actions
 
 - (IBAction)actionRegisterTouched:(UIButton *)sender {
+    sender.userInteractionEnabled = NO;
     if(([self.nameTextField.text isEqualToString:@""]) || ([self.emailTextField.text isEqualToString:@""])){
         [self alertWithTitle:@"All fields are required!" message:@""];
     }else if(self.passwordTextField.text.length < 6){
@@ -114,6 +121,7 @@ NS_ENUM(NSInteger, EMTextFieldType){
                                                   }
                                               }];
     }
+    sender.userInteractionEnabled = YES;
 }
 
 - (IBAction)actionBack:(UIButton *)sender {

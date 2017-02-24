@@ -7,8 +7,6 @@
 @import UIKit;
 @import CoreData;
 
-@class Thing;
-
 typedef void (^TableViewCellConfigureBlock)(UITableViewCell *cell, NSManagedObject *item);
 
 @interface TableViewDataSource : NSObject <UITableViewDataSource, NSFetchedResultsControllerDelegate>

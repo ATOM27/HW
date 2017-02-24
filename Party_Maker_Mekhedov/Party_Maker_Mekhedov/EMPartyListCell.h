@@ -10,9 +10,6 @@
 
 @interface EMPartyListCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UIImageView *imageV;
-@property (strong, nonatomic) IBOutlet UILabel *partyNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
 
 -(void)configureWithImageID:(NSString*)imageID partyName:(NSString*)partyName partyDate:(NSDate*)partyDate;
 -(void)prepareForReuse;
