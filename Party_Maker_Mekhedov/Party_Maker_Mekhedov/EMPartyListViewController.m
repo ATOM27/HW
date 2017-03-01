@@ -118,9 +118,6 @@
         PMRParty* party = [[PMRParty alloc] initWithManagedObject:(PMRPartyManagedObject*)[self.dataSource objectAtIndex:[self.tableView indexPathForSelectedRow]]];
         partyInfovc.currentParty = party;
     }
-    if([segue.identifier isEqualToString:@"addPartyIdentifier"]){
-        EMAddPartyViewController* addPartyvc = segue.destinationViewController;
-    }
 }
 
 @end

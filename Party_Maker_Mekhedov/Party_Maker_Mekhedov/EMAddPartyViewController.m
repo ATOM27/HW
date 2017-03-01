@@ -50,18 +50,16 @@
 
 @property (strong, nonatomic) NSString* creatorID;
 
-@end
+@property(assign, nonatomic) BOOL isKeyboardVisible;
 
-NS_ENUM(NSInteger, EMSliderType){
-    EMSliderTypeStart,
-    EMSliderTypeEnd
-};
+@end
 
 @implementation EMAddPartyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isKeyboardVisible = NO;
     self.creatorID = [[NSUserDefaults standardUserDefaults] objectForKey:@"creatorID"];
     
     self.longitude = @"";
@@ -179,6 +177,10 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - Action choose date
 
 - (IBAction)actionChooseDate:(UIButton *)sender {
+    if(self.isKeyboardVisible == YES){
+        self.isKeyboardVisible = NO;
+        [self.view endEditing:YES];
+    }
     [self showCircleInView:sender];
     
     UIDatePicker* datePicker = [[UIDatePicker alloc] init];
@@ -303,13 +305,13 @@ NS_ENUM(NSInteger, EMSliderType){
 
     NSString* resultString = [self getStringForSliderValue:sender.value];
     
-    if(sender.tag == EMSliderTypeStart){
+    if([sender isEqual:self.startSlider]){
         self.startLabel.text = resultString;
-    }else if(sender.tag == EMSliderTypeEnd){
+    }else if([sender isEqual:self.endSlider]){
         self.endLabel.text = resultString;
     }
     
-    if(sender.tag == EMSliderTypeStart){
+    if([sender isEqual:self.startSlider]){
         NSInteger difference = self.endSlider.value - sender.value;
         if(difference < 30){
             if(difference < 0){
@@ -318,7 +320,7 @@ NS_ENUM(NSInteger, EMSliderType){
             self.endSlider.value +=difference + 30;
             self.endLabel.text = [self getStringForSliderValue:self.endSlider.value];
         }
-    }else if(sender.tag == EMSliderTypeEnd){
+    }else if([sender isEqual:self.endSlider]){
         NSInteger difference = sender.value - self.startSlider.value;
         if(difference < 30){
             if(difference < 0){
@@ -392,6 +394,26 @@ NS_ENUM(NSInteger, EMSliderType){
 #pragma mark - Notifications
 
 -(void)keyboardWillShow:(NSNotification*)notification{
+    self.isKeyboardVisible = YES;
+    if(self.datePicker){
+        [UIView animateWithDuration:0.3f
+                              delay:0.f
+                            options:UIViewAnimationOptionCurveEaseOut
+                         animations:^{
+                             self.datePicker.frame = CGRectMake(0,
+                                                                CGRectGetMaxY(self.view.frame),
+                                                                CGRectGetWidth(self.view.frame), CGRectGetHeight(self.datePicker.frame));
+                             
+                             self.toolForDate.frame = CGRectMake(0, CGRectGetMinY(self.datePicker.frame), CGRectGetWidth(self.view.frame), 40);
+                         }
+                         completion:^(BOOL finished) {
+                             
+                             [self.datePicker removeFromSuperview];
+                             [self.toolForDate removeFromSuperview];
+                             self.datePicker = nil;
+                             self.toolForDate = nil;
+                         }];
+    }
     if([self.textView isFirstResponder]){
         CGRect keyboardRect =
         [[[notification userInfo]
@@ -415,6 +437,7 @@ NS_ENUM(NSInteger, EMSliderType){
 }
 
 -(void)keyboardWillHide:(NSNotification*)notification {
+    self.isKeyboardVisible = NO;
     if([self.textView isFirstResponder]){
         
         float duration = [[[notification userInfo] objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];

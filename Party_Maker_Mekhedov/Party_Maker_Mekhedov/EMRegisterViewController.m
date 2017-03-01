@@ -22,12 +22,6 @@
 
 @end
 
-NS_ENUM(NSInteger, EMTextFieldType){
-    EMTextFieldTypeEmail,
-    EMTextFieldTypeName,
-    EMTextFieldTypePassword
-};
-
 @implementation EMRegisterViewController
 
 - (void)viewDidLoad {
@@ -85,8 +79,10 @@ NS_ENUM(NSInteger, EMTextFieldType){
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField.tag != EMTextFieldTypePassword){
-        [[self.textFieldCollection objectAtIndex:textField.tag+1] becomeFirstResponder];
+    if([textField isEqual:self.emailTextField]){
+        [self.nameTextField becomeFirstResponder];
+    }else if([textField isEqual:self.nameTextField]){
+        [self.passwordTextField becomeFirstResponder];
     }else{
         [textField resignFirstResponder];
     }

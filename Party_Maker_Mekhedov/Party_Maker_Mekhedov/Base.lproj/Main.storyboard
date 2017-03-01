@@ -206,7 +206,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="89" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="pqa-kr-1pE">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -262,7 +262,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DPg-50-7fQ" firstAttribute="top" secondItem="pqa-kr-1pE" secondAttribute="bottom" id="7KA-pk-nCN"/>
+                            <constraint firstItem="DPg-50-7fQ" firstAttribute="top" secondItem="pqa-kr-1pE" secondAttribute="bottom" constant="-49" id="7KA-pk-nCN"/>
                             <constraint firstAttribute="trailing" secondItem="pqa-kr-1pE" secondAttribute="trailing" id="7xQ-dQ-E8c"/>
                             <constraint firstItem="pqa-kr-1pE" firstAttribute="top" secondItem="7o3-Z5-wa1" secondAttribute="top" id="Hyl-LX-QVL"/>
                             <constraint firstItem="pqa-kr-1pE" firstAttribute="leading" secondItem="7o3-Z5-wa1" secondAttribute="leading" id="IT0-Xx-06x"/>
@@ -283,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZxB-9U-fvE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1503" y="-161"/>
+            <point key="canvasLocation" x="1501.5999999999999" y="-161.46926536731635"/>
         </scene>
         <!--CREATE PARTY-->
         <scene sceneID="XVQ-H5-Yfq">
@@ -1335,7 +1335,7 @@ Softheme iOS Internship
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kEr-Y5-zlB">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.17994517090000001" green="0.19166588779999999" blue="0.22074142099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="bq7-or-jiA" style="IBUITableViewCellStyleDefault" id="F5D-26-1Rm">
@@ -1365,7 +1365,7 @@ Softheme iOS Internship
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pJU-8O-QGv" firstAttribute="top" secondItem="kEr-Y5-zlB" secondAttribute="bottom" id="7oN-VH-eIY"/>
+                            <constraint firstItem="pJU-8O-QGv" firstAttribute="top" secondItem="kEr-Y5-zlB" secondAttribute="bottom" constant="-49" id="7oN-VH-eIY"/>
                             <constraint firstAttribute="trailing" secondItem="kEr-Y5-zlB" secondAttribute="trailing" id="Iow-rw-T9I"/>
                             <constraint firstItem="kEr-Y5-zlB" firstAttribute="leading" secondItem="nHm-h6-VcO" secondAttribute="leading" id="a9B-nx-4fQ"/>
                             <constraint firstItem="kEr-Y5-zlB" firstAttribute="top" secondItem="nHm-h6-VcO" secondAttribute="top" id="fQG-z1-s0j"/>
@@ -1557,7 +1557,7 @@ Softheme iOS Internship
         <image name="settings.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="mjf-Yq-ush"/>
         <segue reference="OSY-gs-U75"/>
-        <segue reference="Lwl-59-DcD"/>
     </inferredMetricsTieBreakers>
 </document>

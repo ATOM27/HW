@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60342511E67229B00D8B503 /* settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60342501E67229B00D8B503 /* settings@2x.png */; };
+		D60342531E6722A000D8B503 /* map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60342521E6722A000D8B503 /* map@2x.png */; };
+		D60342551E6722A600D8B503 /* floating-balloons@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D60342541E6722A600D8B503 /* floating-balloons@2x.png */; };
 		D6064A261E462DE000DBE2E8 /* EMPartyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */; };
 		D6064A2A1E462E2A00DBE2E8 /* EMPartyListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6064A291E462E2A00DBE2E8 /* EMPartyListCell.m */; };
 		D60D3E6B1E523C5C0053A7D8 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = D60D3E6A1E523C5C0053A7D8 /* settings.png */; };
@@ -58,6 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D60342501E67229B00D8B503 /* settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings@2x.png"; sourceTree = "<group>"; };
+		D60342521E6722A000D8B503 /* map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map@2x.png"; sourceTree = "<group>"; };
+		D60342541E6722A600D8B503 /* floating-balloons@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "floating-balloons@2x.png"; sourceTree = "<group>"; };
 		D6064A241E462DE000DBE2E8 /* EMPartyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListViewController.h; sourceTree = "<group>"; };
 		D6064A251E462DE000DBE2E8 /* EMPartyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EMPartyListViewController.m; sourceTree = "<group>"; };
 		D6064A281E462E2A00DBE2E8 /* EMPartyListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMPartyListCell.h; sourceTree = "<group>"; };
@@ -443,8 +449,11 @@
 			isa = PBXGroup;
 			children = (
 				D60D3E761E5240230053A7D8 /* floating-balloons.png */,
+				D60342541E6722A600D8B503 /* floating-balloons@2x.png */,
 				D60D3E6A1E523C5C0053A7D8 /* settings.png */,
+				D60342501E67229B00D8B503 /* settings@2x.png */,
 				EC45C43C1E5B050D005D9B1E /* map.png */,
+				D60342521E6722A000D8B503 /* map@2x.png */,
 			);
 			name = "Tab bar";
 			sourceTree = "<group>";
@@ -549,12 +558,15 @@
 				ECDAC2E51E5315D30005E1AE /* back.png in Resources */,
 				ECA6853E1E48945C006BEBBD /* Background.png in Resources */,
 				D64E4B581E39312F00E4E9D4 /* LaunchScreen.storyboard in Resources */,
+				D60342531E6722A000D8B503 /* map@2x.png in Resources */,
 				D6418DA51E3B4DD7009150C1 /* Birthday Cake-100.png in Resources */,
 				D6418DA61E3B4DD7009150C1 /* Champagne-100.png in Resources */,
 				D6CF24851E3B5CEF00463849 /* No Alcohol-100.png in Resources */,
 				D64E4B551E39312F00E4E9D4 /* Assets.xcassets in Resources */,
 				EC45C43D1E5B050D005D9B1E /* map.png in Resources */,
+				D60342511E67229B00D8B503 /* settings@2x.png in Resources */,
 				D64E4B531E39312F00E4E9D4 /* Main.storyboard in Resources */,
+				D60342551E6722A600D8B503 /* floating-balloons@2x.png in Resources */,
 				D60D3E771E5240230053A7D8 /* floating-balloons.png in Resources */,
 				D6418DA81E3B4DD7009150C1 /* Coconut Cocktail-100.png in Resources */,
 				D6418DA41E3B4DD7009150C1 /* Beer-100.png in Resources */,

@@ -22,11 +22,6 @@
 
 @end
 
-NS_ENUM(NSInteger, EMTextField){
-    EMTextFieldName,
-    EMTextFieldPassword
-};
-
 NSString* const tabBarIdentifier = @"TabBarIdentifier";
 
 @implementation EMLoginViewController
@@ -68,7 +63,7 @@ NSString* const tabBarIdentifier = @"TabBarIdentifier";
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField.tag == EMTextFieldName){
+    if([textField isEqual:self.emailTextField]){
         [self.passwordTextField becomeFirstResponder];
     }else{
         [textField resignFirstResponder];
